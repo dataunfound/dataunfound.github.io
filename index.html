@@ -2,215 +2,305 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Kaan Barlas | Developer Profile</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kaan Barlas | dataunfound</title>
     <style>
-        /* Steam-Inspired Dark Theme UI */
+        /* Digital Canvas: Artistic Steam & High Contrast Theme */
+        :root {
+            --bg-deep: #0a0e17; /* Siyah tuval */
+            --bg-panel: rgba(18, 26, 41, 0.7); /* Şeffaf veri paneli */
+            --text-main: #d1d9e1; /* Solgun gümüş veri */
+            --text-highlight: #ffffff; /* Saf ışık */
+            --steam-blue: #66c0f4; /* Dijital mürekkep */
+            --steam-green: #a4d007; /* Aktif veri akışı */
+            --artistic-glow: rgba(102, 192, 244, 0.4); /* Sanatsal halo */
+        }
+
         body { 
-            background-color: #1b2838; 
-            color: #c7d5e0; 
+            background-color: var(--bg-deep);
+            /* Sanatsal Doku: Soyut matris ve fırça darbeleri */
+            background-image: 
+                radial-gradient(at 10% 10%, rgba(102, 192, 244, 0.15) 0px, transparent 50%),
+                radial-gradient(at 90% 90%, rgba(164, 208, 7, 0.08) 0px, transparent 50%),
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90%, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 100% 100%, 100% 100%, 25px 25px, 25px 25px;
+            color: var(--text-main); 
             font-family: 'Motiva Sans', 'Segoe UI', Tahoma, Arial, sans-serif; 
-            max-width: 950px; 
+            max-width: 1000px; 
             margin: 0 auto; 
             padding: 2rem; 
-            line-height: 1.6; 
+            line-height: 1.6;
+            position: relative;
         }
         
-        /* Header & Profile Section */
-        header { 
-            display: flex; 
-            align-items: center; 
-            background: linear-gradient(to right, #2a475e, #1b2838); 
-            padding: 2rem; 
-            border-radius: 4px; 
-            box-shadow: 0 6px 12px rgba(0,0,0,0.4); 
-            margin-bottom: 2rem; 
-            border: 1px solid #171a21; 
-        }
-        .avatar-box {
-            width: 120px; 
-            height: 120px; 
-            border: 2px solid #66c0f4; 
-            border-radius: 4px; 
-            margin-right: 2rem; 
-            background-color: #171a21; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            box-shadow: 0 0 10px rgba(102, 192, 244, 0.2);
+        /* Floating Artistic Avatar */
+        .avatar-container {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            width: 130px; 
+            height: 130px; 
+            border-radius: 50%;
+            border: 3px solid var(--steam-blue);
+            box-shadow: 0 0 25px var(--artistic-glow), inset 0 0 15px rgba(0,0,0,0.5);
             overflow: hidden;
+            z-index: 1000;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .avatar-box img {
+        .avatar-container:hover {
+            transform: scale(1.05) rotate(5deg);
+            box-shadow: 0 0 35px rgba(102, 192, 244, 0.6);
+        }
+        .avatar-container img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
+
+        /* Profile Header: Artistic Alignment */
+        header { 
+            margin-left: 170px; /* Avatar için boşluk */
+            background: var(--bg-panel);
+            padding: 2rem; 
+            border-radius: 8px; 
+            border: 1px solid rgba(102, 192, 244, 0.2);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            margin-bottom: 3rem;
+            backdrop-filter: blur(5px);
+        }
         .profile-info h1 { 
             margin: 0; 
-            color: #ffffff; 
-            font-size: 2.4rem; 
+            color: var(--text-highlight); 
+            font-size: 2.8rem; 
             text-transform: uppercase; 
-            letter-spacing: 2px; 
+            letter-spacing: 3px; 
+            text-shadow: 0 0 10px var(--artistic-glow);
         }
-        .status { color: #8cc414; font-weight: bold; font-size: 1.1rem; margin-top: 0.3rem; }
-        .level-badge { 
-            color: #8f98a0; 
-            font-size: 1rem; 
-            margin-top: 0.8rem; 
-            display: flex;
-            align-items: center;
+        .user-tag {
+            color: var(--steam-blue);
+            font-family: monospace;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
         }
-        .level-badge span { 
-            border: 2px solid #c13c37; 
-            border-radius: 50%; 
-            padding: 4px 8px; 
-            color: #ffffff; 
-            font-weight: bold; 
-            margin-left: 10px; 
-            background: rgba(193, 60, 55, 0.2);
-        }
+        .status { color: var(--steam-green); font-weight: bold; font-size: 1.2rem; }
+        .tagline { margin-top: 1rem; color: #8f98a0; font-style: italic; font-size: 1.1rem;}
 
-        /* Typography & Layout */
+        /* Typography & Artistic Accents */
         h2 { 
-            color: #66c0f4; 
-            border-bottom: 1px solid #2a475e; 
+            color: var(--text-highlight); 
+            border-bottom: 2px solid var(--steam-blue); 
             padding-bottom: 0.5rem; 
             text-transform: uppercase; 
-            font-size: 1.3rem; 
-            letter-spacing: 1px; 
-            margin-top: 3rem; 
+            font-size: 1.4rem; 
+            letter-spacing: 2px; 
+            margin-top: 4rem; 
+            margin-left: 170px;
+            text-shadow: 0 0 5px var(--artistic-glow);
         }
-        h3 { color: #ffffff; font-size: 1.2rem; margin-bottom: 0.5rem; }
-        p { margin-bottom: 1rem; }
         
-        /* Interactive Cards (Showcases) */
+        main {
+            margin-left: 170px; /* Tüm içerik için boşluk */
+        }
+
+        /* Artistic Showcases (Cards) */
         article { 
-            background-color: rgba(0, 0, 0, 0.25); 
-            padding: 1.5rem; 
-            border: 1px solid #2a475e; 
-            border-radius: 4px; 
-            margin-bottom: 1.5rem; 
-            transition: all 0.3s ease; 
+            background: var(--bg-panel);
+            padding: 2rem; 
+            border: 1px solid rgba(102, 192, 244, 0.1); 
+            border-radius: 8px; 
+            margin-bottom: 2rem; 
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        article::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, transparent 0%, rgba(102, 192, 244, 0.05) 100%);
+            opacity: 0; transition: opacity 0.4s;
         }
         article:hover { 
-            border-color: #66c0f4; 
-            background-color: rgba(0, 0, 0, 0.4);
-            box-shadow: 0 0 8px rgba(102, 192, 244, 0.1);
+            border-color: var(--steam-blue); 
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+        }
+        article:hover::before { opacity: 1; }
+        
+        article h3 { color: var(--text-highlight); font-size: 1.3rem; margin-top: 0; position: relative;}
+        article p { position: relative; color: var(--text-main); }
+        
+        .tech-tag {
+            display: inline-block;
+            background: rgba(102, 192, 244, 0.1);
+            color: var(--steam-blue);
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+            font-family: monospace;
         }
 
-        /* Links & Buttons */
-        a { color: #66c0f4; text-decoration: none; transition: color 0.2s; }
-        a:hover { color: #ffffff; text-decoration: underline; }
+        /* Buttons & Interactions */
+        a { color: var(--steam-blue); text-decoration: none; transition: color 0.2s; position: relative;}
+        a:hover { color: var(--text-highlight); text-decoration: underline; }
+        
         .action-btn { 
             background: linear-gradient(to bottom, #47bfff 5%, #1a44c2 100%);
-            background-color: #47bfff;
             color: #ffffff !important; 
-            padding: 0.5rem 1.2rem; 
-            border-radius: 2px; 
+            padding: 0.7rem 1.5rem; 
+            border-radius: 4px; 
             display: inline-block; 
             margin-right: 1rem; 
-            text-decoration: none !important;
+            margin-bottom: 1rem;
             font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             border: none;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            transition: box-shadow 0.2s, transform 0.1s;
         }
-        .action-btn:hover { background: linear-gradient(to bottom, #1a44c2 5%, #47bfff 100%); }
+        .action-btn:hover { 
+            box-shadow: 0 0 15px var(--artistic-glow);
+            text-decoration: none !important;
+        }
+        .action-btn:active { transform: translateY(1px); }
 
-        /* Tech Stack / Skill Tree */
+        /* Skill Tree Panel */
         .skill-tree { 
-            background: #171a21; 
-            padding: 1.5rem; 
-            border: 1px solid #2a475e; 
-            border-radius: 4px; 
+            background: var(--bg-panel);
+            padding: 2rem; 
+            border: 1px solid rgba(102, 192, 244, 0.1); 
+            border-radius: 8px; 
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
         }
-        ul { list-style-type: square; color: #66c0f4; padding-left: 1.5rem; }
-        ul li { margin-bottom: 0.8rem; }
-        ul li span { color: #c7d5e0; }
+        .skill-category h4 { color: var(--steam-blue); text-transform: uppercase; margin-top: 0; }
+        .skill-tree ul { list-style: none; padding: 0; margin: 0; }
+        .skill-tree ul li { margin-bottom: 0.6rem; color: var(--text-main); font-family: monospace;}
+        .skill-tree ul li::before { content: '>'; color: var(--steam-green); margin-right: 0.5rem; }
 
     </style>
 </head>
 <body>
 
+<div class="avatar-container">
+    <img src="https://github.com/dataunfound.png" alt="Kaan Barlas Avatar">
+</div>
+
 <header>
-    <div class="avatar-box">
-        <img src="https://github.com/dataunfound.png" alt="Kaan Barlas Avatar">
-    </div>
     <div class="profile-info">
+        <div class="user-tag">root@dataunfound:~#</div>
         <h1>Kaan Barlas</h1>
-        <div class="status">In-Game: University of York (B.Sc. Computer Science)</div>
-        <div class="level-badge">Developer Level <span>1</span></div>
-        <p style="margin-top: 1rem; color: #8f98a0; font-style: italic;">"Architecting backend systems and writing clean, highly-optimised code."</p>
+        <div class="status">In-Game: University of York (Computer Science)</div>
+        <p class="tagline">"Architecting backend systems, data engineering, and weaving logic into digital art."</p>
     </div>
 </header>
 
 <main>
-    <section id="hero" style="margin-bottom: 3rem; border-bottom: 1px solid #2a475e; padding-bottom: 1.5rem;">
-        <a href="#projects" class="action-btn">View Inventory (Projects)</a>
-        <a href="maths.html" class="action-btn" style="background: linear-gradient(to bottom, #799905 5%, #536904 100%);">Launch Minigame (CS Tools)</a>
-        <a href="#contact" style="margin-left: 1rem;">Add to Network</a>
+    <section id="hero" style="margin-bottom: 3rem; padding-bottom: 1.5rem;">
+        <a href="#projects" class="action-btn">Inspect Inventory</a>
+        <a href="maths.html" class="action-btn" style="background: linear-gradient(to bottom, #799905 5%, #536904 100%);">Launch Minigame</a>
+        <a href="#contact" style="margin-left: 1rem; color: #8f98a0;">./connect</a>
     </section>
 
     <section id="about">
-        <h2>Profile Summary</h2>
-        <p>I am a Computer Science undergraduate focused on the mechanics of robust software architecture. Rather than treating programming as pure theory, I enjoy treating it like an intricate puzzle—taking apart computer architectures, distributed databases, and APIs to see how they function under extreme loads.</p>
-        <p><strong>Current Objective:</strong> Looking for a backend engineering or cloud infrastructure internship where I can apply my skills to real-world datasets and scale applications beyond localhost.</p>
+        <h2>Summary</h2>
+        <article>
+            <p>I am a Computer Science undergraduate focused on the mechanics of robust software architecture. Rather than treating programming as pure theory, I see it as a digital tuval—a canvas where distributed databases, APIs, and computer architectures form intricate patterns. I enjoy taking systems apart to optimise their resource consumption and see how they function under extreme loads.</p>
+            <p><strong>Current Objective:</strong> Seeking a backend engineering or cloud infrastructure internship where I can weave my skills into real-world, large-scale systems.</p>
+        </article>
     </section>
 
     <section id="projects">
-        <h2>Item Showcase: Featured Projects</h2>
+        <h2>Featured Creations</h2>
         
         <article>
             <h3>Real-Time Data Pipeline [Legendary]</h3>
-            <p><strong>Item Description:</strong> An asynchronous web application designed to aggregate and process high-volume data streams from external APIs in real time.</p>
-            <p><strong>Stats (Tech Stack):</strong> <span>Python, FastAPI, PostgreSQL, JavaScript</span></p>
-            <p><strong>Player Contribution:</strong> Architected the relational database schema, established the API integration layers, and built the frontend visual dashboard.</p>
-            <p><strong>Quest Log (Challenges):</strong> Overcame severe data fetching latency by implementing aggressive memory caching and optimising asynchronous thread management.</p>
-            <p><a href="https://github.com/dataunfound/data-pipeline" target="_blank">Inspect Source Code</a></p>
+            <p><strong>Description:</strong> An asynchronous web application designed to aggregate and process high-volume data streams from external APIs in real time.</p>
+            <div>
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">FastAPI</span>
+                <span class="tech-tag">PostgreSQL</span>
+                <span class="tech-tag">JavaScript</span>
+            </div>
+            <p><strong>Player Contribution:</strong> Architected the normalised database schema, established the API integration layers, and built the visual data dashboard.</p>
+            <p><strong>Quest Log:</strong> Overcame data fetching latency by implementing aggressive memory caching and optimised concurrent thread management.</p>
+            <p><a href="https://github.com/dataunfound/data-pipeline" target="_blank">[Inspect Source Code]</a></p>
         </article>
 
         <article>
             <h3>Predictive Resource Allocation Engine [Epic]</h3>
-            <p><strong>Item Description:</strong> A robust backend utility that simulates network traffic loads to algorithmically predict and allocate dynamic server resources.</p>
-            <p><strong>Stats (Tech Stack):</strong> <span>Java, Spring Boot, MySQL, Docker</span></p>
-            <p><strong>Player Contribution:</strong> Developed the core algorithmic logic for resource prediction and containerised the application for seamless cross-platform deployment.</p>
-            <p><strong>Quest Log (Challenges):</strong> Mastered Docker container orchestration, ensuring the algorithm scaled linearly under simulated heavy loads.</p>
-            <p><a href="https://github.com/dataunfound/resource-engine" target="_blank">Inspect Source Code</a></p>
+            <p><strong>Description:</strong> A robust backend utility that simulates network traffic loads to algorithmically predict and allocate dynamic server resources.</p>
+            <div>
+                <span class="tech-tag">Java</span>
+                <span class="tech-tag">Spring Boot</span>
+                <span class="tech-tag">MySQL</span>
+                <span class="tech-tag">Docker</span>
+            </div>
+            <p><strong>Player Contribution:</strong> Developed the core algorithmic logic for resource prediction and containerised the application for deployment.</p>
+            <p><strong>Quest Log:</strong> Mastered Docker container orchestration, ensuring the algorithm scaled linearly under simulated heavy loads.</p>
+            <p><a href="https://github.com/dataunfound/resource-engine" target="_blank">[Inspect Source Code]</a></p>
         </article>
     </section>
 
     <section id="skills">
-        <h2>Skill Tree & Developer Stats</h2>
+        <h2>Skill Tree</h2>
         <div class="skill-tree">
-            <ul>
-                <li><strong>Core Programming:</strong> <span>Python, Java, Go, JavaScript, SQL.</span></li>
-                <li><strong>Frameworks & Tools:</strong> <span>FastAPI, Spring Boot, Docker, Git, Linux command line.</span></li>
-                <li><strong>Specialisations:</strong> <span>Backend architecture, database normalisation, RESTful API design, concurrent programming.</span></li>
-            </ul>
+            <div class="skill-category">
+                <h4>Programming</h4>
+                <ul>
+                    <li>Python</li>
+                    <li>Java</li>
+                    <li>Go</li>
+                    <li>SQL (PostgreSQL/MySQL)</li>
+                    <li>JavaScript</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h4>Frameworks & Tools</h4>
+                <ul>
+                    <li>FastAPI</li>
+                    <li>Spring Boot</li>
+                    <li>Docker</li>
+                    <li>Git / GitHub</li>
+                    <li>Linux CLI</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h4>Specialisations</h4>
+                <ul>
+                    <li>Backend Architecture</li>
+                    <li>Database Design</li>
+                    <li>RESTful API Design</li>
+                    <li>Concurrent Systems</li>
+                </ul>
+            </div>
         </div>
     </section>
 
     <section id="blog">
-        <h2>Developer Logs & Patch Notes</h2>
-        <p style="color: #8f98a0; font-size: 0.95rem;">Archived logs detailing my academic progression and technical deep-dives.</p>
+        <h2>Developer Logs</h2>
         
         <article>
-            <h3>Patch 1.2: Demystifying the HTTP Request Cycle</h3>
-            <p style="color: #66c0f4; font-size: 0.85rem;">Date: 17 March 2026</p>
-            <p>When you type a URL into a browser, it fires an HTTP request to a remote server. This payload asks for a specific file. The server processes this request and returns an HTTP response, complete with a status code (e.g., 200 OK) and the payload itself. In modern distributed architectures, this cycle happens dozens of times per page load, fetching scripts and assets concurrently.</p>
+            <h3>Patch 1.2: The HTTP Request Cycle</h3>
+            <p style="color: var(--steam-blue); font-size: 0.9rem; font-family: monospace;">Date: 17 March 2026</p>
+            <p>Type a URL, and you trigger a structured HTTP request—a digital brushstroke across the network. The server parses this, executes backend logic, and returns an HTTP response (200 OK, or perhaps a 404 art piece). In modern systems, this cycle is heavily optimized through concurrency and caching.</p>
         </article>
 
         <article>
-            <h3>Patch 1.1: The Database Normalisation Trade-off</h3>
-            <p style="color: #66c0f4; font-size: 0.85rem;">Date: 10 March 2026</p>
-            <p>Normalisation is crucial for eliminating data redundancy. By splitting data into multiple tables, we ensure transactional consistency. However, I recently learned that in massive systems requiring ultra-fast read speeds, engineers intentionally denormalise tables. Avoiding complex JOIN operations drastically reduces read latency, highlighting a fascinating trade-off between structural purity and raw performance.</p>
+            <h3>Patch 1.1: Normalisation Trade-offs</h3>
+            <p style="color: var(--steam-blue); font-size: 0.9rem; font-family: monospace;">Date: 10 March 2026</p>
+            <p>Normalisation eliminates data redundancy. It's structural purity. But in massive systems requiring raw speed, engineers intentionally denormalise tables. Avoiding complex JOIN operations drastically reduces read latency. It's a fascinating artistic decision between elegance and performance.</p>
         </article>
     </section>
 
-    <section id="contact" style="margin-top: 4rem; text-align: center; border-top: 1px solid #2a475e; padding-top: 2rem;">
-        <h2>Player Network</h2>
+    <section id="contact" style="margin-top: 5rem; text-align: center; padding: 2rem; border-top: 1px solid rgba(102, 192, 244, 0.2);">
         <p>Base of Operations: York, United Kingdom</p>
-        <p>
-            <a href="https://github.com/dataunfound" target="_blank" class="action-btn" style="margin: 0.5rem;">View GitHub Inventory</a>
-        </p>
+        <a href="https://github.com/dataunfound" target="_blank" class="action-btn">View GitHub Inventory</a>
     </section>
 </main>
 
