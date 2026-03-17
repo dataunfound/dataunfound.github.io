@@ -2,120 +2,214 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Kaan Barlas | Computer Science Portfolio</title>
+    <title>Kaan Barlas | Developer Profile</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 900px; margin: 0 auto; padding: 2rem; line-height: 1.6; color: #333; }
-        header { border-bottom: 3px solid #005f73; margin-bottom: 2rem; padding-bottom: 1rem; }
-        h1 { margin-bottom: 0.2rem; color: #001219; font-size: 2.5rem; }
-        h2 { color: #0a9396; margin-top: 2rem; border-bottom: 1px solid #e9ecef; padding-bottom: 0.5rem; }
-        h3 { color: #005f73; }
-        .tagline { font-style: italic; color: #555; font-size: 1.2rem; }
-        article { background: #f8f9fa; padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-        a { color: #005f73; text-decoration: none; font-weight: bold; }
-        a:hover { text-decoration: underline; color: #0a9396; }
-        ul { margin-top: 0.5rem; padding-left: 1.2rem; }
-        li { margin-bottom: 0.8rem; }
+        /* Steam-Inspired Dark Theme UI */
+        body { 
+            background-color: #1b2838; 
+            color: #c7d5e0; 
+            font-family: 'Motiva Sans', 'Segoe UI', Tahoma, Arial, sans-serif; 
+            max-width: 950px; 
+            margin: 0 auto; 
+            padding: 2rem; 
+            line-height: 1.6; 
+        }
+        
+        /* Header & Profile Section */
+        header { 
+            display: flex; 
+            align-items: center; 
+            background: linear-gradient(to right, #2a475e, #1b2838); 
+            padding: 2rem; 
+            border-radius: 4px; 
+            box-shadow: 0 6px 12px rgba(0,0,0,0.4); 
+            margin-bottom: 2rem; 
+            border: 1px solid #171a21; 
+        }
+        .avatar-box {
+            width: 120px; 
+            height: 120px; 
+            border: 2px solid #66c0f4; 
+            border-radius: 4px; 
+            margin-right: 2rem; 
+            background-color: #171a21; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            box-shadow: 0 0 10px rgba(102, 192, 244, 0.2);
+            overflow: hidden;
+        }
+        .avatar-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .profile-info h1 { 
+            margin: 0; 
+            color: #ffffff; 
+            font-size: 2.4rem; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+        }
+        .status { color: #8cc414; font-weight: bold; font-size: 1.1rem; margin-top: 0.3rem; }
+        .level-badge { 
+            color: #8f98a0; 
+            font-size: 1rem; 
+            margin-top: 0.8rem; 
+            display: flex;
+            align-items: center;
+        }
+        .level-badge span { 
+            border: 2px solid #c13c37; 
+            border-radius: 50%; 
+            padding: 4px 8px; 
+            color: #ffffff; 
+            font-weight: bold; 
+            margin-left: 10px; 
+            background: rgba(193, 60, 55, 0.2);
+        }
+
+        /* Typography & Layout */
+        h2 { 
+            color: #66c0f4; 
+            border-bottom: 1px solid #2a475e; 
+            padding-bottom: 0.5rem; 
+            text-transform: uppercase; 
+            font-size: 1.3rem; 
+            letter-spacing: 1px; 
+            margin-top: 3rem; 
+        }
+        h3 { color: #ffffff; font-size: 1.2rem; margin-bottom: 0.5rem; }
+        p { margin-bottom: 1rem; }
+        
+        /* Interactive Cards (Showcases) */
+        article { 
+            background-color: rgba(0, 0, 0, 0.25); 
+            padding: 1.5rem; 
+            border: 1px solid #2a475e; 
+            border-radius: 4px; 
+            margin-bottom: 1.5rem; 
+            transition: all 0.3s ease; 
+        }
+        article:hover { 
+            border-color: #66c0f4; 
+            background-color: rgba(0, 0, 0, 0.4);
+            box-shadow: 0 0 8px rgba(102, 192, 244, 0.1);
+        }
+
+        /* Links & Buttons */
+        a { color: #66c0f4; text-decoration: none; transition: color 0.2s; }
+        a:hover { color: #ffffff; text-decoration: underline; }
+        .action-btn { 
+            background: linear-gradient(to bottom, #47bfff 5%, #1a44c2 100%);
+            background-color: #47bfff;
+            color: #ffffff !important; 
+            padding: 0.5rem 1.2rem; 
+            border-radius: 2px; 
+            display: inline-block; 
+            margin-right: 1rem; 
+            text-decoration: none !important;
+            font-weight: bold;
+            border: none;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        .action-btn:hover { background: linear-gradient(to bottom, #1a44c2 5%, #47bfff 100%); }
+
+        /* Tech Stack / Skill Tree */
+        .skill-tree { 
+            background: #171a21; 
+            padding: 1.5rem; 
+            border: 1px solid #2a475e; 
+            border-radius: 4px; 
+        }
+        ul { list-style-type: square; color: #66c0f4; padding-left: 1.5rem; }
+        ul li { margin-bottom: 0.8rem; }
+        ul li span { color: #c7d5e0; }
+
     </style>
 </head>
 <body>
 
 <header>
-    <h1>Kaan Barlas</h1>
-    <p class="tagline">Computer Science undergraduate focused on backend architecture and data engineering.</p>
+    <div class="avatar-box">
+        <img src="https://github.com/dataunfound.png" alt="Kaan Barlas Avatar">
+    </div>
+    <div class="profile-info">
+        <h1>Kaan Barlas</h1>
+        <div class="status">In-Game: University of York (B.Sc. Computer Science)</div>
+        <div class="level-badge">Developer Level <span>1</span></div>
+        <p style="margin-top: 1rem; color: #8f98a0; font-style: italic;">"Architecting backend systems and writing clean, highly-optimised code."</p>
+    </div>
 </header>
 
 <main>
-    <section id="hero">
-        <p><strong>What I do:</strong> I enjoy building backend systems and working with data. My main focus is writing clean, efficient code to create reliable applications that actually solve problems, rather than just treating programming as theory.</p>
-        <p>
-            <a href="#projects">Explore my projects</a> | 
-            <a href="#contact">Contact me</a> | 
-            <a href="maths.html">View my CS Maths & Tools page</a>
-        </p>
+    <section id="hero" style="margin-bottom: 3rem; border-bottom: 1px solid #2a475e; padding-bottom: 1.5rem;">
+        <a href="#projects" class="action-btn">View Inventory (Projects)</a>
+        <a href="maths.html" class="action-btn" style="background: linear-gradient(to bottom, #799905 5%, #536904 100%);">Launch Minigame (CS Tools)</a>
+        <a href="#contact" style="margin-left: 1rem;">Add to Network</a>
     </section>
 
     <section id="about">
-        <h2>About me</h2>
-        <p>I am a Computer Science student at the University of York[cite: 130]. While I am learning the core fundamentals like computer architecture and databases in lectures[cite: 149], I spend most of my free time applying these concepts to personal projects. I like taking things apart to see how they work under the hood.</p>
-    </section>
-
-    <section id="now">
-        <h2>What I am working on now</h2>
-        <p>Right now, I am trying to wrap my head around distributed systems and getting better at Go to build faster backend services. Over the next year, my goal is to build full-stack apps that connect a solid frontend to well-designed databases. I want to move away from small scripts and start handling real-world datasets.</p>
-        <p>I am currently looking for an internship where I can get hands-on experience with backend development, APIs, and cloud infrastructure.</p>
+        <h2>Profile Summary</h2>
+        <p>I am a Computer Science undergraduate focused on the mechanics of robust software architecture. Rather than treating programming as pure theory, I enjoy treating it like an intricate puzzle—taking apart computer architectures, distributed databases, and APIs to see how they function under extreme loads.</p>
+        <p><strong>Current Objective:</strong> Looking for a backend engineering or cloud infrastructure internship where I can apply my skills to real-world datasets and scale applications beyond localhost.</p>
     </section>
 
     <section id="projects">
-        <h2>Featured Projects</h2>
+        <h2>Item Showcase: Featured Projects</h2>
         
         <article>
-            <h3>Real-Time Data Pipeline</h3>
-            <p><strong>Summary:</strong> A web app that pulls in high-volume data from external APIs and processes it in real time to display on a dashboard.</p>
-            <p><strong>Tech stack:</strong> Python, FastAPI, PostgreSQL, JavaScript</p>
-            <p><strong>My contribution:</strong> I designed the database schema, set up the API integration, and built the frontend dashboard to visualise the data.</p>
-            <p><strong>Challenges:</strong> The biggest issue was data fetching latency. I managed to speed things up by caching the data and fixing how I handled asynchronous requests.</p>
-            <p><a href="https://github.com/dataunfound/data-pipeline">Source code</a></p>
+            <h3>Real-Time Data Pipeline [Legendary]</h3>
+            <p><strong>Item Description:</strong> An asynchronous web application designed to aggregate and process high-volume data streams from external APIs in real time.</p>
+            <p><strong>Stats (Tech Stack):</strong> <span>Python, FastAPI, PostgreSQL, JavaScript</span></p>
+            <p><strong>Player Contribution:</strong> Architected the relational database schema, established the API integration layers, and built the frontend visual dashboard.</p>
+            <p><strong>Quest Log (Challenges):</strong> Overcame severe data fetching latency by implementing aggressive memory caching and optimising asynchronous thread management.</p>
+            <p><a href="https://github.com/dataunfound/data-pipeline" target="_blank">Inspect Source Code</a></p>
         </article>
 
         <article>
-            <h3>Predictive Resource Allocation Tool</h3>
-            <p><strong>Summary:</strong> A backend tool that simulates traffic loads to predict how much server resource an application will need.</p>
-            <p><strong>Tech stack:</strong> Java, Spring Boot, MySQL, Docker</p>
-            <p><strong>My contribution:</strong> I wrote the core prediction logic and packaged the whole application in Docker containers to make it easy to deploy anywhere.</p>
-            <p><strong>Challenges:</strong> Learning how to orchestrate containers properly was tough at first, but it paid off when testing the app under heavy simulated load.</p>
+            <h3>Predictive Resource Allocation Engine [Epic]</h3>
+            <p><strong>Item Description:</strong> A robust backend utility that simulates network traffic loads to algorithmically predict and allocate dynamic server resources.</p>
+            <p><strong>Stats (Tech Stack):</strong> <span>Java, Spring Boot, MySQL, Docker</span></p>
+            <p><strong>Player Contribution:</strong> Developed the core algorithmic logic for resource prediction and containerised the application for seamless cross-platform deployment.</p>
+            <p><strong>Quest Log (Challenges):</strong> Mastered Docker container orchestration, ensuring the algorithm scaled linearly under simulated heavy loads.</p>
+            <p><a href="https://github.com/dataunfound/resource-engine" target="_blank">Inspect Source Code</a></p>
         </article>
     </section>
 
     <section id="skills">
-        <h2>Technical Skills</h2>
-        <p><strong>Programming:</strong> Python, Java, Go, JavaScript, SQL.</p>
-        <p><strong>Frameworks & Tools:</strong> FastAPI, Spring Boot, Docker, Git, GitHub, Linux command line.</p>
-        <p><strong>Interests:</strong> Backend architecture, database design, cloud computing, API development.</p>
-    </section>
-
-    <section id="achievements">
-        <h2>Achievements and certificates</h2>
-        <h3>Online courses</h3>
-        <ul>
-            <li>
-                <strong>AWS Certified Solutions Architect (In Progress)</strong> <br>
-                <a href="https://explore.skillbuilder.aws">View AWS Skills Builder</a>
-            </li>
-            <li>
-                <strong>Google Advanced Data Analytics Certificate</strong> <br>
-                <a href="https://www.coursera.org/">View Coursera</a>
-            </li>
-        </ul>
-        <h3>Competitions</h3>
-        <ul>
-            <li>
-                <strong>2025 Global Hackathon:</strong> Worked in a team to build and deploy a machine learning web app from scratch within 48 hours.
-            </li>
-        </ul>
+        <h2>Skill Tree & Developer Stats</h2>
+        <div class="skill-tree">
+            <ul>
+                <li><strong>Core Programming:</strong> <span>Python, Java, Go, JavaScript, SQL.</span></li>
+                <li><strong>Frameworks & Tools:</strong> <span>FastAPI, Spring Boot, Docker, Git, Linux command line.</span></li>
+                <li><strong>Specialisations:</strong> <span>Backend architecture, database normalisation, RESTful API design, concurrent programming.</span></li>
+            </ul>
+        </div>
     </section>
 
     <section id="blog">
-        <h2>Learning notes</h2>
-        <p>I use this section to write short explanations of ideas from my modules so I remember them and can show my understanding[cite: 278, 280, 281].</p>
+        <h2>Developer Logs & Patch Notes</h2>
+        <p style="color: #8f98a0; font-size: 0.95rem;">Archived logs detailing my academic progression and technical deep-dives.</p>
         
         <article>
-            <h3>How HTTP Requests Actually Work</h3>
-            <p><strong>Date:</strong> 17 March 2026</p>
-            <p>When you type a URL into your browser, it sends an HTTP request to a server[cite: 299]. This is basically a message asking for a specific file or page[cite: 300]. The server processes this and sends back an HTTP response, which includes a status code (like 200 OK) and the content itself[cite: 301, 302]. This cycle happens dozens of times just to load a single modern webpage, as it fetches images, CSS, and scripts separately[cite: 304].</p>
+            <h3>Patch 1.2: Demystifying the HTTP Request Cycle</h3>
+            <p style="color: #66c0f4; font-size: 0.85rem;">Date: 17 March 2026</p>
+            <p>When you type a URL into a browser, it fires an HTTP request to a remote server. This payload asks for a specific file. The server processes this request and returns an HTTP response, complete with a status code (e.g., 200 OK) and the payload itself. In modern distributed architectures, this cycle happens dozens of times per page load, fetching scripts and assets concurrently.</p>
         </article>
 
         <article>
-            <h3>Why Database Normalisation Matters</h3>
-            <p><strong>Date:</strong> 10 March 2026</p>
-            <p>Normalisation is all about organising a database so each table focuses on one topic[cite: 273, 274]. By splitting data into multiple tables and linking them with keys, we avoid duplicating data and keep things consistent[cite: 274, 275]. However, I recently learned that in massive systems where read speed is critical, engineers sometimes intentionally denormalise tables to avoid slow join operations. It is a really interesting trade-off.</p>
+            <h3>Patch 1.1: The Database Normalisation Trade-off</h3>
+            <p style="color: #66c0f4; font-size: 0.85rem;">Date: 10 March 2026</p>
+            <p>Normalisation is crucial for eliminating data redundancy. By splitting data into multiple tables, we ensure transactional consistency. However, I recently learned that in massive systems requiring ultra-fast read speeds, engineers intentionally denormalise tables. Avoiding complex JOIN operations drastically reduces read latency, highlighting a fascinating trade-off between structural purity and raw performance.</p>
         </article>
     </section>
 
-    <section id="contact">
-        <h2>Connect</h2>
-        <p>Location: York, United Kingdom [cite: 190]</p>
-        <p>Profiles: 
-            <a href="https://github.com/dataunfound" target="_blank">GitHub</a> | 
+    <section id="contact" style="margin-top: 4rem; text-align: center; border-top: 1px solid #2a475e; padding-top: 2rem;">
+        <h2>Player Network</h2>
+        <p>Base of Operations: York, United Kingdom</p>
+        <p>
+            <a href="https://github.com/dataunfound" target="_blank" class="action-btn" style="margin: 0.5rem;">View GitHub Inventory</a>
         </p>
     </section>
 </main>
