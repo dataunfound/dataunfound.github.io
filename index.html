@@ -15,22 +15,22 @@
             --font-stack: 'Courier New', Courier, monospace;
         }
 
-        /* Body Styling with Multi-layered Background 
-           Layer 1: CRT Scanlines
-           Layer 2: Dark Overlay for Contrast
-           Layer 3: Base Matrix/Hacker Image 
+        /* Body Styling with Fixed Multi-layered Background 
+           Layer 1: CRT Scanlines (Makes it look like a retro monitor)
+           Layer 2: Radial Gradient (Keeps the center visible, darkens the edges)
+           Layer 3: Base Matrix/Hacker Image (Now clearly visible)
         */
         body {
             background-color: var(--bg-color);
             background-image: 
                 repeating-linear-gradient(
                     0deg,
-                    rgba(0, 0, 0, 0.15),
-                    rgba(0, 0, 0, 0.15) 1px,
+                    rgba(0, 0, 0, 0.2),
+                    rgba(0, 0, 0, 0.2) 1px,
                     transparent 1px,
                     transparent 2px
                 ),
-                linear-gradient(rgba(5, 5, 5, 0.88), rgba(5, 5, 5, 0.88)),
+                radial-gradient(circle at center, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.85) 100%),
                 url('https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=2000&auto=format&fit=crop'); 
             
             background-size: cover;          
@@ -110,10 +110,10 @@
             border: 1px solid var(--text-muted);
             padding: 1.5rem;
             margin-bottom: 1.5rem;
-            background: rgba(0, 255, 65, 0.05);
+            background: rgba(0, 0, 0, 0.6); /* Darker background for readability against the matrix image */
             transition: all 0.2s;
             position: relative;
-            backdrop-filter: blur(3px); /* Adds a glass-like effect over the background */
+            backdrop-filter: blur(4px); /* Glassmorphism effect */
         }
         
         article::before {
@@ -132,6 +132,7 @@
             border-color: var(--accent);
             box-shadow: 0 0 15px rgba(0, 221, 255, 0.15);
             transform: translateX(10px);
+            background: rgba(0, 255, 65, 0.05);
         }
         
         article h3 { color: var(--text-main); margin-top: 0; }
@@ -145,7 +146,7 @@
             border: 1px solid var(--text-main);
             padding: 0.5rem 1rem;
             color: var(--text-main);
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.8);
             text-transform: uppercase;
             margin-right: 1rem;
             margin-top: 1rem;
@@ -169,7 +170,7 @@
             margin-right: 5px;
         }
 
-        ul { list-style-type: square; color: var(--accent); }
+        ul { list-style-type: square; color: var(--accent); background: rgba(0, 0, 0, 0.5); padding: 1.5rem; border: 1px solid var(--text-muted); }
         ul li span { color: var(--text-main); }
     </style>
 </head>
@@ -194,8 +195,7 @@
 
     <section id="about">
         <h2>> cat summary.txt</h2>
-        <p>I am a Computer Science student focused on the mechanics of robust software architecture. Rather than treating programming as pure theory, I enjoy treating it like an intricate system vulnerability—taking apart computer architectures, distributed databases, and APIs to see how they function under extreme loads.</p>
-        <p><strong>Current Objective:</strong> Looking for a backend engineering or cloud infrastructure internship where I can apply my skills to real-world datasets and scale applications beyond localhost environments.</p>
+        <p style="background: rgba(0,0,0,0.6); padding: 1rem; border: 1px solid var(--text-muted);">I am a Computer Science student focused on the mechanics of robust software architecture. Rather than treating programming as pure theory, I enjoy treating it like an intricate system vulnerability—taking apart computer architectures, distributed databases, and APIs to see how they function under extreme loads.<br><br><strong>Current Objective:</strong> Looking for a backend engineering or cloud infrastructure internship where I can apply my skills to real-world datasets and scale applications beyond localhost environments.</p>
     </section>
 
     <section id="projects">
