@@ -12,26 +12,27 @@
             --text-muted: #008f11;
             --accent: #0df; /* Cyberpunk Cyan */
             --alert: #ff003c; /* Cyberpunk Red */
+            --glass-bg: rgba(5, 10, 15, 0.75); /* Dark blue-tinted glass for readability */
             --font-stack: 'Courier New', Courier, monospace;
         }
 
         /* Body Styling with Fixed Multi-layered Background 
-           Layer 1: CRT Scanlines (Makes it look like a retro monitor)
-           Layer 2: Radial Gradient (Keeps the center visible, darkens the edges)
-           Layer 3: Base Matrix/Hacker Image (Now clearly visible)
+           Layer 1: CRT Scanlines (Retro monitor effect)
+           Layer 2: Radial Gradient (Darkens the edges and dampens the bright center logo)
+           Layer 3: The Laughing Man Background Image
         */
         body {
             background-color: var(--bg-color);
             background-image: 
                 repeating-linear-gradient(
                     0deg,
-                    rgba(0, 0, 0, 0.2),
-                    rgba(0, 0, 0, 0.2) 1px,
+                    rgba(0, 0, 0, 0.25),
+                    rgba(0, 0, 0, 0.25) 1px,
                     transparent 1px,
                     transparent 2px
                 ),
-                radial-gradient(circle at center, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.85) 100%),
-                url('https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=2000&auto=format&fit=crop'); 
+                radial-gradient(circle at center, rgba(0, 0, 5, 0.4) 0%, rgba(0, 0, 5, 0.9) 100%),
+                url('laughing-man.jpg'); /* Make sure this file is uploaded to your GitHub repo */
             
             background-size: cover;          
             background-position: center;     
@@ -55,34 +56,39 @@
 
         /* Header & Avatar Configuration */
         header {
-            border-bottom: 1px dashed var(--text-muted);
+            border-bottom: 1px dashed var(--accent);
             padding-bottom: 1.5rem;
             margin-bottom: 2rem;
             display: flex;
             align-items: center;
+            background: var(--glass-bg);
+            padding: 2rem;
+            border-radius: 4px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(0, 221, 255, 0.2);
         }
 
         .avatar {
             width: 110px;
             height: 110px;
-            border: 2px solid var(--text-main);
-            box-shadow: 0 0 10px var(--text-muted);
+            border: 2px solid var(--accent);
+            box-shadow: 0 0 15px var(--accent);
             margin-right: 2rem;
-            /* Cyberpunk Glitch/Hacker Image Filter */
-            filter: grayscale(100%) contrast(150%) brightness(80%) sepia(100%) hue-rotate(80deg);
+            /* Hacker Image Filter */
+            filter: grayscale(80%) contrast(150%) brightness(90%) hue-rotate(180deg);
             transition: all 0.3s ease;
         }
         
         .avatar:hover {
-            filter: grayscale(0%) contrast(100%) brightness(100%);
-            box-shadow: 0 0 20px var(--accent);
-            border-color: var(--accent);
+            filter: grayscale(0%) contrast(110%) brightness(110%);
+            box-shadow: 0 0 25px var(--text-main);
+            border-color: var(--text-main);
         }
 
         /* Profile Typography */
         .profile-info h1 {
             color: var(--accent);
-            text-shadow: 0 0 8px var(--accent);
+            text-shadow: 0 0 10px var(--accent);
             margin: 0 0 0.5rem 0;
             font-size: 2.2rem;
             letter-spacing: -1px;
@@ -91,7 +97,7 @@
 
         .cmd-prompt { color: var(--text-main); font-weight: bold; margin-bottom: 0.5rem; }
         .cmd-prompt::before { content: "root@dataunfound:~# "; color: var(--accent); }
-        .tagline { color: var(--text-muted); }
+        .tagline { color: #8f98a0; }
 
         /* Section Headers */
         h2 {
@@ -103,17 +109,21 @@
             font-size: 1.2rem;
             letter-spacing: 1px;
             text-shadow: 0 0 5px rgba(0, 221, 255, 0.4);
+            background: rgba(0, 0, 0, 0.6);
+            display: inline-block;
+            padding-right: 15px;
         }
 
         /* Project Cards & System Logs */
         article {
-            border: 1px solid var(--text-muted);
+            border: 1px solid rgba(0, 143, 17, 0.5);
             padding: 1.5rem;
             margin-bottom: 1.5rem;
-            background: rgba(0, 0, 0, 0.6); /* Darker background for readability against the matrix image */
-            transition: all 0.2s;
+            background: var(--glass-bg); 
+            transition: all 0.3s ease;
             position: relative;
-            backdrop-filter: blur(4px); /* Glassmorphism effect */
+            backdrop-filter: blur(8px); /* Heavy blur to prevent background text collision */
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8);
         }
         
         article::before {
@@ -121,7 +131,7 @@
             position: absolute;
             top: -10px;
             left: 10px;
-            background: var(--bg-color);
+            background: #000;
             padding: 0 5px;
             font-size: 0.8rem;
             color: var(--text-muted);
@@ -130,21 +140,20 @@
         
         article:hover {
             border-color: var(--accent);
-            box-shadow: 0 0 15px rgba(0, 221, 255, 0.15);
+            box-shadow: 0 0 20px rgba(0, 221, 255, 0.2), inset 0 0 20px rgba(0,0,0,0.8);
             transform: translateX(10px);
-            background: rgba(0, 255, 65, 0.05);
         }
         
-        article h3 { color: var(--text-main); margin-top: 0; }
+        article h3 { color: var(--accent); margin-top: 0; text-shadow: 0 0 5px rgba(0, 221, 255, 0.3); }
         
         /* Interactive Elements */
-        a { color: var(--accent); text-decoration: none; }
-        a:hover { color: var(--alert); text-shadow: 0 0 8px var(--alert); }
+        a { color: var(--accent); text-decoration: none; font-weight: bold; }
+        a:hover { color: var(--text-main); text-shadow: 0 0 8px var(--text-main); }
 
         .btn {
             display: inline-block;
             border: 1px solid var(--text-main);
-            padding: 0.5rem 1rem;
+            padding: 0.6rem 1.2rem;
             color: var(--text-main);
             background: rgba(0, 0, 0, 0.8);
             text-transform: uppercase;
@@ -152,26 +161,45 @@
             margin-top: 1rem;
             font-weight: bold;
             transition: 0.2s;
+            box-shadow: 0 0 10px rgba(0, 255, 65, 0.2);
         }
         
         .btn:hover {
             background: var(--text-main);
             color: var(--bg-color);
-            box-shadow: 0 0 15px var(--text-main);
+            box-shadow: 0 0 20px var(--text-main);
         }
 
         /* Tech Stack Tags */
         .tech-tag {
-            background: rgba(0, 255, 65, 0.1);
-            color: var(--text-main);
-            padding: 2px 6px;
-            border: 1px solid var(--text-muted);
+            background: rgba(0, 221, 255, 0.1);
+            color: var(--accent);
+            padding: 2px 8px;
+            border: 1px solid rgba(0, 221, 255, 0.3);
             font-size: 0.85rem;
             margin-right: 5px;
         }
 
-        ul { list-style-type: square; color: var(--accent); background: rgba(0, 0, 0, 0.5); padding: 1.5rem; border: 1px solid var(--text-muted); }
+        /* Lists */
+        ul { 
+            list-style-type: square; 
+            color: var(--accent); 
+            background: var(--glass-bg); 
+            padding: 1.5rem 1.5rem 1.5rem 3rem; 
+            border: 1px solid rgba(0, 143, 17, 0.5); 
+            backdrop-filter: blur(8px);
+        }
+        ul li { margin-bottom: 0.5rem; }
         ul li span { color: var(--text-main); }
+
+        /* Paragraph Containers */
+        .log-entry {
+            background: var(--glass-bg);
+            padding: 1.5rem;
+            border: 1px solid rgba(0, 143, 17, 0.3);
+            backdrop-filter: blur(8px);
+            margin-bottom: 1.5rem;
+        }
     </style>
 </head>
 <body>
@@ -195,7 +223,10 @@
 
     <section id="about">
         <h2>> cat summary.txt</h2>
-        <p style="background: rgba(0,0,0,0.6); padding: 1rem; border: 1px solid var(--text-muted);">I am a Computer Science student focused on the mechanics of robust software architecture. Rather than treating programming as pure theory, I enjoy treating it like an intricate system vulnerability—taking apart computer architectures, distributed databases, and APIs to see how they function under extreme loads.<br><br><strong>Current Objective:</strong> Looking for a backend engineering or cloud infrastructure internship where I can apply my skills to real-world datasets and scale applications beyond localhost environments.</p>
+        <div class="log-entry">
+            <p>I am a Computer Science student focused on the mechanics of robust software architecture. Rather than treating programming as pure theory, I enjoy treating it like an intricate system vulnerability—taking apart computer architectures, distributed databases, and APIs to see how they function under extreme loads.</p>
+            <p><strong>Current Objective:</strong> Looking for a backend engineering or cloud infrastructure internship where I can apply my skills to real-world datasets and scale applications beyond localhost environments.</p>
+        </div>
     </section>
 
     <section id="projects">
@@ -251,7 +282,7 @@
         </article>
     </section>
 
-    <section id="contact" style="margin-top: 4rem; border-top: 1px dashed var(--text-muted); padding-top: 2rem;">
+    <section id="contact" style="margin-top: 4rem; border-top: 1px dashed var(--text-muted); padding-top: 2rem; background: var(--glass-bg); padding: 2rem; border-radius: 4px; backdrop-filter: blur(5px);">
         <h2>> netstat -an | grep CONNECTED</h2>
         <p>Localhost: York, United Kingdom</p>
         <p>
