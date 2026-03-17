@@ -1,23 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Kaan Barlas | Computer Science Undergraduate</title>
-<style>
-body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 1.5rem; line-height: 1.6; }
-header { border-bottom: 2px solid #333; margin-bottom: 1rem; }
-h1 { margin-bottom: 0.2rem; }
-.tagline { font-style: italic; color: #555; }
-</style>
+    <meta charset="UTF-8">
+    <title>Kaan Barlas | Computer Science Portfolio</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 900px; margin: 0 auto; padding: 2rem; line-height: 1.6; color: #333; }
+        header { border-bottom: 3px solid #005f73; margin-bottom: 2rem; padding-bottom: 1rem; }
+        h1 { margin-bottom: 0.2rem; color: #001219; font-size: 2.5rem; }
+        h2 { color: #0a9396; margin-top: 2rem; border-bottom: 1px solid #e9ecef; padding-bottom: 0.5rem; }
+        h3 { color: #005f73; }
+        .tagline { font-style: italic; color: #555; font-size: 1.2rem; }
+        article { background: #f8f9fa; padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        a { color: #005f73; text-decoration: none; font-weight: bold; }
+        a:hover { text-decoration: underline; color: #0a9396; }
+        ul { margin-top: 0.5rem; }
+        li { margin-bottom: 0.5rem; }
+    </style>
 </head>
 <body>
+
 <header>
-<h1>Kaan Barlas</h1>
-<p class="tagline">Computer Science undergraduate interested in web development and data</p>
+    <h1>Kaan Barlas</h1>
+    <p class="tagline">Computer Science undergraduate architecting scalable backend systems and intelligent data-driven applications.</p>
 </header>
+
 <main>
-<h2>Welcome</h2>
-<p>This is my professional portfolio website. Here you can find my projects, skills, and contact details.</p>
+    <section id="hero">
+        <p><strong>What I do:</strong> I design and build robust, high-performance software architectures. My focus lies at the intersection of complex data engineering and efficient cloud infrastructure, transforming intricate problems into streamlined digital solutions.</p>
+        <p>
+            <a href="#projects">Explore my projects</a> | 
+            <a href="tqr525@york.ac.uk">Contact me</a> | 
+            <a href="maths.html">View my CS Maths & Tools page</a>
+        </p>
+    </section>
+
+    <section id="about">
+        <h2>About me</h2>
+        <p>As a Computer Science student, I am deeply engaged with the foundational principles of computer architecture, advanced algorithms, and distributed database systems. I am passionate about moving beyond theoretical concepts to engineer real-world applications that require rigorous logical structuring and optimized resource management.</p>
+    </section>
+
+    <section id="now">
+        <h2>What I am working on now</h2>
+        <p>Right now, I am deepening my knowledge of distributed consensus algorithms (like Raft) and practicing Go to build high-throughput, concurrent backend services.</p>
+        <p>Over the next year, I aim to architect microservices-based web applications that seamlessly integrate front-end interfaces with heavily optimized relational and NoSQL databases, pushing the boundaries of my full-stack engineering capabilities.</p>
+        <p>I am actively seeking backend engineering internships where I can tackle complex architectural challenges, design efficient RESTful APIs, and work with large-scale real-world datasets.</p>
+    </section>
+
+    <section id="projects">
+        <h2>Featured Projects</h2>
+        
+        <article>
+            <h3>Distributed Real-Time Data Pipeline</h3>
+            <p><strong>Summary:</strong> An asynchronous web application designed to aggregate, process, and visualize high-volume data streams across multiple nodes via external APIs.</p>
+            <p><strong>Tech stack:</strong> Python, FastAPI, PostgreSQL, JavaScript</p>
+            <p><strong>My contribution:</strong> Architected the relational database schema to ensure 3NF normalization, engineered the API integration layer with built-in fault tolerance, and designed a highly responsive frontend data dashboard.</p>
+            <p><strong>Challenges:</strong> Overcame significant latency issues in data fetching by implementing efficient memory caching mechanisms and optimizing asynchronous thread management.</p>
+            <p><a href="https://github.com/dataunfound/data-pipeline">Source code</a></p>
+        </article>
+
+        <article>
+            <h3>Predictive Resource Allocation Engine</h3>
+            <p><strong>Summary:</strong> A sophisticated backend tool utilizing algorithmic logic to predict and allocate server resources dynamically based on simulated traffic loads.</p>
+            <p><strong>Tech stack:</strong> Java, Spring Boot, MySQL, Docker</p>
+            <p><strong>My contribution:</strong> Developed the core algorithmic logic for traffic prediction, containerized the application for seamless deployment, and implemented rigorous unit testing protocols.</p>
+            <p><strong>Challenges:</strong> Mastered the intricacies of container orchestration and ensured the algorithm scaled linearly under extreme simulated load conditions.</p>
+        </article>
+    </section>
+
+    <section id="skills">
+        <h2>Technical Skills & Competencies</h2>
+        <p><strong>Programming & Scripting:</strong> Python, Java, Go, JavaScript (Applying object-oriented and functional paradigms to build resilient systems).</p>
+        <p><strong>Architecture & Databases:</strong> SQL (PostgreSQL, MySQL), Database Normalization, RESTful API Design, Microservices architecture fundamentals.</p>
+        <p><strong>DevOps & Tools:</strong> Git, GitHub, Docker, Linux command-line environments.</p>
+        <p><strong>Core Computer Science:</strong> Data Structures, Algorithms, CPU memory hierarchies, and concurrent programming models.</p>
+    </section>
+
+    <section id="achievements">
+        <h2>Achievements and certificates</h2>
+        <h3>Online courses and badges</h3>
+        <ul>
+            <li>
+                <strong>AWS Certified Solutions Architect – Associate (In Progress)</strong> - 
+                <a href="https://explore.skillbuilder.aws">View AWS Skills Builder</a>
+            </li>
+            <li>
+                <strong>Google Advanced Data Analytics Professional Certificate</strong> - 
+                <a href="https://www.coursera.org/">View Coursera</a>
+            </li>
+        </ul>
+        <h3>Competitions and events</h3>
+        <ul>
+            <li>
+                [2025] Participated in the Global Hackathon, collaborating within a highly technical team to deploy a machine-learning-driven web application within 48 hours.
+            </li>
+        </ul>
+    </section>
+
+    <section id="blog">
+        <h2>Blog and learning notes</h2>
+        <p>I use this section to write concise, technical explanations of advanced concepts from computer architecture, networking, and databases, solidifying my understanding and demonstrating my ability to communicate complex ideas clearly.</p>
+        
+        <article>
+            <h3>Demystifying the HTTP Request-Response Cycle</h3>
+            <p><strong>Date:</strong> 17 March 2026</p>
+            <p>When a client initiates a connection, it constructs a structured HTTP request—comprising a method, URI, protocol version, and headers—and dispatches it via a TCP/IP connection to the destination web server. The server parses this incoming payload, executes the necessary backend logic or database queries, and constructs an HTTP response. This response contains a deterministic status code (e.g., 200 OK for success, 500 Internal Server Error) alongside the requested payload. In modern distributed architectures, this seemingly simple cycle is often heavily optimized through load balancers, reverse proxies, and edge caching to minimize latency.</p>
+        </article>
+
+        <article>
+            <h3>Database Normalization vs. Denormalization for Performance</h3>
+            <p><strong>Date:</strong> 10 March 2026</p>
+            <p>While normalization (up to 3NF or BCNF) is critical for eliminating data redundancy and ensuring ACID compliance in transactional databases (OLTP), strictly normalized schemas can bottleneck performance during complex read operations requiring multiple table joins. In high-throughput analytical systems (OLAP), strategic denormalization is often employed to flatten the schema, drastically reducing read latency at the acceptable cost of increased storage overhead and write complexity.</p>
+        </article>
+    </section>
+
+    <section id="contact">
+        <h2>Connect</h2>
+        <p>Email: <a href="mailto:tqr525@york.ac.uk">tqr525@york.ac.uk</a></p>
+        <p>Location: York, United Kingdom</p>
+        <p>Profiles: 
+            <a href="https://github.com/dataunfound" target="_blank">GitHub</a> | 
+        </p>
+    </section>
 </main>
+
 </body>
 </html>
