@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kaan Barlas | root@dataunfound</title>
     <style>
-        /* Hacker / Cyberpunk Terminal Theme */
+        /* Cyberpunk / Terminal CSS Variables */
         :root {
             --bg-color: #050505;
             --text-main: #00ff41; /* Matrix Green */
@@ -15,22 +15,34 @@
             --font-stack: 'Courier New', Courier, monospace;
         }
 
+        /* Body Styling with Multi-layered Background 
+           Layer 1: CRT Scanlines
+           Layer 2: Dark Overlay for Contrast
+           Layer 3: Base Matrix/Hacker Image 
+        */
         body {
             background-color: var(--bg-color);
+            background-image: 
+                repeating-linear-gradient(
+                    0deg,
+                    rgba(0, 0, 0, 0.15),
+                    rgba(0, 0, 0, 0.15) 1px,
+                    transparent 1px,
+                    transparent 2px
+                ),
+                linear-gradient(rgba(5, 5, 5, 0.88), rgba(5, 5, 5, 0.88)),
+                url('https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=2000&auto=format&fit=crop'); 
+            
+            background-size: cover;          
+            background-position: center;     
+            background-attachment: fixed;    
+            
             color: var(--text-main);
             font-family: var(--font-stack);
             max-width: 900px;
             margin: 0 auto;
             padding: 2rem;
             line-height: 1.6;
-            /* Scanline Effect */
-            background-image: repeating-linear-gradient(
-                0deg,
-                rgba(0, 0, 0, 0.15),
-                rgba(0, 0, 0, 0.15) 1px,
-                transparent 1px,
-                transparent 2px
-            );
         }
 
         /* Blinking Cursor Animation */
@@ -41,7 +53,7 @@
         }
         @keyframes blink { 50% { opacity: 0; } }
 
-        /* Header & Avatar */
+        /* Header & Avatar Configuration */
         header {
             border-bottom: 1px dashed var(--text-muted);
             padding-bottom: 1.5rem;
@@ -56,16 +68,18 @@
             border: 2px solid var(--text-main);
             box-shadow: 0 0 10px var(--text-muted);
             margin-right: 2rem;
-            /* Hacker image filter */
+            /* Cyberpunk Glitch/Hacker Image Filter */
             filter: grayscale(100%) contrast(150%) brightness(80%) sepia(100%) hue-rotate(80deg);
             transition: all 0.3s ease;
         }
+        
         .avatar:hover {
             filter: grayscale(0%) contrast(100%) brightness(100%);
             box-shadow: 0 0 20px var(--accent);
             border-color: var(--accent);
         }
 
+        /* Profile Typography */
         .profile-info h1 {
             color: var(--accent);
             text-shadow: 0 0 8px var(--accent);
@@ -79,7 +93,7 @@
         .cmd-prompt::before { content: "root@dataunfound:~# "; color: var(--accent); }
         .tagline { color: var(--text-muted); }
 
-        /* Typography & Layout */
+        /* Section Headers */
         h2 {
             color: var(--accent);
             border-left: 5px solid var(--accent);
@@ -91,15 +105,17 @@
             text-shadow: 0 0 5px rgba(0, 221, 255, 0.4);
         }
 
-        /* Project Cards / System Logs */
+        /* Project Cards & System Logs */
         article {
             border: 1px solid var(--text-muted);
             padding: 1.5rem;
             margin-bottom: 1.5rem;
-            background: rgba(0, 255, 65, 0.02);
+            background: rgba(0, 255, 65, 0.05);
             transition: all 0.2s;
             position: relative;
+            backdrop-filter: blur(3px); /* Adds a glass-like effect over the background */
         }
+        
         article::before {
             content: '[SYSTEM LOG]';
             position: absolute;
@@ -109,15 +125,18 @@
             padding: 0 5px;
             font-size: 0.8rem;
             color: var(--text-muted);
+            border: 1px solid var(--text-muted);
         }
+        
         article:hover {
             border-color: var(--accent);
             box-shadow: 0 0 15px rgba(0, 221, 255, 0.15);
             transform: translateX(10px);
         }
+        
         article h3 { color: var(--text-main); margin-top: 0; }
         
-        /* Links & Buttons */
+        /* Interactive Elements */
         a { color: var(--accent); text-decoration: none; }
         a:hover { color: var(--alert); text-shadow: 0 0 8px var(--alert); }
 
@@ -126,19 +145,21 @@
             border: 1px solid var(--text-main);
             padding: 0.5rem 1rem;
             color: var(--text-main);
-            background: transparent;
+            background: rgba(0, 0, 0, 0.5);
             text-transform: uppercase;
             margin-right: 1rem;
             margin-top: 1rem;
             font-weight: bold;
             transition: 0.2s;
         }
+        
         .btn:hover {
             background: var(--text-main);
             color: var(--bg-color);
             box-shadow: 0 0 15px var(--text-main);
         }
 
+        /* Tech Stack Tags */
         .tech-tag {
             background: rgba(0, 255, 65, 0.1);
             color: var(--text-main);
