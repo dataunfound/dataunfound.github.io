@@ -3,304 +3,240 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kaan Barlas | dataunfound</title>
+    <title>Kaan Barlas | root@dataunfound</title>
     <style>
-        /* Digital Canvas: Artistic Steam & High Contrast Theme */
+        /* Hacker / Cyberpunk Terminal Theme */
         :root {
-            --bg-deep: #0a0e17; /* Siyah tuval */
-            --bg-panel: rgba(18, 26, 41, 0.7); /* Şeffaf veri paneli */
-            --text-main: #d1d9e1; /* Solgun gümüş veri */
-            --text-highlight: #ffffff; /* Saf ışık */
-            --steam-blue: #66c0f4; /* Dijital mürekkep */
-            --steam-green: #a4d007; /* Aktif veri akışı */
-            --artistic-glow: rgba(102, 192, 244, 0.4); /* Sanatsal halo */
+            --bg-color: #050505;
+            --text-main: #00ff41; /* Matrix Green */
+            --text-muted: #008f11;
+            --accent: #0df; /* Cyberpunk Cyan */
+            --alert: #ff003c; /* Cyberpunk Red */
+            --font-stack: 'Courier New', Courier, monospace;
         }
 
-        body { 
-            background-color: var(--bg-deep);
-            /* Sanatsal Doku: Soyut matris ve fırça darbeleri */
-            background-image: 
-                radial-gradient(at 10% 10%, rgba(102, 192, 244, 0.15) 0px, transparent 50%),
-                radial-gradient(at 90% 90%, rgba(164, 208, 7, 0.08) 0px, transparent 50%),
-                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90%, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            background-size: 100% 100%, 100% 100%, 25px 25px, 25px 25px;
-            color: var(--text-main); 
-            font-family: 'Motiva Sans', 'Segoe UI', Tahoma, Arial, sans-serif; 
-            max-width: 1000px; 
-            margin: 0 auto; 
-            padding: 2rem; 
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-stack);
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
             line-height: 1.6;
+            /* Scanline Effect */
+            background-image: repeating-linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.15),
+                rgba(0, 0, 0, 0.15) 1px,
+                transparent 1px,
+                transparent 2px
+            );
+        }
+
+        /* Blinking Cursor Animation */
+        .cursor::after {
+            content: '█';
+            animation: blink 1s step-start infinite;
+            color: var(--accent);
+        }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        /* Header & Avatar */
+        header {
+            border-bottom: 1px dashed var(--text-muted);
+            padding-bottom: 1.5rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .avatar {
+            width: 110px;
+            height: 110px;
+            border: 2px solid var(--text-main);
+            box-shadow: 0 0 10px var(--text-muted);
+            margin-right: 2rem;
+            /* Hacker image filter */
+            filter: grayscale(100%) contrast(150%) brightness(80%) sepia(100%) hue-rotate(80deg);
+            transition: all 0.3s ease;
+        }
+        .avatar:hover {
+            filter: grayscale(0%) contrast(100%) brightness(100%);
+            box-shadow: 0 0 20px var(--accent);
+            border-color: var(--accent);
+        }
+
+        .profile-info h1 {
+            color: var(--accent);
+            text-shadow: 0 0 8px var(--accent);
+            margin: 0 0 0.5rem 0;
+            font-size: 2.2rem;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+        }
+
+        .cmd-prompt { color: var(--text-main); font-weight: bold; margin-bottom: 0.5rem; }
+        .cmd-prompt::before { content: "root@dataunfound:~# "; color: var(--accent); }
+        .tagline { color: var(--text-muted); }
+
+        /* Typography & Layout */
+        h2 {
+            color: var(--accent);
+            border-left: 5px solid var(--accent);
+            padding-left: 10px;
+            margin-top: 3.5rem;
+            text-transform: uppercase;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            text-shadow: 0 0 5px rgba(0, 221, 255, 0.4);
+        }
+
+        /* Project Cards / System Logs */
+        article {
+            border: 1px solid var(--text-muted);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            background: rgba(0, 255, 65, 0.02);
+            transition: all 0.2s;
             position: relative;
-        }
-        
-        /* Floating Artistic Avatar */
-        .avatar-container {
-            position: fixed;
-            top: 2rem;
-            left: 2rem;
-            width: 130px; 
-            height: 130px; 
-            border-radius: 50%;
-            border: 3px solid var(--steam-blue);
-            box-shadow: 0 0 25px var(--artistic-glow), inset 0 0 15px rgba(0,0,0,0.5);
-            overflow: hidden;
-            z-index: 1000;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .avatar-container:hover {
-            transform: scale(1.05) rotate(5deg);
-            box-shadow: 0 0 35px rgba(102, 192, 244, 0.6);
-        }
-        .avatar-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* Profile Header: Artistic Alignment */
-        header { 
-            margin-left: 170px; /* Avatar için boşluk */
-            background: var(--bg-panel);
-            padding: 2rem; 
-            border-radius: 8px; 
-            border: 1px solid rgba(102, 192, 244, 0.2);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            margin-bottom: 3rem;
-            backdrop-filter: blur(5px);
-        }
-        .profile-info h1 { 
-            margin: 0; 
-            color: var(--text-highlight); 
-            font-size: 2.8rem; 
-            text-transform: uppercase; 
-            letter-spacing: 3px; 
-            text-shadow: 0 0 10px var(--artistic-glow);
-        }
-        .user-tag {
-            color: var(--steam-blue);
-            font-family: monospace;
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-        }
-        .status { color: var(--steam-green); font-weight: bold; font-size: 1.2rem; }
-        .tagline { margin-top: 1rem; color: #8f98a0; font-style: italic; font-size: 1.1rem;}
-
-        /* Typography & Artistic Accents */
-        h2 { 
-            color: var(--text-highlight); 
-            border-bottom: 2px solid var(--steam-blue); 
-            padding-bottom: 0.5rem; 
-            text-transform: uppercase; 
-            font-size: 1.4rem; 
-            letter-spacing: 2px; 
-            margin-top: 4rem; 
-            margin-left: 170px;
-            text-shadow: 0 0 5px var(--artistic-glow);
-        }
-        
-        main {
-            margin-left: 170px; /* Tüm içerik için boşluk */
-        }
-
-        /* Artistic Showcases (Cards) */
-        article { 
-            background: var(--bg-panel);
-            padding: 2rem; 
-            border: 1px solid rgba(102, 192, 244, 0.1); 
-            border-radius: 8px; 
-            margin-bottom: 2rem; 
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            overflow: hidden;
         }
         article::before {
-            content: '';
+            content: '[SYSTEM LOG]';
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(135deg, transparent 0%, rgba(102, 192, 244, 0.05) 100%);
-            opacity: 0; transition: opacity 0.4s;
+            top: -10px;
+            left: 10px;
+            background: var(--bg-color);
+            padding: 0 5px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
         }
-        article:hover { 
-            border-color: var(--steam-blue); 
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+        article:hover {
+            border-color: var(--accent);
+            box-shadow: 0 0 15px rgba(0, 221, 255, 0.15);
+            transform: translateX(10px);
         }
-        article:hover::before { opacity: 1; }
+        article h3 { color: var(--text-main); margin-top: 0; }
         
-        article h3 { color: var(--text-highlight); font-size: 1.3rem; margin-top: 0; position: relative;}
-        article p { position: relative; color: var(--text-main); }
-        
-        .tech-tag {
+        /* Links & Buttons */
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { color: var(--alert); text-shadow: 0 0 8px var(--alert); }
+
+        .btn {
             display: inline-block;
-            background: rgba(102, 192, 244, 0.1);
-            color: var(--steam-blue);
-            padding: 0.2rem 0.6rem;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            margin-right: 0.5rem;
-            margin-bottom: 0.5rem;
-            font-family: monospace;
-        }
-
-        /* Buttons & Interactions */
-        a { color: var(--steam-blue); text-decoration: none; transition: color 0.2s; position: relative;}
-        a:hover { color: var(--text-highlight); text-decoration: underline; }
-        
-        .action-btn { 
-            background: linear-gradient(to bottom, #47bfff 5%, #1a44c2 100%);
-            color: #ffffff !important; 
-            padding: 0.7rem 1.5rem; 
-            border-radius: 4px; 
-            display: inline-block; 
-            margin-right: 1rem; 
-            margin-bottom: 1rem;
-            font-weight: bold;
+            border: 1px solid var(--text-main);
+            padding: 0.5rem 1rem;
+            color: var(--text-main);
+            background: transparent;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            border: none;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-            transition: box-shadow 0.2s, transform 0.1s;
+            margin-right: 1rem;
+            margin-top: 1rem;
+            font-weight: bold;
+            transition: 0.2s;
         }
-        .action-btn:hover { 
-            box-shadow: 0 0 15px var(--artistic-glow);
-            text-decoration: none !important;
+        .btn:hover {
+            background: var(--text-main);
+            color: var(--bg-color);
+            box-shadow: 0 0 15px var(--text-main);
         }
-        .action-btn:active { transform: translateY(1px); }
 
-        /* Skill Tree Panel */
-        .skill-tree { 
-            background: var(--bg-panel);
-            padding: 2rem; 
-            border: 1px solid rgba(102, 192, 244, 0.1); 
-            border-radius: 8px; 
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+        .tech-tag {
+            background: rgba(0, 255, 65, 0.1);
+            color: var(--text-main);
+            padding: 2px 6px;
+            border: 1px solid var(--text-muted);
+            font-size: 0.85rem;
+            margin-right: 5px;
         }
-        .skill-category h4 { color: var(--steam-blue); text-transform: uppercase; margin-top: 0; }
-        .skill-tree ul { list-style: none; padding: 0; margin: 0; }
-        .skill-tree ul li { margin-bottom: 0.6rem; color: var(--text-main); font-family: monospace;}
-        .skill-tree ul li::before { content: '>'; color: var(--steam-green); margin-right: 0.5rem; }
 
+        ul { list-style-type: square; color: var(--accent); }
+        ul li span { color: var(--text-main); }
     </style>
 </head>
 <body>
 
-<div class="avatar-container">
-    <img src="https://github.com/dataunfound.png" alt="Kaan Barlas Avatar">
-</div>
-
 <header>
+    <img src="https://github.com/dataunfound.png" alt="Kaan Barlas" class="avatar">
     <div class="profile-info">
-        <div class="user-tag">root@dataunfound:~#</div>
         <h1>Kaan Barlas</h1>
-        <div class="status">In-Game: University of York (Computer Science)</div>
-        <p class="tagline">"Architecting backend systems, data engineering, and weaving logic into digital art."</p>
+        <div class="cmd-prompt cursor">whoami</div>
+        <div class="tagline">// Computer Science Undergraduate @ University of York</div>
+        <div class="tagline">// Architecting scalable backend systems & data pipelines.</div>
     </div>
 </header>
 
 <main>
     <section id="hero" style="margin-bottom: 3rem; padding-bottom: 1.5rem;">
-        <a href="#projects" class="action-btn">Inspect Inventory</a>
-        <a href="maths.html" class="action-btn" style="background: linear-gradient(to bottom, #799905 5%, #536904 100%);">Launch Minigame</a>
-        <a href="#contact" style="margin-left: 1rem; color: #8f98a0;">./connect</a>
+        <a href="#projects" class="btn">Execute: view_projects.sh</a>
+        <a href="maths.html" class="btn" style="border-color: var(--accent); color: var(--accent);">Initialize: cs_tools.exe</a>
+        <a href="#contact" style="margin-left: 1rem;">> ping dataunfound</a>
     </section>
 
     <section id="about">
-        <h2>Summary</h2>
-        <article>
-            <p>I am a Computer Science undergraduate focused on the mechanics of robust software architecture. Rather than treating programming as pure theory, I see it as a digital tuval—a canvas where distributed databases, APIs, and computer architectures form intricate patterns. I enjoy taking systems apart to optimise their resource consumption and see how they function under extreme loads.</p>
-            <p><strong>Current Objective:</strong> Seeking a backend engineering or cloud infrastructure internship where I can weave my skills into real-world, large-scale systems.</p>
-        </article>
+        <h2>> cat summary.txt</h2>
+        <p>I am a Computer Science student focused on the mechanics of robust software architecture. Rather than treating programming as pure theory, I enjoy treating it like an intricate system vulnerability—taking apart computer architectures, distributed databases, and APIs to see how they function under extreme loads.</p>
+        <p><strong>Current Objective:</strong> Looking for a backend engineering or cloud infrastructure internship where I can apply my skills to real-world datasets and scale applications beyond localhost environments.</p>
     </section>
 
     <section id="projects">
-        <h2>Featured Creations</h2>
+        <h2>> ls -la /var/projects/</h2>
         
         <article>
-            <h3>Real-Time Data Pipeline [Legendary]</h3>
-            <p><strong>Description:</strong> An asynchronous web application designed to aggregate and process high-volume data streams from external APIs in real time.</p>
-            <div>
+            <h3>[01] Real-Time_Data_Pipeline</h3>
+            <p><strong>Payload:</strong> An asynchronous web application designed to aggregate and process high-volume data streams from external APIs in real time.</p>
+            <p><strong>Dependencies:</strong> 
                 <span class="tech-tag">Python</span>
                 <span class="tech-tag">FastAPI</span>
                 <span class="tech-tag">PostgreSQL</span>
-                <span class="tech-tag">JavaScript</span>
-            </div>
-            <p><strong>Player Contribution:</strong> Architected the normalised database schema, established the API integration layers, and built the visual data dashboard.</p>
-            <p><strong>Quest Log:</strong> Overcame data fetching latency by implementing aggressive memory caching and optimised concurrent thread management.</p>
-            <p><a href="https://github.com/dataunfound/data-pipeline" target="_blank">[Inspect Source Code]</a></p>
+            </p>
+            <p><strong>Execution:</strong> Architected the relational database schema, established the API integration layers, and built the frontend visual dashboard.</p>
+            <p><strong>Debug Log:</strong> Overcame severe data fetching latency by implementing aggressive memory caching and optimising asynchronous thread management.</p>
+            <p><a href="https://github.com/dataunfound/data-pipeline" target="_blank">[ACCESS SOURCE CODE]</a></p>
         </article>
 
         <article>
-            <h3>Predictive Resource Allocation Engine [Epic]</h3>
-            <p><strong>Description:</strong> A robust backend utility that simulates network traffic loads to algorithmically predict and allocate dynamic server resources.</p>
-            <div>
+            <h3>[02] Predictive_Resource_Engine</h3>
+            <p><strong>Payload:</strong> A robust backend utility that simulates network traffic loads to algorithmically predict and allocate dynamic server resources.</p>
+            <p><strong>Dependencies:</strong> 
                 <span class="tech-tag">Java</span>
                 <span class="tech-tag">Spring Boot</span>
-                <span class="tech-tag">MySQL</span>
                 <span class="tech-tag">Docker</span>
-            </div>
-            <p><strong>Player Contribution:</strong> Developed the core algorithmic logic for resource prediction and containerised the application for deployment.</p>
-            <p><strong>Quest Log:</strong> Mastered Docker container orchestration, ensuring the algorithm scaled linearly under simulated heavy loads.</p>
-            <p><a href="https://github.com/dataunfound/resource-engine" target="_blank">[Inspect Source Code]</a></p>
+            </p>
+            <p><strong>Execution:</strong> Developed the core algorithmic logic for resource prediction and containerised the application for seamless cross-platform deployment.</p>
+            <p><strong>Debug Log:</strong> Mastered Docker container orchestration, ensuring the algorithm scaled linearly under simulated heavy loads.</p>
+            <p><a href="https://github.com/dataunfound/resource-engine" target="_blank">[ACCESS SOURCE CODE]</a></p>
         </article>
     </section>
 
     <section id="skills">
-        <h2>Skill Tree</h2>
-        <div class="skill-tree">
-            <div class="skill-category">
-                <h4>Programming</h4>
-                <ul>
-                    <li>Python</li>
-                    <li>Java</li>
-                    <li>Go</li>
-                    <li>SQL (PostgreSQL/MySQL)</li>
-                    <li>JavaScript</li>
-                </ul>
-            </div>
-            <div class="skill-category">
-                <h4>Frameworks & Tools</h4>
-                <ul>
-                    <li>FastAPI</li>
-                    <li>Spring Boot</li>
-                    <li>Docker</li>
-                    <li>Git / GitHub</li>
-                    <li>Linux CLI</li>
-                </ul>
-            </div>
-            <div class="skill-category">
-                <h4>Specialisations</h4>
-                <ul>
-                    <li>Backend Architecture</li>
-                    <li>Database Design</li>
-                    <li>RESTful API Design</li>
-                    <li>Concurrent Systems</li>
-                </ul>
-            </div>
-        </div>
+        <h2>> htop --show-capabilities</h2>
+        <ul>
+            <li><strong>Core Languages:</strong> <span>Python, Java, Go, JavaScript, SQL.</span></li>
+            <li><strong>Frameworks & Tools:</strong> <span>FastAPI, Spring Boot, Docker, Git, Linux command line.</span></li>
+            <li><strong>System Specs:</strong> <span>Backend architecture, database normalisation, RESTful API design, concurrent programming.</span></li>
+        </ul>
     </section>
 
     <section id="blog">
-        <h2>Developer Logs</h2>
+        <h2>> tail -f /var/log/learning.log</h2>
         
         <article>
-            <h3>Patch 1.2: The HTTP Request Cycle</h3>
-            <p style="color: var(--steam-blue); font-size: 0.9rem; font-family: monospace;">Date: 17 March 2026</p>
-            <p>Type a URL, and you trigger a structured HTTP request—a digital brushstroke across the network. The server parses this, executes backend logic, and returns an HTTP response (200 OK, or perhaps a 404 art piece). In modern systems, this cycle is heavily optimized through concurrency and caching.</p>
+            <h3>Timestamp: 17-MAR-2026 // HTTP_Request_Cycle</h3>
+            <p>When you type a URL into a browser, it fires an HTTP request to a remote server. This payload asks for a specific file. The server processes this request and returns an HTTP response, complete with a status code (e.g., 200 OK) and the payload itself. In modern distributed architectures, this cycle happens dozens of times per page load, fetching scripts and assets concurrently.</p>
         </article>
 
         <article>
-            <h3>Patch 1.1: Normalisation Trade-offs</h3>
-            <p style="color: var(--steam-blue); font-size: 0.9rem; font-family: monospace;">Date: 10 March 2026</p>
-            <p>Normalisation eliminates data redundancy. It's structural purity. But in massive systems requiring raw speed, engineers intentionally denormalise tables. Avoiding complex JOIN operations drastically reduces read latency. It's a fascinating artistic decision between elegance and performance.</p>
+            <h3>Timestamp: 10-MAR-2026 // Database_Normalisation</h3>
+            <p>Normalisation is crucial for eliminating data redundancy. By splitting data into multiple tables, we ensure transactional consistency. However, I recently learned that in massive systems requiring ultra-fast read speeds, engineers intentionally denormalise tables. Avoiding complex JOIN operations drastically reduces read latency, highlighting a fascinating trade-off between structural purity and raw performance.</p>
         </article>
     </section>
 
-    <section id="contact" style="margin-top: 5rem; text-align: center; padding: 2rem; border-top: 1px solid rgba(102, 192, 244, 0.2);">
-        <p>Base of Operations: York, United Kingdom</p>
-        <a href="https://github.com/dataunfound" target="_blank" class="action-btn">View GitHub Inventory</a>
+    <section id="contact" style="margin-top: 4rem; border-top: 1px dashed var(--text-muted); padding-top: 2rem;">
+        <h2>> netstat -an | grep CONNECTED</h2>
+        <p>Localhost: York, United Kingdom</p>
+        <p>
+            Target Repository: <a href="https://github.com/dataunfound" target="_blank">github.com/dataunfound</a>
+        </p>
+        <div class="cmd-prompt cursor" style="margin-top: 2rem;">Connection closed by foreign host.</div>
     </section>
 </main>
 
