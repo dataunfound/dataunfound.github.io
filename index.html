@@ -5,82 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kaan Barlas | root@dataunfound</title>
     <style>
-        /* Cyberpunk / Terminal & IDE CSS Variables */
+        /* yasio.dev Inspired IDE Theme */
         :root {
-            --bg-color: #050505;
-            --text-main: #00ff41; /* Matrix Green */
-            --text-muted: #008f11;
-            --accent: #0df; /* Cyberpunk Cyan */
-            --alert: #ff003c; /* Cyberpunk Red */
-            --glass-bg: rgba(5, 10, 15, 0.75); /* Dark blue-tinted glass */
+            --bg-dark: #0f111a; /* Deep dark blue/grey background */
+            --timeline: #6a4c9c; /* Vertical purple line */
             
-            /* IDE Syntax Colors */
-            --kw: #c678dd; /* Keywords - Purple */
-            --cl: #e5c07b; /* Classes - Yellow */
+            /* Syntax Highlighting */
+            --kw: #c678dd; /* Keywords (class, return, export) - Purple */
+            --cl: #e5c07b; /* Classes/Functions - Yellow */
             --st: #98c379; /* Strings - Green */
-            --pr: #56b6c2; /* Properties - Cyan */
-            --th: #e06c75; /* This/Booleans - Red */
-            --cm: #7f848e; /* Comments - Grey */
-            --pn: #abb2bf; /* Punctuation - White/Grey */
-            --line-num: #4b5263; /* Line numbers color */
+            --pr: #e06c75; /* Properties/This - Red */
+            --key: #56b6c2; /* Object Keys - Cyan */
+            --cm: #5c6370; /* Comments - Grey */
+            --pn: #abb2bf; /* Punctuation/Normal Text - Light Grey */
+            --line-num: #3b404d; /* Line numbers */
             
-            --font-stack: 'Fira Code', 'Courier New', Courier, monospace;
+            --font-stack: 'Fira Code', 'Consolas', 'Courier New', monospace;
         }
 
-        /* Hacker Background with Laughing Man */
         body {
-            background-color: var(--bg-color);
-            background-image: 
-                repeating-linear-gradient(
-                    0deg,
-                    rgba(0, 0, 0, 0.25),
-                    rgba(0, 0, 0, 0.25) 1px,
-                    transparent 1px,
-                    transparent 2px
-                ),
-                radial-gradient(circle at center, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.9) 100%),
-                url('ghost-in-the-shell-laughing-man-7vttrh8h1mzbp4pl.jpg'); 
-            
-            background-size: cover;          
-            background-position: center;     
-            background-attachment: fixed;    
-            
+            background-color: var(--bg-dark);
             color: var(--pn);
             font-family: var(--font-stack);
-            max-width: 950px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 2rem;
+            padding: 3rem 2rem;
             line-height: 1.6;
             font-size: 0.95rem;
         }
 
-        .cursor::after {
-            content: '█';
-            animation: blink 1s step-start infinite;
-            color: var(--accent);
-        }
-        @keyframes blink { 50% { opacity: 0; } }
-
-        /* --- HACKER HEADER & AVATAR --- */
+        /* --- HACKER HEADER & AVATAR (Kept from previous) --- */
         header {
-            border-bottom: 1px dashed var(--accent);
-            padding-bottom: 1.5rem;
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
             display: flex;
             align-items: center;
-            background: var(--glass-bg);
-            padding: 2rem;
-            border-radius: 4px;
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(0, 221, 255, 0.2);
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+            padding-bottom: 1rem;
+            margin-left: 2rem; /* Align with the text block */
         }
 
         .avatar {
-            width: 110px;
-            height: 110px;
-            border: 2px solid var(--accent);
-            box-shadow: 0 0 15px var(--accent);
+            width: 100px;
+            height: 100px;
+            border: 2px solid var(--key);
+            box-shadow: 0 0 15px rgba(86, 182, 194, 0.3);
             margin-right: 2rem;
             filter: grayscale(80%) contrast(150%) brightness(90%) hue-rotate(180deg);
             transition: all 0.3s ease;
@@ -88,91 +55,95 @@
         
         .avatar:hover {
             filter: grayscale(0%) contrast(110%) brightness(110%);
-            box-shadow: 0 0 25px var(--text-main);
-            border-color: var(--text-main);
+            box-shadow: 0 0 20px var(--st);
+            border-color: var(--st);
         }
 
         .profile-info h1 {
-            color: var(--accent);
-            text-shadow: 0 0 10px var(--accent);
+            color: var(--key);
             margin: 0 0 0.5rem 0;
-            font-size: 2.2rem;
+            font-size: 2rem;
             letter-spacing: -1px;
             text-transform: uppercase;
         }
 
-        .cmd-prompt { color: var(--text-main); font-weight: bold; margin-bottom: 0.5rem; }
-        .cmd-prompt::before { content: "root@dataunfound:~# "; color: var(--accent); }
-        .tagline { color: var(--cm); font-style: italic; }
+        .cmd-prompt { color: var(--st); font-weight: bold; margin-bottom: 0.5rem; }
+        .cmd-prompt::before { content: "root@dataunfound:~# "; color: var(--key); }
+        .tagline { color: var(--cm); font-style: italic; font-size: 0.9rem; }
 
-        /* --- SECTION HEADERS --- */
-        h2 {
-            color: var(--accent);
-            border-left: 5px solid var(--accent);
-            padding-left: 10px;
-            margin-top: 3.5rem;
-            text-transform: uppercase;
-            font-size: 1.2rem;
-            letter-spacing: 1px;
-            text-shadow: 0 0 5px rgba(0, 221, 255, 0.4);
-            background: rgba(0, 0, 0, 0.7);
+        /* --- TOP ACTION BUTTONS --- */
+        .actions {
+            margin-left: 2rem;
+            margin-bottom: 3rem;
+        }
+        .btn {
             display: inline-block;
-            padding-right: 15px;
-            margin-bottom: 1.5rem;
+            border: 1px solid var(--st);
+            padding: 0.4rem 0.8rem;
+            color: var(--st);
+            background: transparent;
+            text-transform: uppercase;
+            margin-right: 1rem;
+            font-weight: bold;
+            font-size: 0.85rem;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+        .btn:hover { background: var(--st); color: var(--bg-dark); }
+        .btn.secondary { border-color: var(--key); color: var(--key); }
+        .btn.secondary:hover { background: var(--key); color: var(--bg-dark); }
+        .ping-link { color: var(--key); text-decoration: none; margin-left: 1rem; font-weight: bold; }
+        .ping-link:hover { text-decoration: underline; }
+
+        /* --- THE CONTINUOUS TIMELINE (yasio.dev style) --- */
+        .ide-container {
+            border-left: 1px solid var(--timeline);
+            margin-left: 2.5rem;
+            padding-left: 1rem;
+            padding-bottom: 2rem;
+            counter-reset: global-line; /* One continuous counter for the whole page */
         }
 
-        /* --- HACKER GLASS BLOCKS (WITH IDE INSIDE) --- */
-        article {
-            border: 1px solid rgba(0, 143, 17, 0.5);
-            padding: 2rem 1.5rem 1.5rem 1.5rem;
-            margin-bottom: 1.5rem;
-            background: var(--glass-bg); 
-            transition: all 0.3s ease;
+        /* --- SECTION HEADERS (o About />) --- */
+        .section-header {
+            color: var(--pn);
+            font-weight: normal;
+            font-size: 1rem;
+            margin: 2.5rem 0 1rem -1.4rem; /* Pull back to overlap the border */
+            display: flex;
+            align-items: center;
+        }
+        .section-header::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border: 2px solid var(--timeline);
+            border-radius: 50%;
+            background: var(--bg-dark);
+            margin-right: 15px;
             position: relative;
-            backdrop-filter: blur(12px); 
-            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8), 0 10px 30px rgba(0,0,0,0.5);
-            counter-reset: line; /* Reset line numbers for each block */
-            border-radius: 4px;
-            overflow-x: auto;
+            z-index: 2;
         }
-        
-        article::before {
-            content: '[SYSTEM_LOG: JS_MODULE]';
-            position: absolute;
-            top: -10px;
-            left: 10px;
-            background: #000;
-            padding: 0 8px;
-            font-size: 0.8rem;
-            color: var(--kw);
-            border: 1px solid var(--text-muted);
-        }
-        
-        article:hover {
-            border-color: var(--accent);
-            box-shadow: 0 0 20px rgba(0, 221, 255, 0.2), inset 0 0 20px rgba(0,0,0,0.8);
-            transform: translateX(10px); /* The classic slide effect you loved */
-        }
+        .section-header span { color: var(--pn); }
 
-        /* --- IDE TEXT FORMATTING INSIDE ARTICLES --- */
+        /* --- IDE TEXT FORMATTING --- */
         .line {
             display: block;
             white-space: pre-wrap;
             word-wrap: break-word;
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
         .line::before {
-            counter-increment: line;
-            content: counter(line, decimal-leading-zero); 
+            counter-increment: global-line;
+            content: counter(global-line, decimal-leading-zero); 
             display: inline-block;
             width: 2rem;
             margin-right: 1.5rem;
             color: var(--line-num);
             text-align: right;
             user-select: none;
-            border-right: 1px solid #2d3748;
-            padding-right: 0.5rem;
         }
 
         /* Syntax Highlight Classes */
@@ -180,38 +151,18 @@
         .cl { color: var(--cl); }
         .st { color: var(--st); }
         .pr { color: var(--pr); }
-        .th { color: var(--th); }
-        .cm { color: var(--cm); font-style: italic; }
+        .key { color: var(--key); }
+        .cm { color: var(--cm); }
         .pn { color: var(--pn); }
 
         .indent-1 { padding-left: 2rem; }
         .indent-2 { padding-left: 4rem; }
         .indent-3 { padding-left: 6rem; }
+        .indent-4 { padding-left: 8rem; }
 
-        a { color: var(--st); text-decoration: none; cursor: pointer; }
-        a:hover { text-decoration: underline; color: var(--accent); text-shadow: 0 0 8px var(--accent); }
+        a.st { text-decoration: none; }
+        a.st:hover { text-decoration: underline; color: #b5e890; }
 
-        /* --- BUTTONS --- */
-        .btn {
-            display: inline-block;
-            border: 1px solid var(--text-main);
-            padding: 0.6rem 1.2rem;
-            color: var(--text-main);
-            background: rgba(0, 0, 0, 0.8);
-            text-transform: uppercase;
-            margin-right: 1rem;
-            margin-top: 1rem;
-            font-weight: bold;
-            transition: 0.2s;
-            box-shadow: 0 0 10px rgba(0, 255, 65, 0.2);
-            font-family: var(--font-stack);
-        }
-        
-        .btn:hover {
-            background: var(--text-main);
-            color: var(--bg-color);
-            box-shadow: 0 0 20px var(--text-main);
-        }
     </style>
 </head>
 <body>
@@ -220,97 +171,82 @@
     <img src="https://github.com/dataunfound.png" alt="Kaan Barlas" class="avatar">
     <div class="profile-info">
         <h1>Kaan Barlas</h1>
-        <div class="cmd-prompt cursor">whoami</div>
+        <div class="cmd-prompt">whoami</div>
         <div class="tagline">// Computer Science Undergraduate @ University of York</div>
         <div class="tagline">// Architecting scalable backend systems & data pipelines.</div>
     </div>
 </header>
 
-<main>
-    <section id="hero" style="margin-bottom: 3rem; padding-bottom: 1.5rem;">
-        <a href="#projects" class="btn">Execute: view_projects.sh</a>
-        <a href="maths.html" class="btn" style="border-color: var(--accent); color: var(--accent);">Initialize: cs_tools.exe</a>
-        <a href="#contact" style="margin-left: 1rem; color: var(--accent);">> ping dataunfound</a>
-    </section>
+<div class="actions">
+    <a href="#projects" class="btn">Execute: view_projects.sh</a>
+    <a href="maths.html" class="btn secondary">Initialize: cs_tools.exe</a>
+    <a href="#contact" class="ping-link">> ping dataunfound</a>
+</div>
 
-    <section id="about">
-        <h2>> cat profile.js</h2>
-        <article>
-            <span class="line"><span class="kw">class</span> <span class="cl">KaanBarlas</span> <span class="pn">{</span></span>
-            <span class="line indent-1"><span class="cm">// I simply enjoy every creative work of human mind</span></span>
-            <span class="line indent-1"><span class="cm">// and savor keeping my mind occupied.</span></span>
-            <span class="line indent-1"><span class="kw">constructor</span><span class="pn">() {</span></span>
-            <span class="line indent-2"><span class="th">this</span><span class="pn">.</span><span class="pr">name</span> <span class="pn">=</span> <span class="st">'Kaan Barlas'</span><span class="pn">;</span></span>
-            <span class="line indent-2"><span class="th">this</span><span class="pn">.</span><span class="pr">status</span> <span class="pn">=</span> <span class="st">'Computer Science Undergraduate'</span><span class="pn">;</span></span>
-            <span class="line indent-1"><span class="pn">}</span></span>
-            <span class="line"></span>
-            <span class="line indent-1"><span class="cl">techInterests</span><span class="pn">() {</span></span>
-            <span class="line indent-2"><span class="kw">return</span> <span class="pn">[</span> <span class="st">'Embedded Systems'</span><span class="pn">,</span> <span class="st">'Cybersecurity'</span><span class="pn">,</span> <span class="st">'Docker'</span><span class="pn">,</span> <span class="st">'Kubernetes'</span> <span class="pn">];</span></span>
-            <span class="line indent-1"><span class="pn">}</span></span>
-            <span class="line"></span>
-            <span class="line indent-1"><span class="cl">artAndPhilosophy</span><span class="pn">() {</span></span>
-            <span class="line indent-2"><span class="kw">return</span> <span class="pn">[</span></span>
-            <span class="line indent-3"><span class="st">'Western Classical Music'</span><span class="pn">,</span> <span class="st">'Art'</span><span class="pn">,</span> <span class="st">'Philosophy'</span><span class="pn">,</span> <span class="st">'Physics'</span><span class="pn">,</span></span>
-            <span class="line indent-3"><span class="st">'Observing Heavens'</span><span class="pn">,</span> <span class="st">'Poetry'</span><span class="pn">,</span> <span class="st">'Piano'</span><span class="pn">,</span> <span class="st">'Violin'</span></span>
-            <span class="line indent-2"><span class="pn">];</span></span>
-            <span class="line indent-1"><span class="pn">}</span></span>
-            <span class="line"></span>
-            <span class="line indent-1"><span class="cl">currentObjective</span><span class="pn">() {</span></span>
-            <span class="line indent-2"><span class="kw">return</span> <span class="st">'Looking for a backend engineering or cloud infrastructure internship where I can apply my skills to real-world datasets.'</span><span class="pn">;</span></span>
-            <span class="line indent-1"><span class="pn">}</span></span>
-            <span class="line"><span class="pn">}</span></span>
-        </article>
-    </section>
+<main class="ide-container">
 
-    <section id="projects">
-        <h2>> cat projects.js</h2>
-        <article>
-            <span class="line"><span class="kw">const</span> <span class="pr">featuredProjects</span> <span class="pn">= [</span></span>
-            <span class="line indent-1"><span class="pn">{</span></span>
-            <span class="line indent-2"><span class="pr">title</span><span class="pn">:</span> <span class="st">'Real-Time Data Pipeline'</span><span class="pn">,</span></span>
-            <span class="line indent-2"><span class="pr">techStack</span><span class="pn">: [</span><span class="st">'Python'</span><span class="pn">,</span> <span class="st">'FastAPI'</span><span class="pn">,</span> <span class="st">'PostgreSQL'</span><span class="pn">],</span></span>
-            <span class="line indent-2"><span class="pr">summary</span><span class="pn">:</span> <span class="st">'An asynchronous web app to aggregate & process high-volume data streams.'</span><span class="pn">,</span></span>
-            <span class="line indent-2"><span class="pr">contribution</span><span class="pn">:</span> <span class="st">'Architected 3NF DB schema, API integration layer, and frontend dashboard.'</span><span class="pn">,</span></span>
-            <span class="line indent-2"><span class="pr">repository</span><span class="pn">:</span> <span class="st"><a href="https://github.com/dataunfound/data-pipeline" target="_blank">'github.com/dataunfound/data-pipeline'</a></span></span>
-            <span class="line indent-1"><span class="pn">},</span></span>
-            <span class="line indent-1"><span class="pn">{</span></span>
-            <span class="line indent-2"><span class="pr">title</span><span class="pn">:</span> <span class="st">'Predictive Resource Engine'</span><span class="pn">,</span></span>
-            <span class="line indent-2"><span class="pr">techStack</span><span class="pn">: [</span><span class="st">'Java'</span><span class="pn">,</span> <span class="st">'Spring Boot'</span><span class="pn">,</span> <span class="st">'Docker'</span><span class="pn">],</span></span>
-            <span class="line indent-2"><span class="pr">summary</span><span class="pn">:</span> <span class="st">'Simulates network traffic loads to algorithmically predict & allocate resources.'</span><span class="pn">,</span></span>
-            <span class="line indent-2"><span class="pr">contribution</span><span class="pn">:</span> <span class="st">'Developed core prediction algorithm and containerised the application.'</span><span class="pn">,</span></span>
-            <span class="line indent-2"><span class="pr">repository</span><span class="pn">:</span> <span class="st"><a href="https://github.com/dataunfound/resource-engine" target="_blank">'github.com/dataunfound/resource-engine'</a></span></span>
-            <span class="line indent-1"><span class="pn">}</span></span>
-            <span class="line"><span class="pn">];</span></span>
-        </article>
-    </section>
+    <div class="section-header"><span>About /></span></div>
+    
+    <span class="line"><span class="kw">class</span> <span class="cl">KaanBarlas</span> <span class="pn">{</span></span>
+    <span class="line indent-1"><span class="cm">// I simply enjoy every creative work of human mind</span></span>
+    <span class="line indent-1"><span class="cm">// and savor keeping my mind occupied.</span></span>
+    <span class="line indent-1"><span class="kw">constructor</span><span class="pn">() {</span></span>
+    <span class="line indent-2"><span class="pr">this</span><span class="pn">.</span><span class="key">name</span> <span class="pn">=</span> <span class="st">'Kaan Barlas'</span><span class="pn">;</span></span>
+    <span class="line indent-2"><span class="pr">this</span><span class="pn">.</span><span class="key">status</span> <span class="pn">=</span> <span class="st">'Computer Science Undergraduate'</span><span class="pn">;</span></span>
+    <span class="line indent-1"><span class="pn">}</span></span>
+    <span class="line"></span>
+    <span class="line indent-1"><span class="cl">techInterests</span><span class="pn">() {</span></span>
+    <span class="line indent-2"><span class="kw">return</span> <span class="pn">[</span></span>
+    <span class="line indent-3"><span class="st">'Embedded Systems'</span><span class="pn">,</span> <span class="st">'Cybersecurity'</span><span class="pn">,</span> <span class="st">'Docker'</span><span class="pn">,</span> <span class="st">'Kubernetes'</span></span>
+    <span class="line indent-2"><span class="pn">];</span></span>
+    <span class="line indent-1"><span class="pn">}</span></span>
+    <span class="line"></span>
+    <span class="line indent-1"><span class="cl">artAndPhilosophy</span><span class="pn">() {</span></span>
+    <span class="line indent-2"><span class="kw">return</span> <span class="pn">[</span></span>
+    <span class="line indent-3"><span class="st">'Western Classical Music'</span><span class="pn">,</span> <span class="st">'Art'</span><span class="pn">,</span> <span class="st">'Philosophy'</span><span class="pn">,</span> <span class="st">'Physics'</span><span class="pn">,</span></span>
+    <span class="line indent-3"><span class="st">'Observing Heavens'</span><span class="pn">,</span> <span class="st">'Poetry'</span><span class="pn">,</span> <span class="st">'Piano'</span><span class="pn">,</span> <span class="st">'Violin'</span></span>
+    <span class="line indent-2"><span class="pn">];</span></span>
+    <span class="line indent-1"><span class="pn">}</span></span>
+    <span class="line"></span>
+    <span class="line indent-1"><span class="cl">currentObjective</span><span class="pn">() {</span></span>
+    <span class="line indent-2"><span class="kw">return</span> <span class="st">'Looking for a backend engineering or cloud infrastructure internship where I can apply my skills to real-world datasets.'</span><span class="pn">;</span></span>
+    <span class="line indent-1"><span class="pn">}</span></span>
+    <span class="line"><span class="pn">}</span></span>
 
-    <section id="skills">
-        <h2>> cat skills.js</h2>
-        <article>
-            <span class="line"><span class="kw">const</span> <span class="pr">developerStats</span> <span class="pn">= {</span></span>
-            <span class="line indent-1"><span class="pr">coreLanguages</span><span class="pn">: [</span><span class="st">'Python'</span><span class="pn">,</span> <span class="st">'Java'</span><span class="pn">,</span> <span class="st">'Go'</span><span class="pn">,</span> <span class="st">'JavaScript'</span><span class="pn">,</span> <span class="st">'SQL'</span><span class="pn">],</span></span>
-            <span class="line indent-1"><span class="pr">frameworksAndTools</span><span class="pn">: [</span><span class="st">'FastAPI'</span><span class="pn">,</span> <span class="st">'Spring Boot'</span><span class="pn">,</span> <span class="st">'Docker'</span><span class="pn">,</span> <span class="st">'Git'</span><span class="pn">,</span> <span class="st">'Linux CLI'</span><span class="pn">],</span></span>
-            <span class="line indent-1"><span class="pr">systemArchitecture</span><span class="pn">: [</span></span>
-            <span class="line indent-2"><span class="st">'Backend Architecture'</span><span class="pn">,</span> </span>
-            <span class="line indent-2"><span class="st">'Database Normalisation'</span><span class="pn">,</span> </span>
-            <span class="line indent-2"><span class="st">'RESTful API Design'</span><span class="pn">,</span> </span>
-            <span class="line indent-2"><span class="st">'Concurrent Programming'</span></span>
-            <span class="line indent-1"><span class="pn">]</span></span>
-            <span class="line"><span class="pn">};</span></span>
-        </article>
-    </section>
+    <div class="section-header" id="projects"><span>Projects /></span></div>
+    
+    <span class="line"><span class="kw">const</span> <span class="key">featuredProjects</span> <span class="pn">= [</span></span>
+    <span class="line indent-1"><span class="pn">{</span></span>
+    <span class="line indent-2"><span class="st">'2026-now'</span> <span class="pn">:</span> <span class="st">'Real-Time Data Pipeline'</span><span class="pn">,</span></span>
+    <span class="line indent-2"><span class="key">techStack</span>  <span class="pn">: [</span><span class="st">'Python'</span><span class="pn">,</span> <span class="st">'FastAPI'</span><span class="pn">,</span> <span class="st">'PostgreSQL'</span><span class="pn">],</span></span>
+    <span class="line indent-2"><span class="key">summary</span>    <span class="pn">:</span> <span class="st">'An asynchronous web app to aggregate & process high-volume data streams.'</span><span class="pn">,</span></span>
+    <span class="line indent-2"><span class="key">repository</span> <span class="pn">:</span> <a href="https://github.com/dataunfound/data-pipeline" target="_blank" class="st">'github.com/dataunfound/data-pipeline'</a></span>
+    <span class="line indent-1"><span class="pn">},</span></span>
+    <span class="line indent-1"><span class="pn">{</span></span>
+    <span class="line indent-2"><span class="st">'2025-2026'</span><span class="pn">:</span> <span class="st">'Predictive Resource Engine'</span><span class="pn">,</span></span>
+    <span class="line indent-2"><span class="key">techStack</span>  <span class="pn">: [</span><span class="st">'Java'</span><span class="pn">,</span> <span class="st">'Spring Boot'</span><span class="pn">,</span> <span class="st">'Docker'</span><span class="pn">],</span></span>
+    <span class="line indent-2"><span class="key">summary</span>    <span class="pn">:</span> <span class="st">'Simulates network traffic loads to algorithmically predict & allocate resources.'</span><span class="pn">,</span></span>
+    <span class="line indent-2"><span class="key">repository</span> <span class="pn">:</span> <a href="https://github.com/dataunfound/resource-engine" target="_blank" class="st">'github.com/dataunfound/resource-engine'</a></span>
+    <span class="line indent-1"><span class="pn">}</span></span>
+    <span class="line"><span class="pn">];</span></span>
 
-    <section id="contact">
-        <h2>> netstat -an | grep CONNECTED</h2>
-        <article>
-            <span class="line"><span class="kw">export const</span> <span class="pr">network</span> <span class="pn">= {</span></span>
-            <span class="line indent-1"><span class="pr">location</span><span class="pn">:</span> <span class="st">'York, United Kingdom'</span><span class="pn">,</span></span>
-            <span class="line indent-1"><span class="pr">github</span><span class="pn">:</span> <span class="st"><a href="https://github.com/dataunfound" target="_blank">'github.com/dataunfound'</a></span></span>
-            <span class="line"><span class="pn">};</span></span>
-            <span class="line"></span>
-            <span class="line"><span class="cm">// Connection closed by foreign host.</span></span>
-        </article>
-    </section>
+    <div class="section-header"><span>Skills /></span></div>
+    
+    <span class="line"><span class="kw">const</span> <span class="key">developerStats</span> <span class="pn">= () => {</span></span>
+    <span class="line indent-1"><span class="kw">return</span> <span class="pn">[</span></span>
+    <span class="line indent-2"><span class="st">'Python'</span><span class="pn">,</span> <span class="st">'Java'</span><span class="pn">,</span> <span class="st">'Go'</span><span class="pn">,</span> <span class="st">'JavaScript'</span><span class="pn">,</span> <span class="st">'SQL'</span><span class="pn">,</span></span>
+    <span class="line indent-2"><span class="st">'FastAPI'</span><span class="pn">,</span> <span class="st">'Spring Boot'</span><span class="pn">,</span> <span class="st">'Docker'</span><span class="pn">,</span> <span class="st">'Git'</span><span class="pn">,</span> <span class="st">'Linux CLI'</span><span class="pn">,</span></span>
+    <span class="line indent-2"><span class="st">'Backend Architecture'</span><span class="pn">,</span> <span class="st">'Database Normalisation'</span><span class="pn">,</span> <span class="st">'REST APIs'</span></span>
+    <span class="line indent-1"><span class="pn">];</span></span>
+    <span class="line"><span class="pn">}</span></span>
+
+    <div class="section-header" id="contact"><span>Contact /></span></div>
+    
+    <span class="line"><span class="kw">export const</span> <span class="key">network</span> <span class="pn">= {</span></span>
+    <span class="line indent-1"><span class="key">location</span><span class="pn">:</span> <span class="st">'York, United Kingdom'</span><span class="pn">,</span></span>
+    <span class="line indent-1"><span class="key">github</span><span class="pn">:</span> <a href="https://github.com/dataunfound" target="_blank" class="st">'github.com/dataunfound'</a></span>
+    <span class="line"><span class="pn">};</span></span>
+    <span class="line"></span>
 
 </main>
 
