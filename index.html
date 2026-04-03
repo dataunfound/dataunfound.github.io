@@ -4,20 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kaan Barlas | root@dataunfound</title>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
     <style>
         /* yasio.dev Inspired IDE Theme */
         :root {
-            --bg-dark: #0f111a; /* Deep dark blue/grey background */
-            --timeline: #6a4c9c; /* Vertical purple line */
+            --bg-dark: #0f111a; 
+            --timeline: #6a4c9c; 
             
             /* Syntax Highlighting */
-            --kw: #c678dd; /* Keywords (class, return, export) - Purple */
-            --cl: #e5c07b; /* Classes/Functions - Yellow */
-            --st: #98c379; /* Strings - Green */
-            --pr: #e06c75; /* Properties/This - Red */
-            --key: #56b6c2; /* Object Keys - Cyan */
-            --cm: #5c6370; /* Comments - Grey */
-            --pn: #abb2bf; /* Punctuation/Normal Text - Light Grey */
+            --kw: #c678dd; /* Keywords */
+            --cl: #e5c07b; /* Classes/Functions */
+            --st: #98c379; /* Strings */
+            --pr: #e06c75; /* Properties/This */
+            --key: #56b6c2; /* Object Keys */
+            --cm: #5c6370; /* Comments */
+            --pn: #abb2bf; /* Punctuation/Normal Text */
             --line-num: #3b404d; /* Line numbers */
             
             --font-stack: 'Fira Code', 'Consolas', 'Courier New', monospace;
@@ -34,13 +37,13 @@
             font-size: 0.95rem;
         }
 
-        /* --- HACKER HEADER & AVATAR (Kept from previous) --- */
+        /* --- HACKER HEADER & AVATAR --- */
         header {
             margin-bottom: 3rem;
             display: flex;
             align-items: center;
             padding-bottom: 1rem;
-            margin-left: 2rem; /* Align with the text block */
+            margin-left: 2rem; 
         }
 
         .avatar {
@@ -88,6 +91,8 @@
             font-size: 0.85rem;
             text-decoration: none;
             transition: 0.2s;
+            cursor: pointer;
+            font-family: var(--font-stack);
         }
         .btn:hover { background: var(--st); color: var(--bg-dark); }
         .btn.secondary { border-color: var(--key); color: var(--key); }
@@ -95,21 +100,21 @@
         .ping-link { color: var(--key); text-decoration: none; margin-left: 1rem; font-weight: bold; }
         .ping-link:hover { text-decoration: underline; }
 
-        /* --- THE CONTINUOUS TIMELINE (yasio.dev style) --- */
+        /* --- THE CONTINUOUS TIMELINE --- */
         .ide-container {
             border-left: 1px solid var(--timeline);
             margin-left: 2.5rem;
             padding-left: 1rem;
             padding-bottom: 2rem;
-            counter-reset: global-line; /* One continuous counter for the whole page */
+            counter-reset: global-line; 
         }
 
-        /* --- SECTION HEADERS (o About />) --- */
+        /* --- SECTION HEADERS --- */
         .section-header {
             color: var(--pn);
             font-weight: normal;
             font-size: 1rem;
-            margin: 2.5rem 0 1rem -1.4rem; /* Pull back to overlap the border */
+            margin: 2.5rem 0 1rem -1.4rem; 
             display: flex;
             align-items: center;
         }
@@ -146,7 +151,6 @@
             user-select: none;
         }
 
-        /* Syntax Highlight Classes */
         .kw { color: var(--kw); }
         .cl { color: var(--cl); }
         .st { color: var(--st); }
@@ -163,6 +167,61 @@
         a.st { text-decoration: none; }
         a.st:hover { text-decoration: underline; color: #b5e890; }
 
+        /* --- IDE TERMINAL FORM STYLING --- */
+        .terminal-form {
+            margin-left: 3.5rem; /* Aligns with indent-1 */
+            margin-top: 0.5rem;
+            max-width: 500px;
+        }
+        .input-group {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        .input-group label {
+            color: var(--key);
+            width: 80px;
+        }
+        .input-group label::after {
+            content: ' :';
+            color: var(--pn);
+        }
+        .terminal-input {
+            background: transparent;
+            border: none;
+            border-bottom: 1px dashed var(--cm);
+            color: var(--st);
+            font-family: var(--font-stack);
+            font-size: 0.95rem;
+            flex-grow: 1;
+            padding: 0.2rem 0.5rem;
+            outline: none;
+        }
+        .terminal-input:focus {
+            border-bottom: 1px solid var(--st);
+        }
+        .terminal-input::placeholder {
+            color: var(--cm);
+            font-style: italic;
+        }
+        textarea.terminal-input {
+            resize: vertical;
+            min-height: 60px;
+        }
+        #form-feedback {
+            margin-top: 1rem;
+            font-style: italic;
+            display: none;
+        }
+        .success-msg { color: var(--st); }
+        .error-msg { color: var(--pr); }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .input-group { flex-direction: column; align-items: flex-start; }
+            .input-group label { margin-bottom: 0.5rem; }
+            .terminal-input { width: 100%; }
+        }
     </style>
 </head>
 <body>
@@ -244,11 +303,84 @@
     
     <span class="line"><span class="kw">export const</span> <span class="key">network</span> <span class="pn">= {</span></span>
     <span class="line indent-1"><span class="key">location</span><span class="pn">:</span> <span class="st">'York, United Kingdom'</span><span class="pn">,</span></span>
-    <span class="line indent-1"><span class="key">github</span><span class="pn">:</span> <a href="https://github.com/dataunfound" target="_blank" class="st">'github.com/dataunfound'</a></span>
+    <span class="line indent-1"><span class="key">github</span><span class="pn">:</span> <a href="https://github.com/dataunfound" target="_blank" class="st">'github.com/dataunfound'</a><span class="pn">,</span></span>
+    <span class="line indent-1"><span class="key">sendMessage</span><span class="pn">:</span> <span class="kw">async</span> <span class="pn">(</span><span class="pr">payload</span><span class="pn">) => {</span></span>
+    
+    <form id="contact-form" class="terminal-form">
+        <div class="input-group">
+            <label for="name">name</label>
+            <input type="text" id="name" class="terminal-input" placeholder="'Enter string'" required>
+        </div>
+        <div class="input-group">
+            <label for="email">email</label>
+            <input type="email" id="email" class="terminal-input" placeholder="'user@domain.com'" required>
+        </div>
+        <div class="input-group">
+            <label for="message">message</label>
+            <textarea id="message" class="terminal-input" placeholder="'Write payload here...'" required></textarea>
+        </div>
+        <button type="submit" class="btn secondary" style="margin-top: 0.5rem;">await supabase.insert(payload)</button>
+        <div id="form-feedback"></div>
+    </form>
+    
+    <span class="line indent-1"><span class="pn">}</span></span>
     <span class="line"><span class="pn">};</span></span>
-    <span class="line"></span>
 
 </main>
+
+<script>
+    // ==========================================
+    // SUPABASE INTEGRATION
+    // ==========================================
+    
+    // 1. You MUST replace these variables with your actual Supabase project credentials.
+    const SUPABASE_URL = 'YOUR_SUPABASE_URL';
+    const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
+
+    // 2. Initialize the Supabase client
+    const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    // 3. Handle form submission
+    document.getElementById('contact-form').addEventListener('submit', async (e) => {
+        e.preventDefault(); // Prevent page reload
+        
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const message = document.getElementById('message').value;
+        const feedbackDiv = document.getElementById('form-feedback');
+        const submitBtn = e.target.querySelector('button');
+
+        // Visual feedback during processing
+        submitBtn.textContent = 'Processing...';
+        feedbackDiv.style.display = 'none';
+
+        try {
+            // Assessment explicitly requires inserting into a table. 
+            // Ensure your Supabase table is named 'contacts' or change the name below.
+            const { data, error } = await supabase
+                .from('contacts')
+                .insert([
+                    { name: name, email: email, message: message }
+                ]);
+
+            if (error) throw error;
+
+            // Success feedback required by assessment
+            feedbackDiv.textContent = '// SUCCESS: Thank you, your message has been recorded in the database.';
+            feedbackDiv.className = 'success-msg';
+            feedbackDiv.style.display = 'block';
+            e.target.reset(); // Clear form
+            
+        } catch (error) {
+            console.error('Error inserting data:', error);
+            feedbackDiv.textContent = `// ERROR: ${error.message}`;
+            feedbackDiv.className = 'error-msg';
+            feedbackDiv.style.display = 'block';
+        } finally {
+            submitBtn.textContent = 'await supabase.insert(payload)';
+        }
+    });
+</script>
 
 </body>
 </html>
