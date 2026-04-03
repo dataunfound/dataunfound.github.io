@@ -12,15 +12,11 @@
             --text-muted: #008f11;
             --accent: #0df; /* Cyberpunk Cyan */
             --alert: #ff003c; /* Cyberpunk Red */
-            --glass-bg: rgba(5, 10, 15, 0.65); /* Dark blue-tinted glass for readability */
+            --glass-bg: rgba(5, 10, 15, 0.65); /* Dark blue-tinted glass */
             --font-stack: 'Courier New', Courier, monospace;
         }
 
-        /* Body Styling with Fixed Multi-layered Background 
-           Layer 1: CRT Scanlines (Retro monitor effect)
-           Layer 2: Radial Gradient (Brighter in the center to highlight the logo, dark edges)
-           Layer 3: The exact Laughing Man image file
-        */
+        /* Hacker Background with Laughing Man */
         body {
             background-color: var(--bg-color);
             background-image: 
@@ -46,7 +42,6 @@
             line-height: 1.6;
         }
 
-        /* Blinking Cursor Animation */
         .cursor::after {
             content: '█';
             animation: blink 1s step-start infinite;
@@ -54,7 +49,7 @@
         }
         @keyframes blink { 50% { opacity: 0; } }
 
-        /* Header & Avatar Configuration */
+        /* Header */
         header {
             border-bottom: 1px dashed var(--accent);
             padding-bottom: 1.5rem;
@@ -75,7 +70,6 @@
             border: 2px solid var(--accent);
             box-shadow: 0 0 15px var(--accent);
             margin-right: 2rem;
-            /* Hacker Image Filter */
             filter: grayscale(80%) contrast(150%) brightness(90%) hue-rotate(180deg);
             transition: all 0.3s ease;
         }
@@ -86,7 +80,6 @@
             border-color: var(--text-main);
         }
 
-        /* Profile Typography */
         .profile-info h1 {
             color: var(--accent);
             text-shadow: 0 0 10px var(--accent);
@@ -100,7 +93,6 @@
         .cmd-prompt::before { content: "root@dataunfound:~# "; color: var(--accent); }
         .tagline { color: #8f98a0; }
 
-        /* Section Headers */
         h2 {
             color: var(--accent);
             border-left: 5px solid var(--accent);
@@ -115,7 +107,55 @@
             padding-right: 15px;
         }
 
-        /* Project Cards & System Logs */
+        /* --------- YENİ: KOD EDİTÖRÜ (IDE) TASARIMI --------- */
+        .code-editor {
+            background: rgba(15, 17, 26, 0.85);
+            border: 1px solid rgba(0, 221, 255, 0.3);
+            border-radius: 6px;
+            padding: 1.5rem 1rem;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), inset 0 0 10px rgba(0,0,0,0.5);
+            font-family: 'Fira Code', 'Courier New', Courier, monospace;
+            font-size: 0.95rem;
+            overflow-x: auto;
+            position: relative;
+        }
+
+        .code-editor::before {
+            content: 'profile.js';
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: rgba(0, 221, 255, 0.2);
+            color: var(--accent);
+            padding: 2px 10px;
+            font-size: 0.75rem;
+            border-bottom-right-radius: 6px;
+        }
+
+        .line { display: block; line-height: 1.5; }
+        .line-num { 
+            color: #4a5568; 
+            display: inline-block; 
+            width: 2.5rem; 
+            user-select: none; 
+            margin-right: 1rem;
+            border-right: 1px solid #2d3748;
+            padding-right: 0.5rem;
+            text-align: right;
+        }
+
+        /* Sözdizimi Renklendirmesi (Syntax Highlighting) */
+        .kw { color: #c678dd; } /* Keyword - Mor */
+        .cl { color: #e5c07b; } /* Class/Function - Sarı */
+        .th { color: #e06c75; } /* This - Kırmızı */
+        .pr { color: #56b6c2; } /* Property - Mavi/Turkuaz */
+        .st { color: #98c379; } /* String - Yeşil */
+        .cm { color: #7f848e; font-style: italic; } /* Comment - Gri */
+        .pn { color: #abb2bf; } /* Punctuation - Beyaz/Gri */
+        /* ---------------------------------------------------- */
+
         article {
             border: 1px solid rgba(0, 143, 17, 0.5);
             padding: 1.5rem;
@@ -123,7 +163,7 @@
             background: var(--glass-bg); 
             transition: all 0.3s ease;
             position: relative;
-            backdrop-filter: blur(10px); /* Heavy blur to prevent background text collision */
+            backdrop-filter: blur(10px); 
             box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8);
         }
         
@@ -147,7 +187,6 @@
         
         article h3 { color: var(--accent); margin-top: 0; text-shadow: 0 0 5px rgba(0, 221, 255, 0.3); }
         
-        /* Interactive Elements */
         a { color: var(--accent); text-decoration: none; font-weight: bold; }
         a:hover { color: var(--text-main); text-shadow: 0 0 8px var(--text-main); }
 
@@ -171,7 +210,6 @@
             box-shadow: 0 0 20px var(--text-main);
         }
 
-        /* Tech Stack Tags */
         .tech-tag {
             background: rgba(0, 221, 255, 0.1);
             color: var(--accent);
@@ -181,7 +219,6 @@
             margin-right: 5px;
         }
 
-        /* Lists */
         ul { 
             list-style-type: square; 
             color: var(--accent); 
@@ -192,15 +229,6 @@
         }
         ul li { margin-bottom: 0.5rem; }
         ul li span { color: var(--text-main); }
-
-        /* Paragraph Containers */
-        .log-entry {
-            background: var(--glass-bg);
-            padding: 1.5rem;
-            border: 1px solid rgba(0, 143, 17, 0.3);
-            backdrop-filter: blur(10px);
-            margin-bottom: 1.5rem;
-        }
     </style>
 </head>
 <body>
@@ -223,10 +251,33 @@
     </section>
 
     <section id="about">
-        <h2>> cat summary.txt</h2>
-        <div class="log-entry">
-            <p>I am a Computer Science student focused on the mechanics of robust software architecture. Rather than treating programming as pure theory, I enjoy treating it like an intricate system vulnerability—taking apart computer architectures, distributed databases, and APIs to see how they function under extreme loads.</p>
-            <p><strong>Current Objective:</strong> Looking for a backend engineering or cloud infrastructure internship where I can apply my skills to real-world datasets and scale applications beyond localhost environments.</p>
+        <h2>> nano profile.js</h2>
+        <div class="code-editor">
+            <span class="line"><span class="line-num">01</span><span class="kw">class</span> <span class="cl">KaanBarlas</span> <span class="pn">{</span></span>
+            <span class="line"><span class="line-num">02</span>  <span class="cm">// I simply enjoy every creative work of human mind</span></span>
+            <span class="line"><span class="line-num">03</span>  <span class="cm">// and savor keeping my mind occupied.</span></span>
+            <span class="line"><span class="line-num">04</span>  <span class="kw">constructor</span><span class="pn">() {</span></span>
+            <span class="line"><span class="line-num">05</span>    <span class="th">this</span><span class="pn">.</span><span class="pr">name</span> <span class="pn">=</span> <span class="st">'Kaan Barlas'</span><span class="pn">;</span></span>
+            <span class="line"><span class="line-num">06</span>    <span class="th">this</span><span class="pn">.</span><span class="pr">status</span> <span class="pn">=</span> <span class="st">'Computer Science Undergraduate'</span><span class="pn">;</span></span>
+            <span class="line"><span class="line-num">07</span>  <span class="pn">}</span></span>
+            <span class="line"><span class="line-num">08</span></span>
+            <span class="line"><span class="line-num">09</span>  <span class="cl">techInterests</span><span class="pn">() {</span></span>
+            <span class="line"><span class="line-num">10</span>    <span class="kw">return</span> <span class="pn">[</span></span>
+            <span class="line"><span class="line-num">11</span>      <span class="st">'Embedded Systems'</span><span class="pn">,</span> <span class="st">'Cybersecurity'</span><span class="pn">,</span> <span class="st">'Docker'</span><span class="pn">,</span> <span class="st">'Kubernetes'</span></span>
+            <span class="line"><span class="line-num">12</span>    <span class="pn">];</span></span>
+            <span class="line"><span class="line-num">13</span>  <span class="pn">}</span></span>
+            <span class="line"><span class="line-num">14</span></span>
+            <span class="line"><span class="line-num">15</span>  <span class="cl">artAndPhilosophy</span><span class="pn">() {</span></span>
+            <span class="line"><span class="line-num">16</span>    <span class="kw">return</span> <span class="pn">[</span></span>
+            <span class="line"><span class="line-num">17</span>      <span class="st">'Western Classical Music'</span><span class="pn">,</span> <span class="st">'Art'</span><span class="pn">,</span> <span class="st">'Philosophy'</span><span class="pn">,</span> <span class="st">'Physics'</span><span class="pn">,</span></span>
+            <span class="line"><span class="line-num">18</span>      <span class="st">'Observing Heavens'</span><span class="pn">,</span> <span class="st">'Poetry'</span><span class="pn">,</span> <span class="st">'Piano'</span><span class="pn">,</span> <span class="st">'Violin'</span></span>
+            <span class="line"><span class="line-num">19</span>    <span class="pn">];</span></span>
+            <span class="line"><span class="line-num">20</span>  <span class="pn">}</span></span>
+            <span class="line"><span class="line-num">21</span></span>
+            <span class="line"><span class="line-num">22</span>  <span class="cl">currentObjective</span><span class="pn">() {</span></span>
+            <span class="line"><span class="line-num">23</span>    <span class="kw">return</span> <span class="st">'Looking for a backend engineering or cloud infrastructure internship where I can apply my skills to real-world datasets and scale applications beyond localhost environments.'</span><span class="pn">;</span></span>
+            <span class="line"><span class="line-num">24</span>  <span class="pn">}</span></span>
+            <span class="line"><span class="line-num">25</span><span class="pn">}</span></span>
         </div>
     </section>
 
