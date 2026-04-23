@@ -588,37 +588,29 @@
         </div>
     </footer>
 
-    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const navLinks = document.querySelectorAll('.nav-item');
-            const pages = document.querySelectorAll('.page-section');
-
-            navLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    const targetId = this.getAttribute('href').substring(1);
-                    const targetSection = document.getElementById(targetId);
-
-                    if (targetSection) {
-                        e.preventDefault();
-                        
-                        navLinks.forEach(nav => nav.classList.remove('active'));
-                        this.classList.add('active');
-
-                        pages.forEach(page => page.classList.remove('active-section'));
-                        targetSection.classList.add('active-section');
-
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
-                    }
-                });
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const navLinks = document.querySelectorAll('.nav-item');
+        const pages = document.querySelectorAll('.page-section');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetId);
+                if (targetSection) {
+                    e.preventDefault();
+                    navLinks.forEach(nav => nav.classList.remove('active'));
+                    this.classList.add('active');
+                    pages.forEach(page => page.classList.remove('active-section'));
+                    targetSection.classList.add('active-section');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
             });
         });
 
         const SUPABASE_URL = 'https://nutapnfjasabtdapcrfp.supabase.co';
         const SUPABASE_ANON_KEY = 'sb_publishable_o7Njs8FIwiEjDKRfYyZ1dg_N6Tpbxo2';
-
-        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
         const contactForm = document.getElementById('contact-form');
         const submitBtn = document.querySelector('.btn-submit');
@@ -632,40 +624,47 @@
                 const emailValue = document.getElementById('email').value;
                 const messageValue = document.getElementById('message').value;
 
-                const originalBtnText = submitBtn.innerText;
                 submitBtn.innerText = 'Sending...';
                 submitBtn.disabled = true;
 
-                statusDiv.className = 'form-status';
-                statusDiv.style.display = 'block';
-                statusDiv.innerText = 'Connecting...';
+                if (statusDiv) {
+                    statusDiv.style.display = 'block';
+                    statusDiv.className = 'form-status';
+                    statusDiv.innerText = 'Connecting to database...';
+                }
 
                 try {
-                    const { data, error } = await supabase
+                    if (typeof supabase === 'undefined') {
+                        throw new Error('Supabase library not loaded. Check your internet connection.');
+                    }
+
+                    const { error } = await supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
                         .from('messages')
                         .insert([{ name: nameValue, email: emailValue, message: messageValue }]);
 
                     if (error) throw error;
 
-                    statusDiv.innerText = 'Thank you! Your message has been sent successfully.';
-                    statusDiv.classList.add('success');
-                    contactForm.reset(); 
-
-                    setTimeout(() => {
-                        statusDiv.style.display = 'none';
-                        statusDiv.className = 'form-status';
-                        statusDiv.innerText = '';
-                    }, 5000);
+                    if (statusDiv) {
+                        statusDiv.innerText = 'Thank you! Your message has been sent successfully.';
+                        statusDiv.classList.add('success');
+                    }
+                    alert('Message sent successfully!');
+                    contactForm.reset();
 
                 } catch (error) {
-                    statusDiv.innerText = 'Error: ' + error.message;
-                    statusDiv.classList.add('error');
+                    const errorMsg = error.message || 'Unknown connection error';
+                    if (statusDiv) {
+                        statusDiv.innerText = 'Error: ' + errorMsg;
+                        statusDiv.classList.add('error');
+                    }
+                    alert('Error: ' + errorMsg);
                 } finally {
-                    submitBtn.innerText = originalBtnText;
+                    submitBtn.innerText = 'Send Message';
                     submitBtn.disabled = false;
                 }
             });
         }
-    </script>
+    });
+</script>
 </body>
 </html>
