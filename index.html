@@ -3,56 +3,337 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kaan Barlas | Software Developer Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Kaan Barlas | Portfolio</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --nav-bg: #1c2b3e;
+            --footer-bg: #152438;
+            --accent-blue: #60a5fa;
+            --text-dark: #334155;
+            --text-muted: #64748b;
+            --bg-light: #f8fafc;
+            --border-color: #e2e8f0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            line-height: 1.6; 
+            color: var(--text-dark); 
+            background: white; 
+            scroll-behavior: smooth;
+        }
+
+        header { 
+            background: var(--nav-bg); 
+            padding: 12px 0; 
+            color: white; 
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav-container { 
+            max-width: 1100px; 
+            margin: 0 auto; 
+            display: flex; 
+            justify-content: space-between; 
+            padding: 0 20px; 
+            align-items: center; 
+        }
+
+        .terminal-prompt { 
+            font-family: 'Fira Code', monospace; 
+            font-size: 0.9rem; 
+        }
+        
+        .terminal-prompt span { color: var(--accent-blue); }
+        
+        .cursor { 
+            display: inline-block;
+            width: 10px;
+            height: 1.2rem;
+            background-color: var(--accent-blue);
+            margin-left: 5px;
+            vertical-align: middle;
+            animation: blink 1s infinite; 
+        }
+        
+        @keyframes blink { 50% { opacity: 0; } }
+
+        nav .nav-links { list-style: none; display: flex; gap: 20px; }
+        
+        .nav-links a { 
+            text-decoration: none; 
+            color: #94a3b8; 
+            font-size: 0.9rem; 
+            font-weight: 500;
+            transition: 0.3s; 
+        }
+        
+        .nav-links a.active, .nav-links a:hover { color: white; }
+
+        .container { max-width: 1100px; margin: 60px auto; padding: 0 20px; }
+        
+        .about-grid { 
+            display: grid; 
+            grid-template-columns: 2fr 1fr; 
+            gap: 60px; 
+            margin-bottom: 50px; 
+        }
+
+        h1 { font-size: 2.8rem; color: #0f172a; margin-bottom: 5px; font-weight: 600; letter-spacing: -0.02em; }
+        
+        .subtitle { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 35px; }
+        
+        p { margin-bottom: 20px; color: #475569; font-size: 1.05rem; }
+        
+        strong { color: #0f172a; }
+
+        .sidebar { position: sticky; top: 80px; }
+        
+        .profile-pic { 
+            width: 100%; 
+            border-radius: 12px; 
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .links-box { 
+            background: var(--bg-light); 
+            padding: 25px; 
+            border-radius: 12px; 
+            border: 1px solid var(--border-color); 
+            margin-top: 25px; 
+        }
+        
+        .links-box ul { list-style: none; }
+        
+        .links-box li { margin-bottom: 12px; font-size: 0.95rem; display: flex; align-items: center; gap: 10px; }
+        
+        .links-box a { color: #2563eb; text-decoration: none; font-weight: 500; }
+        
+        .links-box a:hover { text-decoration: underline; }
+
+        .new-post-bar { 
+            background: white; 
+            border: 1px solid var(--border-color); 
+            padding: 12px 20px; 
+            border-radius: 50px; 
+            display: flex; 
+            align-items: center; 
+            gap: 15px; 
+            margin-top: 40px; 
+            font-size: 0.9rem; 
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+        
+        .post-tag { 
+            background: #eff6ff; 
+            color: #2563eb; 
+            padding: 2px 12px; 
+            border-radius: 20px; 
+            font-weight: 600; 
+            font-size: 0.8rem;
+        }
+        
+        .new-post-bar a { text-decoration: none; color: var(--text-dark); font-weight: 500; }
+        
+        .post-date { margin-left: auto; color: var(--text-muted); }
+
+        .news-section { 
+            background: #fdf6e3; 
+            border: 1px solid #eee8d5; 
+            border-radius: 10px; 
+            margin-top: 60px; 
+            overflow: hidden; 
+        }
+        
+        .news-header { 
+            background: #eee8d5; 
+            padding: 12px 20px; 
+            display: flex; 
+            align-items: center; 
+            gap: 20px; 
+            font-family: 'Fira Code', monospace; 
+            font-size: 0.9rem;
+        }
+        
+        .dots span { height: 10px; width: 10px; background: #94a3b8; border-radius: 50%; display: inline-block; margin-right: 6px; }
+        
+        .years { margin-left: auto; display: flex; gap: 10px; }
+        
+        .years span { padding: 2px 8px; border-radius: 4px; cursor: pointer; }
+        
+        .years span.active { background: #00000010; font-weight: bold; }
+
+        .news-content { padding: 25px; color: #657b83; font-size: 0.95rem; }
+
+        footer { background: var(--footer-bg); color: white; padding: 80px 0; margin-top: 80px; }
+        
+        .footer-container { 
+            max-width: 1100px; 
+            margin: 0 auto; 
+            display: grid; 
+            grid-template-columns: 1.5fr 1fr 0.8fr; 
+            gap: 50px; 
+            padding: 0 20px; 
+        }
+        
+        footer h3 { 
+            font-size: 1.2rem; 
+            border-bottom: 2px solid #2d3b50; 
+            padding-bottom: 12px; 
+            margin-bottom: 25px; 
+            display: inline-block;
+        }
+
+        .form-group { margin-bottom: 20px; }
+        
+        label { display: block; margin-bottom: 8px; font-size: 0.9rem; color: #94a3b8; }
+        
+        input, textarea { 
+            width: 100%; 
+            background: #2d3b50; 
+            border: 1px solid #3f516a; 
+            border-radius: 6px; 
+            padding: 12px; 
+            color: white; 
+            font-family: inherit;
+        }
+        
+        input:focus, textarea:focus { outline: none; border-color: var(--accent-blue); }
+        
+        .btn-submit { 
+            background: var(--accent-blue); 
+            color: white; 
+            border: none; 
+            padding: 12px 25px; 
+            border-radius: 6px; 
+            cursor: pointer; 
+            font-weight: 600; 
+            transition: 0.3s;
+        }
+        
+        .btn-submit:hover { background: #3b82f6; transform: translateY(-2px); }
+
+        .info-col p { color: #cbd5e1; margin-bottom: 15px; font-size: 0.95rem; }
+
+        @media (max-width: 850px) {
+            .about-grid { grid-template-columns: 1fr; }
+            .sidebar { position: static; max-width: 400px; margin: 0 auto; }
+            .footer-container { grid-template-columns: 1fr; }
+            h1 { font-size: 2.2rem; }
+        }
+    </style>
 </head>
 <body>
+
     <header>
-        <nav class="navbar">
-            <div class="logo">KB<span>.</span></div>
-            <ul class="nav-links">
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
+        <div class="nav-container">
+            <div class="terminal-prompt">
+                <span>[kaan@ai] ~ $</span> cd /home<span class="cursor"></span>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#" class="active">About</a></li>
+                    <li><a href="#">Projects</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Education</a></li>
+                    <li><a href="#">Experience</a></li>
+                    <li><a href="#">Skills</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
-    <main class="hero-container">
-        <section class="hero-content">
-            <span class="badge">Available for Internships</span>
-            <h1>Kaan Barlas</h1>
-            <p class="tagline">Python Developer & Algorithm Specialist</p>
-            <p class="description">
-                Building efficient, scalable solutions with a focus on clean code and performance. 
-                With a strong background in IT infrastructure at SOLUS and a passion for complex problem-solving, 
-                I bridge the gap between hardware architecture and software development.
-            </p>
-            <div class="cta-group">
-                <a href="projects.html" class="btn btn-primary">View My Work</a>
-                <a href="contact.html" class="btn btn-secondary">Get In Touch</a>
+    <main class="container">
+        <section class="about-grid">
+            <div class="intro-text">
+                <h1>Kaan Barlas</h1>
+                <p class="subtitle">Computer Science Student - Python Developer & Algorithm Specialist</p>
+                
+                <p>Hey, my name is <strong>Kaan Barlas</strong>.</p>
+                
+                <p>I'm a <strong>Computer Science</strong> student, specializing in <strong>Algorithm Design</strong> and <strong>Software Development</strong>. I focus on building efficient, scalable solutions and bridging the gap between hardware architecture and software engineering.</p>
+                
+                <p>My expertise includes <strong>Python development</strong>, <strong>complex problem-solving</strong>, and <strong>IT infrastructure</strong>. Drawing from my technical background at SOLUS, I am passionate about optimizing systems and exploring high-performance data center technologies.</p>
+                
+                <p><strong>Current Focus:</strong> I'm currently working on algorithmic optimization projects and building production-ready infrastructure for AI-driven applications.</p>
+                
+                <p>Feel free to <a href="#contact" style="color: #2563eb; text-decoration: none; font-weight: 500;">connect</a> with me for internship opportunities or collaborations!</p>
+
+                <div class="new-post-bar">
+                    <span class="post-tag">New post:</span>
+                    <a href="#">Optimizing Python for Enterprise Systems</a>
+                    <span class="post-date">Feb 21 ></span>
+                </div>
             </div>
+
+            <aside class="sidebar">
+                <img src="https://github.com/dataunfound.png" alt="Kaan Barlas" class="profile-pic">
+                <div class="links-box">
+                    <ul>
+                        <li>📧 <a href="mailto:kaanbarlas@example.com">kaanbarlas@example.com</a></li>
+                        <li>🎓 <a href="#">Google Scholar</a></li>
+                        <li>💻 <a href="https://github.com/dataunfound" target="_blank">GitHub Profile</a></li>
+                        <li>🔗 <a href="#">LinkedIn</a></li>
+                    </ul>
+                </div>
+            </aside>
         </section>
-        
-        <section class="stats-grid">
-            <div class="stat-card">
-                <h3>1+ Year</h3>
-                <p>Industry Experience</p>
+
+        <section class="news-section">
+            <div class="news-header">
+                <div class="dots"><span></span><span></span><span></span></div>
+                <div class="news-title">~ News</div>
+                <div class="years">
+                    <span class="active">~/2026</span>
+                    <span>~/2025</span>
+                    <span>~/2024</span>
+                </div>
             </div>
-            <div class="stat-card">
-                <h3>Python</h3>
-                <p>Core Expertise</p>
-            </div>
-            <div class="stat-card">
-                <h3>IT Tech</h3>
-                <p>Infrastructure Knowledge</p>
+            <div class="news-content">
+                <p>April 2026: Working on the IY4103 Web Development Summative Assessment. Implementing a full-stack contact form with Supabase integration.</p>
             </div>
         </section>
     </main>
 
-    <footer>
-        <p>&copy; 2026 Kaan Barlas. Portfolio for IY4103 Summative Assessment.</p>
+    <footer id="contact">
+        <div class="footer-container">
+            <div class="footer-col form-col">
+                <h3>Get in Touch</h3>
+                <form id="contact-form">
+                    <div class="form-group">
+                        <label>Your email:</label>
+                        <input type="email" placeholder="Enter your email address" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Your message:</label>
+                        <textarea placeholder="Write your message here..." rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit">Send Message</button>
+                </form>
+            </div>
+
+            <div class="footer-col info-col">
+                <h3>Contact</h3>
+                <p>📍 York, United Kingdom</p>
+                <p>📧 kaanbarlas@example.com</p>
+                <p>🔗 LinkedIn Profile</p>
+            </div>
+
+            <div class="footer-col views-col">
+                <h3>Portfolio Status</h3>
+                <p>Version 1.0 - Production Ready</p>
+                <p>Responsive Design: Enabled</p>
+            </div>
+        </div>
     </footer>
+
 </body>
 </html>
