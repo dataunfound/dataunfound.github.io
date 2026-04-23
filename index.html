@@ -159,30 +159,10 @@
 
         /* USEFUL LINKS STYLES */
         .spoiler-group { margin-bottom: 35px; }
-        .spoiler-group h3 { font-size: 1.1rem; color: #0f172a; margin-bottom: 12px; font-weight: 600; }
-        
-        details { margin-bottom: 10px; }
-        summary {
-            display: inline-block;
-            background: #2d3b50;
-            color: white;
-            padding: 8px 16px;
-            border-radius: 6px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            cursor: pointer;
-            margin-bottom: 15px;
-            user-select: none;
-            transition: background 0.2s;
-            list-style: none;
-        }
-        summary:hover { background: #1e293b; }
-        summary::-webkit-details-marker { display: none; }
-        summary::before { content: "Show spoiler"; }
-        details[open] summary::before { content: "Hide spoiler"; }
+        .spoiler-group h3 { font-size: 1.1rem; color: #0f172a; margin-bottom: 16px; font-weight: 600; }
         
         .link-list { list-style: none; padding-left: 5px; }
-        .link-list li { margin-bottom: 10px; position: relative; padding-left: 20px; font-size: 0.95rem; }
+        .link-list li { margin-bottom: 12px; position: relative; padding-left: 20px; font-size: 0.95rem; }
         .link-list li::before { content: "•"; position: absolute; left: 0; color: #94a3b8; font-size: 1.2rem; line-height: 1; }
         .link-list a { color: var(--text-dark); text-decoration: none; font-weight: 500; transition: color 0.2s; }
         .link-list a:hover { color: var(--accent-blue); text-decoration: underline; }
@@ -474,63 +454,49 @@
 
             <div class="spoiler-group">
                 <h3>Science, Technology and Design</h3>
-                <details open>
-                    <summary></summary>
-                    <ul class="link-list">
-                        <li><a href="https://ocw.mit.edu/" target="_blank">MIT OpenCourseWare</a></li>
-                        <li><a href="https://www.physics.harvard.edu/events/videos" target="_blank">Harvard Physics Video Archive</a></li>
-                        <li><a href="https://physicstoday.aip.org/" target="_blank">Physics Today</a></li>
-                        <li><a href="https://www.quantamagazine.org/" target="_blank">Quanta Magazine</a></li>
-                        <li><a href="https://nautil.us/" target="_blank">Nautilus</a></li>
-                        <li><a href="https://www.youtube.com/channel/UCYO_jab_esuFRV4b17AJtAw" target="_blank">Veritasium</a></li>
-                        <li><a href="#" target="_blank">3Blue1Brown</a></li>
-                        <li><a href="#" target="_blank">Vsauce</a></li>
-                    </ul>
-                </details>
+                <ul class="link-list">
+                    <li><a href="https://ocw.mit.edu/" target="_blank">MIT OpenCourseWare</a></li>
+                    <li><a href="https://www.physics.harvard.edu/events/videos" target="_blank">Harvard Physics Video Archive</a></li>
+                    <li><a href="https://physicstoday.aip.org/" target="_blank">Physics Today</a></li>
+                    <li><a href="https://www.quantamagazine.org/" target="_blank">Quanta Magazine</a></li>
+                    <li><a href="https://nautil.us/" target="_blank">Nautilus</a></li>
+                    <li><a href="https://www.youtube.com/channel/UCYO_jab_esuFRV4b17AJtAw" target="_blank">Veritasium</a></li>
+                </ul>
             </div>
 
             <div class="spoiler-group">
                 <h3>Archives and Biography</h3>
-                <details>
-                    <summary></summary>
-                    <ul class="link-list">
-                        <li><a href="#" target="_blank">Web of Stories</a></li>
-                        <li><a href="#" target="_blank">Letters of Note</a></li>
-                        <li><a href="#" target="_blank">Newton Project</a></li>
-                        <li><a href="#" target="_blank">Darwin Correspondence Project</a></li>
-                        <li><a href="#" target="_blank">Personal and Historical Perspectives of Hans Bethe</a></li>
-                        <li><a href="#" target="_blank">Big Think</a></li>
-                        <li><a href="#" target="_blank">Closer to Truth</a></li>
-                    </ul>
-                </details>
+                <ul class="link-list">
+                    <li><a href="https://www.webofstories.com/" target="_blank">Web of Stories</a></li>
+                    <li><a href="https://news.lettersofnote.com/" target="_blank">Letters of Note</a></li>
+                    <li><a href="https://www.newtonproject.ox.ac.uk/" target="_blank">Newton Project</a></li>
+                    <li><a href="https://www.darwinproject.ac.uk/" target="_blank">Darwin Correspondence Project</a></li>
+                    <li><a href="https://hdl.handle.net/1813/3763/reading.html" target="_blank">Personal and Historical Perspectives of Hans Bethe</a></li>
+                    <li><a href="https://www.youtube.com/user/bigthink" target="_blank">Big Think</a></li>
+                    <li><a href="https://www.youtube.com/channel/UCl9StMQ79LtEvlrskzjoYbQ" target="_blank">Closer to Truth</a></li>
+                </ul>
             </div>
 
             <div class="spoiler-group">
                 <h3>Art and Classical Music</h3>
-                <details>
-                    <summary></summary>
-                    <ul class="link-list">
-                        <li><a href="#" target="_blank">Inside the Score</a></li>
-                        <li><a href="#" target="_blank">Nahre Sol</a></li>
-                        <li><a href="#" target="_blank">Classical Music Reference Recordings</a></li>
-                        <li><a href="#" target="_blank">Smart History</a></li>
-                        <li><a href="#" target="_blank">Nerdwriter1</a></li>
-                        <li><a href="#" target="_blank">The Art Assignment</a></li>
-                        <li><a href="#" target="_blank">Listening to Classical Music with C. Wright</a></li>
-                    </ul>
-                </details>
+                <ul class="link-list">
+                    <li><a href="https://www.youtube.com/channel/UC4ihNhN8iN9QPg2XTxiiPJw" target="_blank">Inside the Score</a></li>
+                    <li><a href="https://www.youtube.com/channel/UC8R8FRt1KcPiR-rtAflXmeg" target="_blank">Nahre Sol</a></li>
+                    <li><a href="https://www.youtube.com/channel/UCbMISEiX4KfykNV9bn26x0w" target="_blank">Classical Music Reference Recordings</a></li>
+                    <li><a href="https://www.youtube.com/user/smarthistoryvideos" target="_blank">Smart History</a></li>
+                    <li><a href="https://www.youtube.com/user/Nerdwriter1/featured" target="_blank">Nerdwriter1</a></li>
+                    <li><a href="https://www.youtube.com/user/theartassignment" target="_blank">The Art Assignment</a></li>
+                    <li><a href="https://www.youtube.com/playlist?list=PLh9mgdi4rNezhx8YiGIV8I22ICSuzslja" target="_blank">Listening to Classical Music with C. Wright</a></li>
+                </ul>
             </div>
 
             <div class="spoiler-group">
                 <h3>Blog</h3>
-                <details>
-                    <summary></summary>
-                    <ul class="link-list">
-                        <li><a href="#" target="_blank">Bill Gates</a></li>
-                        <li><a href="#" target="_blank">Jordan B. Peterson</a></li>
-                        <li><a href="#" target="_blank">Gerard t' Hooft</a></li>
-                    </ul>
-                </details>
+                <ul class="link-list">
+                    <li><a href="https://www.gatesnotes.com/" target="_blank">Bill Gates</a></li>
+                    <li><a href="https://www.jordanbpeterson.com/" target="_blank">Jordan B. Peterson</a></li>
+                    <li><a href="https://www.goodtheorist.science/" target="_blank">Gerard t' Hooft</a></li>
+                </ul>
             </div>
 
         </div>
@@ -581,23 +547,18 @@
 
             navLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
-                    // Extract the ID safely
                     const targetId = this.getAttribute('href').substring(1);
                     const targetSection = document.getElementById(targetId);
 
-                    // Proceed only if the target section exists
                     if (targetSection) {
                         e.preventDefault();
                         
-                        // Update active state on Navigation
                         navLinks.forEach(nav => nav.classList.remove('active'));
                         this.classList.add('active');
 
-                        // Hide all pages, show target page
                         pages.forEach(page => page.classList.remove('active-section'));
                         targetSection.classList.add('active-section');
 
-                        // Scroll back to top smoothly
                         window.scrollTo({ top: 0, behavior: 'smooth' });
                     }
                 });
