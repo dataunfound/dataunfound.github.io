@@ -588,7 +588,7 @@
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -637,7 +637,8 @@
                 submitBtn.disabled = true;
 
                 statusDiv.className = 'form-status';
-                statusDiv.innerText = '';
+                statusDiv.style.display = 'block';
+                statusDiv.innerText = 'Connecting...';
 
                 try {
                     const { data, error } = await supabase
@@ -651,6 +652,7 @@
                     contactForm.reset(); 
 
                     setTimeout(() => {
+                        statusDiv.style.display = 'none';
                         statusDiv.className = 'form-status';
                         statusDiv.innerText = '';
                     }, 5000);
