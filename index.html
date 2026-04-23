@@ -25,7 +25,6 @@
             line-height: 1.6; 
             color: var(--text-dark); 
             background: white; 
-            scroll-behavior: smooth;
         }
 
         header { 
@@ -72,13 +71,28 @@
             color: #94a3b8; 
             font-size: 0.9rem; 
             font-weight: 500;
-            transition: 0.3s; 
+            transition: 0.3s;
+            cursor: pointer;
         }
         
         .nav-links a.active, .nav-links a:hover { color: white; }
 
-        .container { max-width: 1100px; margin: 60px auto; padding: 0 20px; }
+        .container { max-width: 1100px; margin: 60px auto; padding: 0 20px; min-height: 50vh; }
         
+        .page-section { 
+            display: none; 
+            animation: fadeIn 0.4s ease-in-out;
+        }
+        
+        .page-section.active-section { 
+            display: block; 
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         .about-grid { 
             display: grid; 
             grid-template-columns: 2fr 1fr; 
@@ -172,12 +186,6 @@
         .years span.active { background: #00000010; font-weight: bold; }
 
         .news-content { padding: 25px; color: #657b83; font-size: 0.95rem; }
-
-        .content-section {
-            margin-top: 80px;
-            padding-top: 40px;
-            border-top: 1px dashed var(--border-color);
-        }
 
         .section-title {
             font-family: 'Fira Code', monospace;
@@ -334,6 +342,8 @@
             .sidebar { position: static; max-width: 400px; margin: 0 auto; }
             .footer-container { grid-template-columns: 1fr; }
             h1 { font-size: 2.2rem; }
+            .project-title { flex-direction: column; align-items: flex-start; gap: 10px; }
+            .project-links { margin-left: 0; }
         }
     </style>
 </head>
@@ -346,68 +356,71 @@
             </div>
             <nav>
                 <ul class="nav-links">
-                    <li><a href="#about" class="active">About</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#education">Education</a></li>
-                    <li><a href="#experience">Experience</a></li>
-                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#about" class="nav-item active">About</a></li>
+                    <li><a href="#projects" class="nav-item">Projects</a></li>
+                    <li><a href="#education" class="nav-item">Education</a></li>
+                    <li><a href="#experience" class="nav-item">Experience</a></li>
+                    <li><a href="#skills" class="nav-item">Skills</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <main class="container">
-        <section id="about" class="about-grid">
-            <div class="intro-text">
-                <h1>Kaan Barlas</h1>
-                <p class="subtitle">Computer Science Student - Python Developer & Algorithm Specialist</p>
-                
-                <p>Hey, my name is <strong>Kaan Barlas</strong>.</p>
-                
-                <p>I'm a <strong>Computer Science</strong> student at the <strong>University of York</strong>, specializing in <strong>Algorithm Design</strong> and <strong>Software Development</strong>. I focus on building efficient, scalable solutions and bridging the gap between hardware architecture and software engineering.</p>
-                
-                <p>My expertise includes <strong>Python development</strong>, <strong>complex problem-solving</strong>, and <strong>IT infrastructure</strong>. Drawing from my professional background, I am passionate about optimizing systems, exploring high-performance data center technologies, and understanding the physical realities of the code I write.</p>
-                
-                <p><strong>Current Focus:</strong> I'm working on algorithmic optimization projects, Python automation, and building a foundational understanding of production-ready infrastructure.</p>
-                
-                <p>Feel free to <a href="#contact" style="color: #2563eb; text-decoration: none; font-weight: 500;">connect</a> with me for internship opportunities or collaborations!</p>
+        
+        <div id="about" class="page-section active-section">
+            <section class="about-grid">
+                <div class="intro-text">
+                    <h1>Kaan Barlas</h1>
+                    <p class="subtitle">Computer Science Student - Python Developer & Algorithm Specialist</p>
+                    
+                    <p>Hey, my name is <strong>Kaan Barlas</strong>.</p>
+                    
+                    <p>I'm a <strong>Computer Science</strong> student at the <strong>University of York</strong>, specializing in <strong>Algorithm Design</strong> and <strong>Software Development</strong>. I focus on building efficient, scalable solutions and bridging the gap between hardware architecture and software engineering.</p>
+                    
+                    <p>My expertise includes <strong>Python development</strong>, <strong>complex problem-solving</strong>, and <strong>IT infrastructure</strong>. Drawing from my professional background, I am passionate about optimizing systems, exploring high-performance data center technologies, and understanding the physical realities of the code I write.</p>
+                    
+                    <p><strong>Current Focus:</strong> I'm working on algorithmic optimization projects, Python automation, and building a foundational understanding of production-ready infrastructure.</p>
+                    
+                    <p>Feel free to <a href="#contact" style="color: #2563eb; text-decoration: none; font-weight: 500;">connect</a> with me for internship opportunities or collaborations!</p>
 
-                <div class="new-post-bar">
-                    <span class="post-tag">New post:</span>
-                    <a href="#projects">Analyzing High-Performance Storage Protocols</a>
-                    <span class="post-date">Apr 23 ></span>
+                    <div class="new-post-bar">
+                        <span class="post-tag">New post:</span>
+                        <a href="#projects" onclick="document.querySelector('a[href=\'#projects\']').click();">Analyzing High-Performance Storage Protocols</a>
+                        <span class="post-date">Apr 23 ></span>
+                    </div>
                 </div>
-            </div>
 
-            <aside class="sidebar">
-                <img src="https://github.com/dataunfound.png" alt="Kaan Barlas" class="profile-pic">
-                <div class="links-box">
-                    <ul>
-                        <li>📧 <a href="mailto:kaanbarlas@example.com">kaanbarlas@example.com</a></li>
-                        <li>🎓 <a href="#">Google Scholar</a></li>
-                        <li>💻 <a href="https://github.com/dataunfound" target="_blank">GitHub Profile</a></li>
-                        <li>🔗 <a href="#">LinkedIn</a></li>
-                    </ul>
+                <aside class="sidebar">
+                    <img src="https://github.com/dataunfound.png" alt="Kaan Barlas" class="profile-pic">
+                    <div class="links-box">
+                        <ul>
+                            <li>📧 <a href="mailto:kaanbarlas@example.com">kaanbarlas@example.com</a></li>
+                            <li>🎓 <a href="#">Google Scholar</a></li>
+                            <li>💻 <a href="https://github.com/dataunfound" target="_blank">GitHub Profile</a></li>
+                            <li>🔗 <a href="#">LinkedIn</a></li>
+                        </ul>
+                    </div>
+                </aside>
+            </section>
+
+            <section class="news-section">
+                <div class="news-header">
+                    <div class="dots"><span></span><span></span><span></span></div>
+                    <div class="news-title">~ News</div>
+                    <div class="years">
+                        <span class="active">~/2026</span>
+                        <span>~/2025</span>
+                        <span>~/2024</span>
+                    </div>
                 </div>
-            </aside>
-        </section>
-
-        <section class="news-section">
-            <div class="news-header">
-                <div class="dots"><span></span><span></span><span></span></div>
-                <div class="news-title">~ News</div>
-                <div class="years">
-                    <span class="active">~/2026</span>
-                    <span>~/2025</span>
-                    <span>~/2024</span>
+                <div class="news-content">
+                    <p>April 2026: Developing the IY4103 Web Development Summative Assessment Portfolio. Implementing a full-stack contact architecture utilizing Supabase integration and responsive CSS methodologies.</p>
                 </div>
-            </div>
-            <div class="news-content">
-                <p>April 2026: Developing the IY4103 Web Development Summative Assessment Portfolio. Implementing a full-stack contact architecture utilizing Supabase integration and responsive CSS methodologies.</p>
-            </div>
-        </section>
+            </section>
+        </div>
 
-        <section id="projects" class="content-section">
+        <div id="projects" class="page-section">
             <h2 class="section-title">Projects</h2>
             
             <div class="project-card">
@@ -438,9 +451,9 @@
                     <span class="skill-badge">Networking Protocol</span>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <section id="education" class="content-section">
+        <div id="education" class="page-section">
             <h2 class="section-title">Education</h2>
             
             <div class="resume-item">
@@ -454,9 +467,9 @@
                 <div class="resume-meta">King's College London | Completed</div>
                 <p>Completed intensive multi-disciplinary coursework with high academic standing, building a robust analytical framework for advanced university-level computer science studies.</p>
             </div>
-        </section>
+        </div>
 
-        <section id="experience" class="content-section">
+        <div id="experience" class="page-section">
             <h2 class="section-title">Experience</h2>
             
             <div class="resume-item">
@@ -470,9 +483,9 @@
                 <div class="resume-meta">SOLUS | 1 Year Experience</div>
                 <p>Operated within a high-stakes IT environment, evaluating enterprise hardware integrations. Analyzed high-performance storage systems (IBM FlashSystem, Pure Storage FlashBlade), Brocade Gen 7 SAN directors, and NVMe over TCP protocol efficiencies to support operational reliability.</p>
             </div>
-        </section>
+        </div>
 
-        <section id="skills" class="content-section">
+        <div id="skills" class="page-section">
             <h2 class="section-title">Skills</h2>
             
             <div class="skills-grid">
@@ -507,7 +520,8 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+
     </main>
 
     <footer id="contact">
@@ -547,5 +561,27 @@
         </div>
     </footer>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('.nav-item');
+            const pages = document.querySelectorAll('.page-section');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    navLinks.forEach(nav => nav.classList.remove('active'));
+                    this.classList.add('active');
+
+                    pages.forEach(page => page.classList.remove('active-section'));
+
+                    const targetId = this.getAttribute('href').substring(1);
+                    document.getElementById(targetId).classList.add('active-section');
+
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            });
+        });
+    </script>
 </body>
 </html>
