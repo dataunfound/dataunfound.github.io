@@ -246,7 +246,7 @@
                     
                     <p>Feel free to <a href="#contact" style="color: #2563eb; text-decoration: none; font-weight: 500;">connect</a> with me for internship opportunities or collaborations!</p>
 
-                    <div class="new-post-bar">
+                        <div class="new-post-bar">
                         <span class="post-tag">New post:</span>
                         <a href="#projects" onclick="document.querySelector('a[href=\'#projects\']').click();">Instruction Pipelining and CPU Simulation</a>
                         <span class="post-date">Apr 23 ></span>
@@ -276,7 +276,7 @@
                     </div>
                 </div>
                 <div class="news-content">
-                    <p><span class="terminal-text">[Apr, 2026] ~ $</span> Developing the IY4103 Web Development Summative Assessment Portfolio. Implementing a full-stack contact architecture utilizing Supabase integration and responsive CSS methodologies.</p>
+                    <p><span class="terminal-text">[Jan, 2026] ~ $</span> Developing the IY4103 Web Development Summative Assessment Portfolio. Implementing a full-stack contact architecture utilizing Supabase integration and responsive CSS methodologies.</p>
                 </div>
             </section>
         </div>
@@ -610,8 +610,6 @@
             });
         });
 
-        
-        
         const SUPABASE_URL = 'https://nutapnfjasabtdapcrfp.supabase.co';
         const SUPABASE_ANON_KEY = 'sb_publishable_o7Njs8FIwiEjDKRfYyZ1dg_N6Tpbxo2';
 
@@ -620,34 +618,37 @@
         const contactForm = document.getElementById('contact-form');
         const submitBtn = document.querySelector('.btn-submit');
 
-        contactForm.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const nameValue = document.getElementById('name').value;
-            const emailValue = document.getElementById('email').value;
-            const messageValue = document.getElementById('message').value;
+        if (contactForm) {
+            contactForm.addEventListener('submit', async function(e) {
+                e.preventDefault(); 
+                
+                const nameValue = document.getElementById('name').value;
+                const emailValue = document.getElementById('email').value;
+                const messageValue = document.getElementById('message').value;
 
-            const originalBtnText = submitBtn.innerText;
-            submitBtn.innerText = 'Sending...';
-            submitBtn.disabled = true;
+                const originalBtnText = submitBtn.innerText;
+                submitBtn.innerText = 'Sending...';
+                submitBtn.disabled = true;
 
-            const { data, error } = await supabase
-                .from('messages') 
-                .insert([
-                    { name: nameValue, email: emailValue, message: messageValue }
-                ]);
+                try {
+                    const { data, error } = await supabase
+                        .from('messages')
+                        .insert([{ name: nameValue, email: emailValue, message: messageValue }]);
 
-            if (error) {
-                console.error('Supabase Error:', error);
-                alert('Something went wrong. Please try again.');
-            } else {
-                alert('Thank you! Your message has been sent successfully.');
-                contactForm.reset(); 
-            }
+                    if (error) throw error;
 
-            submitBtn.innerText = originalBtnText;
-            submitBtn.disabled = false;
-        });
+                    alert('Thank you! Your message has been sent successfully.');
+                    contactForm.reset(); 
+
+                } catch (error) {
+                    console.error('Error:', error.message);
+                    alert('Error: ' + error.message);
+                } finally {
+                    submitBtn.innerText = originalBtnText;
+                    submitBtn.disabled = false;
+                }
+            });
+        }
     </script>
 </body>
 </html>
