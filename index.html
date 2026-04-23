@@ -99,17 +99,15 @@
         .subtitle { font-size: 1rem; color: var(--text-muted); margin-bottom: 35px; }
         p { margin-bottom: 20px; color: #475569; font-size: 1.05rem; }
 
-        .sidebar { position: sticky; top: 80px; }
+        .sidebar { position: sticky; top: 80px; display: flex; flex-direction: column; align-items: flex-end; }
         
-        /* Reduced Profile Picture */
-        .profile-pic-container { text-align: left; }
-        .profile-pic { width: 75%; border-radius: 12px; border: 1px solid var(--border-color); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
+        .profile-pic-container { width: 75%; }
+        .profile-pic { width: 100%; border-radius: 12px; border: 1px solid var(--border-color); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); margin-bottom: 20px; display: block; }
         
-        .links-box { background: var(--bg-light); padding: 25px; border-radius: 12px; border: 1px solid var(--border-color); margin-top: 25px; width: 75%; }
+        .links-box { background: var(--bg-light); padding: 25px; border-radius: 12px; border: 1px solid var(--border-color); width: 75%; }
         .links-box ul { list-style: none; }
         .links-box li { margin-bottom: 12px; font-size: 0.95rem; display: flex; align-items: center; gap: 12px; }
         
-        /* Icon styling */
         .links-box i { color: #64748b; font-size: 1.1rem; width: 16px; text-align: center; }
         .links-box a { color: var(--text-dark); text-decoration: none; font-weight: 500; }
         .links-box a:hover { color: var(--accent-blue); text-decoration: underline; }
@@ -122,7 +120,6 @@
         .news-section { background: #fdf6e3; border: 1px solid #eee8d5; border-radius: 10px; margin-top: 60px; overflow: hidden; }
         .news-header { background: #eee8d5; padding: 12px 20px; display: flex; align-items: center; gap: 20px; font-family: 'Fira Code', monospace; font-size: 0.9rem; }
         
-        /* Mac Style Dots */
         .dots span { height: 12px; width: 12px; border-radius: 50%; display: inline-block; margin-right: 6px; }
         .dots span:nth-child(1) { background: #ff5f56; } 
         .dots span:nth-child(2) { background: #ffbd2e; } 
@@ -132,6 +129,8 @@
         .years span { padding: 2px 8px; border-radius: 4px; cursor: pointer; }
         .years span.active { background: #00000010; font-weight: bold; }
         .news-content { padding: 25px; color: #657b83; font-size: 0.95rem; }
+
+        .terminal-text { font-family: 'Fira Code', monospace; font-weight: 600; color: #64748b; margin-right: 5px; }
 
         .section-title { font-family: 'Fira Code', monospace; font-size: 1.5rem; color: #0f172a; margin-bottom: 40px; display: flex; align-items: center; gap: 15px; }
         .section-title::before { content: ">"; color: var(--accent-blue); font-weight: bold; }
@@ -183,7 +182,7 @@
             max-width: 1100px; 
             margin: 0 auto; 
             display: grid; 
-            grid-template-columns: 1.5fr 1fr; /* Contact pushed further right */
+            grid-template-columns: 1.5fr 1fr; 
             gap: 80px; 
             padding: 0 20px; 
         }
@@ -202,10 +201,10 @@
 
         @media (max-width: 900px) {
             .about-grid, .tech-skills-container, .domain-container, .footer-container { grid-template-columns: 1fr; }
-            .sidebar { position: static; max-width: 400px; margin: 0 auto; }
+            .sidebar { align-items: center; }
+            .profile-pic-container { width: 60%; }
+            .links-box { width: 60%; }
             h1 { font-size: 2.2rem; }
-            .profile-pic { width: 100%; }
-            .links-box { width: 100%; }
         }
     </style>
 </head>
@@ -237,9 +236,9 @@
                     <h1>Kaan Barlas</h1>
                     <p class="subtitle">Computer Science Student - IT Infrastructure & Algorithms</p>
                     
-                    <p>Hello! I simply enjoy every creative work of the human mind and savor keeping my mind occupied. More specifically, I am a Western classical music and art passionate. I rejoice in dealing with philosophy and physics, observing heavens, poetry, playing piano and violin.</p>
+                    <p>Hello! I simply enjoy every creative work of the human mind and savor keeping my mind occupied. More specifically, I am passionate about Western classical music, art, and metal music. I rejoice in dealing with philosophy and physics, observing the heavens, exploring poetry, and playing the piano and violin.</p>
                     
-                    <p>I am a Computer Science student at the University of York. My technical journey is driven by a deep interest in algorithm design and software development, combined with hands-on experience in managing enterprise IT infrastructure. Beyond my classical interests, I am a metal music enthusiast, appreciating the complexity and technical mastery found in the genre.</p>
+                    <p>I am a Computer Science student at the University of York. My technical journey is driven by a deep interest in algorithm design and software development, combined with hands-on experience in managing enterprise IT infrastructure.</p>
                     
                     <p><strong>Current Focus:</strong> My recent work has transitioned towards Cybersecurity and building production-ready infrastructure for scalable applications. Building on 3 years of experience at SOLUS, I remain committed to bridging the gap between high-level code and the physical realities of data center technology.</p>
                     
@@ -275,7 +274,7 @@
                     </div>
                 </div>
                 <div class="news-content">
-                    <p>April 2026: Developing the IY4103 Web Development Summative Assessment Portfolio. Implementing a full-stack contact architecture utilizing Supabase integration and responsive CSS methodologies.</p>
+                    <p><span class="terminal-text">[Apr, 2026] ~ $</span> Developing the IY4103 Web Development Summative Assessment Portfolio. Implementing a full-stack contact architecture utilizing Supabase integration and responsive CSS methodologies.</p>
                 </div>
             </section>
         </div>
@@ -570,7 +569,7 @@
             <div class="footer-col info-col">
                 <h3>Contact</h3>
                 <div class="info-item">
-                    <i class="fa-solid fa-location-dot"></i> York, United Kingdom
+                    <i class="fa-solid fa-location-dot"></i> <a href="#" target="_blank">York, United Kingdom</a>
                 </div>
                 <div class="info-item">
                     <i class="fa-solid fa-envelope"></i> <a href="mailto:kaanbarlas@proton.me">kaanbarlas@proton.me</a>
