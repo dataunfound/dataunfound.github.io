@@ -133,7 +133,6 @@
         .project-links a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; margin-left: 15px; transition: 0.2s; }
         .project-links a:hover { color: var(--accent-blue); }
 
-        /* SKILLS SECTION STYLES */
         .skills-header { font-size: 1rem; font-weight: 700; color: #334155; text-transform: uppercase; margin: 40px 0 20px; letter-spacing: 0.5px; }
         
         .tech-skills-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 40px; }
@@ -157,6 +156,36 @@
         .spoken-langs { display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 40px; }
         .lang-badge { display: flex; align-items: center; gap: 10px; background: white; border: 1px solid var(--border-color); padding: 8px 16px; border-radius: 30px; font-size: 0.9rem; font-weight: 600; color: var(--text-dark); }
         .lang-badge span { color: var(--text-muted); font-size: 0.8rem; font-weight: 400; }
+
+        /* USEFUL LINKS STYLES */
+        .spoiler-group { margin-bottom: 35px; }
+        .spoiler-group h3 { font-size: 1.1rem; color: #0f172a; margin-bottom: 12px; font-weight: 600; }
+        
+        details { margin-bottom: 10px; }
+        summary {
+            display: inline-block;
+            background: #2d3b50;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            margin-bottom: 15px;
+            user-select: none;
+            transition: background 0.2s;
+            list-style: none;
+        }
+        summary:hover { background: #1e293b; }
+        summary::-webkit-details-marker { display: none; }
+        summary::before { content: "Show spoiler"; }
+        details[open] summary::before { content: "Hide spoiler"; }
+        
+        .link-list { list-style: none; padding-left: 5px; }
+        .link-list li { margin-bottom: 10px; position: relative; padding-left: 20px; font-size: 0.95rem; }
+        .link-list li::before { content: "•"; position: absolute; left: 0; color: #94a3b8; font-size: 1.2rem; line-height: 1; }
+        .link-list a { color: var(--text-dark); text-decoration: none; font-weight: 500; transition: color 0.2s; }
+        .link-list a:hover { color: var(--accent-blue); text-decoration: underline; }
 
         footer { background: var(--footer-bg); color: white; padding: 80px 0; margin-top: 80px; }
         .footer-container { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1.5fr 1fr 0.8fr; gap: 50px; padding: 0 20px; }
@@ -191,6 +220,7 @@
                     <li><a href="#education" class="nav-item">Education</a></li>
                     <li><a href="#experience" class="nav-item">Experience</a></li>
                     <li><a href="#skills" class="nav-item">Skills</a></li>
+                    <li><a href="#links" class="nav-item">Useful Links</a></li>
                 </ul>
             </nav>
         </div>
@@ -439,6 +469,72 @@
 
         </div>
 
+        <div id="links" class="page-section">
+            <h2 class="section-title">Useful Links</h2>
+
+            <div class="spoiler-group">
+                <h3>Science, Technology and Design</h3>
+                <details open>
+                    <summary></summary>
+                    <ul class="link-list">
+                        <li><a href="https://ocw.mit.edu/" target="_blank">MIT OpenCourseWare</a></li>
+                        <li><a href="https://www.physics.harvard.edu/events/videos" target="_blank">Harvard Physics Video Archive</a></li>
+                        <li><a href="https://physicstoday.aip.org/" target="_blank">Physics Today</a></li>
+                        <li><a href="https://www.quantamagazine.org/" target="_blank">Quanta Magazine</a></li>
+                        <li><a href="https://nautil.us/" target="_blank">Nautilus</a></li>
+                        <li><a href="https://www.youtube.com/channel/UCYO_jab_esuFRV4b17AJtAw" target="_blank">Veritasium</a></li>
+                        <li><a href="#" target="_blank">3Blue1Brown</a></li>
+                        <li><a href="#" target="_blank">Vsauce</a></li>
+                    </ul>
+                </details>
+            </div>
+
+            <div class="spoiler-group">
+                <h3>Archives and Biography</h3>
+                <details>
+                    <summary></summary>
+                    <ul class="link-list">
+                        <li><a href="#" target="_blank">Web of Stories</a></li>
+                        <li><a href="#" target="_blank">Letters of Note</a></li>
+                        <li><a href="#" target="_blank">Newton Project</a></li>
+                        <li><a href="#" target="_blank">Darwin Correspondence Project</a></li>
+                        <li><a href="#" target="_blank">Personal and Historical Perspectives of Hans Bethe</a></li>
+                        <li><a href="#" target="_blank">Big Think</a></li>
+                        <li><a href="#" target="_blank">Closer to Truth</a></li>
+                    </ul>
+                </details>
+            </div>
+
+            <div class="spoiler-group">
+                <h3>Art and Classical Music</h3>
+                <details>
+                    <summary></summary>
+                    <ul class="link-list">
+                        <li><a href="#" target="_blank">Inside the Score</a></li>
+                        <li><a href="#" target="_blank">Nahre Sol</a></li>
+                        <li><a href="#" target="_blank">Classical Music Reference Recordings</a></li>
+                        <li><a href="#" target="_blank">Smart History</a></li>
+                        <li><a href="#" target="_blank">Nerdwriter1</a></li>
+                        <li><a href="#" target="_blank">The Art Assignment</a></li>
+                        <li><a href="#" target="_blank">Listening to Classical Music with C. Wright</a></li>
+                    </ul>
+                </details>
+            </div>
+
+            <div class="spoiler-group">
+                <h3>Blog</h3>
+                <details>
+                    <summary></summary>
+                    <ul class="link-list">
+                        <li><a href="#" target="_blank">Bill Gates</a></li>
+                        <li><a href="#" target="_blank">Jordan B. Peterson</a></li>
+                        <li><a href="#" target="_blank">Gerard t' Hooft</a></li>
+                    </ul>
+                </details>
+            </div>
+
+        </div>
+
     </main>
 
     <footer id="contact">
@@ -485,17 +581,25 @@
 
             navLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    navLinks.forEach(nav => nav.classList.remove('active'));
-                    this.classList.add('active');
-
-                    pages.forEach(page => page.classList.remove('active-section'));
-
+                    // Extract the ID safely
                     const targetId = this.getAttribute('href').substring(1);
-                    document.getElementById(targetId).classList.add('active-section');
+                    const targetSection = document.getElementById(targetId);
 
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    // Proceed only if the target section exists
+                    if (targetSection) {
+                        e.preventDefault();
+                        
+                        // Update active state on Navigation
+                        navLinks.forEach(nav => nav.classList.remove('active'));
+                        this.classList.add('active');
+
+                        // Hide all pages, show target page
+                        pages.forEach(page => page.classList.remove('active-section'));
+                        targetSection.classList.add('active-section');
+
+                        // Scroll back to top smoothly
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }
                 });
             });
         });
