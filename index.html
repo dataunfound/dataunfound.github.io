@@ -22,7 +22,6 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body { 
-            /* Ekran görüntüsündeki gibi modern, temiz ve okunaklı sistem fontu */
             font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
             line-height: 1.7; 
             color: var(--text-dark); 
@@ -50,11 +49,8 @@
         .terminal-prompt { 
             font-family: 'Fira Code', monospace; 
             font-size: 0.9rem; 
-            cursor: pointer; 
-            transition: opacity 0.2s;
         }
         
-        .terminal-prompt:hover { opacity: 0.8; }
         .terminal-prompt span { color: var(--accent-blue); }
         
         .cursor { 
@@ -103,7 +99,6 @@
         .subtitle { font-size: 1.05rem; color: var(--text-muted); margin-bottom: 35px; font-weight: 400; }
         p { margin-bottom: 22px; color: #334155; font-size: 1.05rem; font-weight: 400; }
         
-        /* Kalın yazılar için özel vurgu */
         strong { color: #0f172a; font-weight: 600; }
 
         .sidebar { position: sticky; top: 80px; display: flex; flex-direction: column; align-items: flex-end; }
@@ -213,49 +208,6 @@
             .links-box { width: 60%; }
             h1 { font-size: 2.2rem; }
         }
-
-        /* --- TERMINAL MODE STYLES --- */
-        #interactive-terminal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100vw; height: 100vh;
-            background-color: #0a0a0a;
-            color: #00ff00;
-            font-family: 'Fira Code', 'Courier New', Courier, monospace;
-            z-index: 9999;
-            padding: 30px;
-            overflow-y: auto;
-        }
-
-        #interactive-terminal.active { display: block; }
-        
-        #matrix-canvas {
-            position: fixed;
-            top: 0; left: 0; width: 100vw; height: 100vh;
-            z-index: -1;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 2s ease-in-out;
-        }
-
-        #matrix-canvas.active { opacity: 0.15; }
-
-        .terminal-line { margin-bottom: 10px; line-height: 1.5; font-size: 1.1rem; }
-        .terminal-output-text { white-space: pre-wrap; }
-        .term-prompt { color: #60a5fa; font-weight: bold; margin-right: 10px; }
-        .term-error { color: #ff5f56; }
-        .term-success { color: #27c93f; }
-
-        .terminal-input-wrapper { display: flex; align-items: center; margin-top: 15px; }
-        #term-input {
-            background: transparent;
-            border: none;
-            color: #00ff00;
-            font-family: inherit;
-            font-size: 1.1rem;
-            flex-grow: 1;
-            outline: none;
-        }
     </style>
 </head>
 <body>
@@ -263,8 +215,8 @@
     <div id="main-ui">
         <header>
             <div class="nav-container">
-                <div class="terminal-prompt" id="terminal-trigger">
-                    <span>[kaan@root] ~ $</span> cd /home<span class="cursor"></span>
+                <div class="terminal-prompt">
+                    <span>[kaan@ai] ~ $</span> cd /home<span class="cursor"></span>
                 </div>
                 <nav>
                     <ul class="nav-links">
@@ -629,26 +581,11 @@
                         <i class="fa-brands fa-linkedin"></i> <a href="#" target="_blank">LinkedIn</a>
                     </div>
                 </div>
-                
             </div>
         </footer>
     </div>
 
-    <div id="interactive-terminal">
-        <canvas id="matrix-canvas"></canvas>
-        <div id="terminal-content">
-            <div class="terminal-line">KaanOS v1.0.0 (tty1)</div>
-            <div class="terminal-line">Welcome to root. Type 'help' to see available commands.</div>
-            <div id="term-output"></div>
-            <div class="terminal-input-wrapper">
-                <span class="term-prompt">root@kaan:~#</span>
-                <input type="text" id="term-input" autocomplete="off" spellcheck="false" autofocus>
-            </div>
-        </div>
-    </div>
-
     <script>
-        // --- 1. NORMAL PORTFOLIO NAVIGATION ---
         document.addEventListener('DOMContentLoaded', () => {
             const navLinks = document.querySelectorAll('.nav-item');
             const pages = document.querySelectorAll('.page-section');
@@ -672,145 +609,6 @@
                 });
             });
         });
-
-        // --- 2. TERMINAL EASTER EGG LOGIC ---
-        const terminalTrigger = document.getElementById('terminal-trigger');
-        const terminalMode = document.getElementById('interactive-terminal');
-        const mainUI = document.getElementById('main-ui');
-        const termInput = document.getElementById('term-input');
-        const termOutput = document.getElementById('term-output');
-        const matrixCanvas = document.getElementById('matrix-canvas');
-
-        // Open Terminal
-        terminalTrigger.addEventListener('click', () => {
-            mainUI.style.display = 'none';
-            terminalMode.classList.add('active');
-            termInput.value = '';
-            termInput.focus();
-        });
-
-        // Auto focus input when clicking terminal background
-        terminalMode.addEventListener('click', () => {
-            termInput.focus();
-        });
-
-        // Handle Commands
-        termInput.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter') {
-                const command = this.value.trim().toLowerCase();
-                printCommand(this.value); // Echo user input
-                this.value = ''; // Clear input
-
-                switch(command) {
-                    case 'help':
-                        printToTerminal("Available commands:");
-                        printToTerminal("  about            - Display user identity");
-                        printToTerminal("  ls -a            - List files (including hidden)");
-                        printToTerminal("  sudo get-access  - [RESTRICTED] Override system protocols");
-                        printToTerminal("  clear            - Clear terminal output");
-                        printToTerminal("  exit             - Terminate session and return to UI");
-                        break;
-                    case 'about':
-                        printToTerminal("Identity: Kaan Barlas");
-                        printToTerminal("Role: CS Student | Developer | IT Specialist");
-                        printToTerminal("Status: Seeking Internship");
-                        break;
-                    case 'ls -a':
-                        printToTerminal("drwxr-xr-x   .hidden_projects");
-                        printToTerminal("drwxr-xr-x   .ssh");
-                        printToTerminal("-rw-r--r--   .env");
-                        printToTerminal("-rwxr-xr-x   pipeline_sim.py");
-                        printToTerminal("-rwxr-xr-x   resume_encrypted.pdf");
-                        break;
-                    case 'sudo get-access':
-                        triggerMatrixRain();
-                        break;
-                    case 'clear':
-                        termOutput.innerHTML = '';
-                        break;
-                    case 'exit':
-                        terminalMode.classList.remove('active');
-                        mainUI.style.display = 'block';
-                        matrixCanvas.classList.remove('active');
-                        break;
-                    case '':
-                        break;
-                    default:
-                        printToTerminal(`Command not found: ${command}`, 'term-error');
-                }
-                
-                // Scroll to bottom
-                terminalMode.scrollTop = terminalMode.scrollHeight;
-            }
-        });
-
-        function printCommand(cmd) {
-            const line = document.createElement('div');
-            line.className = 'terminal-line';
-            line.innerHTML = `<span class="term-prompt">root@kaan:~#</span> ${cmd}`;
-            termOutput.appendChild(line);
-        }
-
-        function printToTerminal(text, className = 'terminal-output-text') {
-            const line = document.createElement('div');
-            line.className = `terminal-line ${className}`;
-            line.textContent = text;
-            termOutput.appendChild(line);
-        }
-
-        // --- 3. MATRIX RAIN ANIMATION ---
-        function triggerMatrixRain() {
-            printToTerminal("Initiating root override...", "term-error");
-            
-            setTimeout(() => {
-                printToTerminal("Bypassing firewall algorithms...");
-            }, 800);
-
-            setTimeout(() => {
-                printToTerminal("ACCESS GRANTED. Visualizing data stream...", "term-success");
-                matrixCanvas.classList.add('active');
-                startMatrix();
-            }, 1800);
-        }
-
-        function startMatrix() {
-            const ctx = matrixCanvas.getContext('2d');
-            matrixCanvas.width = window.innerWidth;
-            matrixCanvas.height = window.innerHeight;
-
-            const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレゲゼデベペオォコソトノホモヨョロゴゾドボポヴッン';
-            const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-            const nums = '0123456789';
-            const alphabet = katakana + latin + nums;
-
-            const fontSize = 16;
-            const columns = matrixCanvas.width / fontSize;
-            const rainDrops = [];
-
-            for (let x = 0; x < columns; x++) {
-                rainDrops[x] = 1;
-            }
-
-            const draw = () => {
-                ctx.fillStyle = 'rgba(10, 10, 10, 0.05)';
-                ctx.fillRect(0, 0, matrixCanvas.width, matrixCanvas.height);
-
-                ctx.fillStyle = '#0F0';
-                ctx.font = fontSize + 'px monospace';
-
-                for (let i = 0; i < rainDrops.length; i++) {
-                    const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
-                    ctx.fillText(text, i * fontSize, rainDrops[i] * fontSize);
-
-                    if (rainDrops[i] * fontSize > matrixCanvas.height && Math.random() > 0.975) {
-                        rainDrops[i] = 0;
-                    }
-                    rainDrops[i]++;
-                }
-            };
-
-            setInterval(draw, 30);
-        }
     </script>
 </body>
 </html>
