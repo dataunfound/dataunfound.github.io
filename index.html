@@ -124,11 +124,15 @@
         .section-title::before { content: ">"; color: var(--accent-blue); font-weight: bold; }
 
         .resume-item { margin-bottom: 35px; position: relative; padding-left: 20px; border-left: 2px solid var(--border-color); }
-        .resume-title { font-size: 1.2rem; font-weight: 600; color: #0f172a; margin-bottom: 5px; }
+        
+        .resume-header { display: flex; align-items: center; gap: 15px; margin-bottom: 5px; }
+        .resume-logo { width: 45px; height: 45px; object-fit: contain; border-radius: 8px; border: 1px solid var(--border-color); padding: 4px; background: white; }
+        
+        .resume-title { font-size: 1.2rem; font-weight: 600; color: #0f172a; }
         .resume-meta { font-size: 0.9rem; color: var(--accent-blue); font-weight: 500; margin-bottom: 15px; font-family: 'Fira Code', monospace; }
 
         .project-card { background: white; border: 1px solid var(--border-color); border-radius: 10px; padding: 25px; margin-bottom: 20px; transition: transform 0.2s, box-shadow 0.2s; }
-        .project-card:hover { transform: translateY(-2px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
+        .project-card:hover { transform: translateY(-2px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05); }
         .project-title { font-size: 1.2rem; font-weight: 600; color: #0f172a; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
         .project-links a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; margin-left: 15px; transition: 0.2s; }
         .project-links a:hover { color: var(--accent-blue); }
@@ -287,7 +291,10 @@
             <h2 class="section-title">Education</h2>
             
             <div class="resume-item">
-                <div class="resume-title">BSc (Hons) Computer Science</div>
+                <div class="resume-header">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/1/1a/University_of_York_logo.svg" alt="University of York Logo" class="resume-logo">
+                    <div class="resume-title">BSc (Hons) Computer Science</div>
+                </div>
                 <div class="resume-meta">University of York, United Kingdom | 1st Year (Current)</div>
                 <p>Focusing on the theoretical foundations of computation and practical software engineering. Coursework includes advanced algorithm analysis, database systems, and full-stack development. Actively participating in research-led projects that bridge hardware constraints with software optimization.</p>
             </div>
@@ -297,13 +304,19 @@
             <h2 class="section-title">Experience</h2>
             
             <div class="resume-item">
-                <div class="resume-title">Software Engineering Intern</div>
+                <div class="resume-header">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="IBM Logo" class="resume-logo">
+                    <div class="resume-title">Software Engineering Intern</div>
+                </div>
                 <div class="resume-meta">IBM | Internship</div>
                 <p>Immersed in a global enterprise software environment, contributing to agile development cycles. Collaborated with multi-disciplinary teams to understand large-scale architectural requirements and corporate IT standards. Gained specialized knowledge in modern operational workflows and production-level code maintenance within high-performance computing clusters.</p>
             </div>
 
             <div class="resume-item">
-                <div class="resume-title">IT Infrastructure Specialist</div>
+                <div class="resume-header">
+                    <img src="solus logo.jpeg" alt="SOLUS Logo" class="resume-logo">
+                    <div class="resume-title">IT Infrastructure Specialist</div>
+                </div>
                 <div class="resume-meta">SOLUS | 3 Years Experience</div>
                 <p>Leading the evaluation and integration of high-end enterprise data center infrastructure. Conducted deep-dive technical analyses of high-performance storage systems including IBM FlashSystem and Pure Storage FlashBlade. Mastered the configuration of Brocade Gen 7 SAN directors and optimized system reliability through advanced NVMe over TCP protocol efficiencies. Responsible for benchmarking hardware performance and ensuring seamless data integrity across complex server rack environments.</p>
             </div>
