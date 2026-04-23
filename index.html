@@ -128,7 +128,7 @@
         .resume-meta { font-size: 0.9rem; color: var(--accent-blue); font-weight: 500; margin-bottom: 15px; font-family: 'Fira Code', monospace; }
 
         .project-card { background: white; border: 1px solid var(--border-color); border-radius: 10px; padding: 25px; margin-bottom: 20px; transition: transform 0.2s, box-shadow 0.2s; }
-        .project-card:hover { transform: translateY(-2px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05); }
+        .project-card:hover { transform: translateY(-2px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
         .project-title { font-size: 1.2rem; font-weight: 600; color: #0f172a; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
         .project-links a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; margin-left: 15px; transition: 0.2s; }
         .project-links a:hover { color: var(--accent-blue); }
@@ -157,7 +157,6 @@
         .lang-badge { display: flex; align-items: center; gap: 10px; background: white; border: 1px solid var(--border-color); padding: 8px 16px; border-radius: 30px; font-size: 0.9rem; font-weight: 600; color: var(--text-dark); }
         .lang-badge span { color: var(--text-muted); font-size: 0.8rem; font-weight: 400; }
 
-        /* USEFUL LINKS STYLES */
         .spoiler-group { margin-bottom: 35px; }
         .spoiler-group h3 { font-size: 1.1rem; color: #0f172a; margin-bottom: 16px; font-weight: 600; }
         
@@ -226,7 +225,7 @@
 
                     <div class="new-post-bar">
                         <span class="post-tag">New post:</span>
-                        <a href="#projects" onclick="document.querySelector('a[href=\'#projects\']').click();">Analyzing High-Performance Storage Protocols</a>
+                        <a href="#projects" onclick="document.querySelector('a[href=\'#projects\']').click();">Instruction Pipelining and CPU Simulation</a>
                         <span class="post-date">Apr 23 ></span>
                     </div>
                 </div>
@@ -265,23 +264,22 @@
             
             <div class="project-card">
                 <div class="project-title">
-                    Algorithm Visualizer & Optimizer
+                    Pipeline Simulator
                     <div class="project-links">
-                        <a href="#">[GitHub]</a>
-                        <a href="#">[Live Demo]</a>
+                        <a href="https://github.com/dataunfound/Pipeline_Simulator" target="_blank">[GitHub]</a>
                     </div>
                 </div>
-                <p>A Python-based application designed to visualize complex sorting and pathfinding algorithms. Focuses on identifying computational bottlenecks and demonstrating real-time efficiency improvements in algorithmic logic.</p>
+                <p>A sophisticated tool developed to simulate and visualize instruction pipelining within a CPU architecture. It tracks stages like fetch, decode, execute, memory access, and write-back, identifying potential hazards and calculating performance throughput. This project demonstrates a deep understanding of computer organization and algorithmic efficiency in hardware emulation.</p>
             </div>
 
             <div class="project-card">
                 <div class="project-title">
-                    Enterprise Data Center Resource Monitor
+                    Shape Management System
                     <div class="project-links">
-                        <a href="#">[GitHub]</a>
+                        <a href="https://github.com/dataunfound/ShapeManagementSystem" target="_blank">[GitHub]</a>
                     </div>
                 </div>
-                <p>An infrastructure simulation project calculating power consumption and storage allocation across high-end arrays. Integrates parameters from SAN environments, RAID configurations, and NVMe networking to model optimal datacenter deployments.</p>
+                <p>A comprehensive application built using rigorous Object-Oriented Programming (OOP) principles to manage complex geometric data. Featuring advanced class hierarchies and automated area/perimeter calculations, it emphasizes clean code architecture and efficient data persistence. Designed to showcase scalable software design patterns in real-world management scenarios.</p>
             </div>
         </div>
 
@@ -291,13 +289,7 @@
             <div class="resume-item">
                 <div class="resume-title">BSc (Hons) Computer Science</div>
                 <div class="resume-meta">University of York, United Kingdom | 1st Year (Current)</div>
-                <p>Currently engaged in foundational computer science principles, emphasizing software engineering lifecycles, rigorous algorithm design, and modern web development methodologies.</p>
-            </div>
-            
-            <div class="resume-item">
-                <div class="resume-title">International Foundation Programme</div>
-                <div class="resume-meta">King's College London | Completed</div>
-                <p>Completed intensive multi-disciplinary coursework with high academic standing, building a robust analytical framework for advanced university-level computer science studies.</p>
+                <p>Focusing on the theoretical foundations of computation and practical software engineering. Coursework includes advanced algorithm analysis, database systems, and full-stack development. Actively participating in research-led projects that bridge hardware constraints with software optimization.</p>
             </div>
         </div>
 
@@ -307,13 +299,13 @@
             <div class="resume-item">
                 <div class="resume-title">Software Engineering Intern</div>
                 <div class="resume-meta">IBM | Internship</div>
-                <p>Gained exposure to enterprise-level software environments and modern operational workflows. Engaged with cross-functional teams to understand large-scale architectural requirements and corporate IT standards.</p>
+                <p>Immersed in a global enterprise software environment, contributing to agile development cycles. Collaborated with multi-disciplinary teams to understand large-scale architectural requirements and corporate IT standards. Gained specialized knowledge in modern operational workflows and production-level code maintenance within high-performance computing clusters.</p>
             </div>
 
             <div class="resume-item">
                 <div class="resume-title">IT Infrastructure Specialist</div>
-                <div class="resume-meta">SOLUS | 1 Year Experience</div>
-                <p>Operated within a high-stakes IT environment, evaluating enterprise hardware integrations. Analyzed high-performance storage systems (IBM FlashSystem, Pure Storage FlashBlade), Brocade Gen 7 SAN directors, and NVMe over TCP protocol efficiencies to support operational reliability.</p>
+                <div class="resume-meta">SOLUS | 3 Years Experience</div>
+                <p>Leading the evaluation and integration of high-end enterprise data center infrastructure. Conducted deep-dive technical analyses of high-performance storage systems including IBM FlashSystem and Pure Storage FlashBlade. Mastered the configuration of Brocade Gen 7 SAN directors and optimized system reliability through advanced NVMe over TCP protocol efficiencies. Responsible for benchmarking hardware performance and ensuring seamless data integrity across complex server rack environments.</p>
             </div>
         </div>
 
