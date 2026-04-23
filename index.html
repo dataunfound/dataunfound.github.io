@@ -173,6 +173,112 @@
 
         .news-content { padding: 25px; color: #657b83; font-size: 0.95rem; }
 
+        .content-section {
+            margin-top: 80px;
+            padding-top: 40px;
+            border-top: 1px dashed var(--border-color);
+        }
+
+        .section-title {
+            font-family: 'Fira Code', monospace;
+            font-size: 1.5rem;
+            color: #0f172a;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-title::before {
+            content: ">";
+            color: var(--accent-blue);
+            font-weight: bold;
+        }
+
+        .resume-item {
+            margin-bottom: 35px;
+            position: relative;
+            padding-left: 20px;
+            border-left: 2px solid var(--border-color);
+        }
+
+        .resume-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 5px;
+        }
+
+        .resume-meta {
+            font-size: 0.9rem;
+            color: var(--accent-blue);
+            font-weight: 500;
+            margin-bottom: 15px;
+            font-family: 'Fira Code', monospace;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-category h3 {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: #0f172a;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-badge {
+            background: var(--bg-light);
+            border: 1px solid var(--border-color);
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        .project-card {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 20px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+        }
+
+        .project-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .project-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-left: 15px;
+            transition: 0.2s;
+        }
+
+        .project-links a:hover { color: var(--accent-blue); }
+
         footer { background: var(--footer-bg); color: white; padding: 80px 0; margin-top: 80px; }
         
         .footer-container { 
@@ -240,37 +346,36 @@
             </div>
             <nav>
                 <ul class="nav-links">
-                    <li><a href="#" class="active">About</a></li>
-                    <li><a href="#">Projects</a></li>
-                    <li><a href="#">Blog</a></li>
-                    <li><a href="#">Education</a></li>
-                    <li><a href="#">Experience</a></li>
-                    <li><a href="#">Skills</a></li>
+                    <li><a href="#about" class="active">About</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#education">Education</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#skills">Skills</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <main class="container">
-        <section class="about-grid">
+        <section id="about" class="about-grid">
             <div class="intro-text">
                 <h1>Kaan Barlas</h1>
                 <p class="subtitle">Computer Science Student - Python Developer & Algorithm Specialist</p>
                 
                 <p>Hey, my name is <strong>Kaan Barlas</strong>.</p>
                 
-                <p>I'm a <strong>Computer Science</strong> student, specializing in <strong>Algorithm Design</strong> and <strong>Software Development</strong>. I focus on building efficient, scalable solutions and bridging the gap between hardware architecture and software engineering.</p>
+                <p>I'm a <strong>Computer Science</strong> student at the <strong>University of York</strong>, specializing in <strong>Algorithm Design</strong> and <strong>Software Development</strong>. I focus on building efficient, scalable solutions and bridging the gap between hardware architecture and software engineering.</p>
                 
-                <p>My expertise includes <strong>Python development</strong>, <strong>complex problem-solving</strong>, and <strong>IT infrastructure</strong>. Drawing from my technical background at SOLUS, I am passionate about optimizing systems and exploring high-performance data center technologies.</p>
+                <p>My expertise includes <strong>Python development</strong>, <strong>complex problem-solving</strong>, and <strong>IT infrastructure</strong>. Drawing from my professional background, I am passionate about optimizing systems, exploring high-performance data center technologies, and understanding the physical realities of the code I write.</p>
                 
-                <p><strong>Current Focus:</strong> I'm currently working on algorithmic optimization projects and building production-ready infrastructure for AI-driven applications.</p>
+                <p><strong>Current Focus:</strong> I'm working on algorithmic optimization projects, Python automation, and building a foundational understanding of production-ready infrastructure.</p>
                 
                 <p>Feel free to <a href="#contact" style="color: #2563eb; text-decoration: none; font-weight: 500;">connect</a> with me for internship opportunities or collaborations!</p>
 
                 <div class="new-post-bar">
                     <span class="post-tag">New post:</span>
-                    <a href="#">Optimizing Python for Enterprise Systems</a>
-                    <span class="post-date">Feb 21 ></span>
+                    <a href="#projects">Analyzing High-Performance Storage Protocols</a>
+                    <span class="post-date">Apr 23 ></span>
                 </div>
             </div>
 
@@ -298,7 +403,109 @@
                 </div>
             </div>
             <div class="news-content">
-                <p>April 2026: Working on the IY4103 Web Development Summative Assessment. Implementing a full-stack contact form with Supabase integration.</p>
+                <p>April 2026: Developing the IY4103 Web Development Summative Assessment Portfolio. Implementing a full-stack contact architecture utilizing Supabase integration and responsive CSS methodologies.</p>
+            </div>
+        </section>
+
+        <section id="projects" class="content-section">
+            <h2 class="section-title">Projects</h2>
+            
+            <div class="project-card">
+                <div class="project-title">
+                    Algorithm Visualizer & Optimizer
+                    <div class="project-links">
+                        <a href="#">[GitHub]</a>
+                        <a href="#">[Live Demo]</a>
+                    </div>
+                </div>
+                <p>A Python-based application designed to visualize complex sorting and pathfinding algorithms. Focuses on identifying computational bottlenecks and demonstrating real-time efficiency improvements in algorithmic logic.</p>
+                <div class="skill-tags" style="margin-top: 15px;">
+                    <span class="skill-badge">Python</span>
+                    <span class="skill-badge">Data Structures</span>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-title">
+                    Enterprise Data Center Resource Monitor
+                    <div class="project-links">
+                        <a href="#">[GitHub]</a>
+                    </div>
+                </div>
+                <p>An infrastructure simulation project calculating power consumption and storage allocation across high-end arrays. Integrates parameters from SAN environments, RAID configurations, and NVMe networking to model optimal datacenter deployments.</p>
+                <div class="skill-tags" style="margin-top: 15px;">
+                    <span class="skill-badge">Infrastructure Design</span>
+                    <span class="skill-badge">Networking Protocol</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="education" class="content-section">
+            <h2 class="section-title">Education</h2>
+            
+            <div class="resume-item">
+                <div class="resume-title">BSc (Hons) Computer Science</div>
+                <div class="resume-meta">University of York, United Kingdom | 1st Year (Current)</div>
+                <p>Currently engaged in foundational computer science principles, emphasizing software engineering lifecycles, rigorous algorithm design, and modern web development methodologies.</p>
+            </div>
+            
+            <div class="resume-item">
+                <div class="resume-title">International Foundation Programme</div>
+                <div class="resume-meta">King's College London | Completed</div>
+                <p>Completed intensive multi-disciplinary coursework with high academic standing, building a robust analytical framework for advanced university-level computer science studies.</p>
+            </div>
+        </section>
+
+        <section id="experience" class="content-section">
+            <h2 class="section-title">Experience</h2>
+            
+            <div class="resume-item">
+                <div class="resume-title">Software Engineering Intern</div>
+                <div class="resume-meta">IBM | Internship</div>
+                <p>Gained exposure to enterprise-level software environments and modern operational workflows. Engaged with cross-functional teams to understand large-scale architectural requirements and corporate IT standards.</p>
+            </div>
+
+            <div class="resume-item">
+                <div class="resume-title">IT Infrastructure Specialist</div>
+                <div class="resume-meta">SOLUS | 1 Year Experience</div>
+                <p>Operated within a high-stakes IT environment, evaluating enterprise hardware integrations. Analyzed high-performance storage systems (IBM FlashSystem, Pure Storage FlashBlade), Brocade Gen 7 SAN directors, and NVMe over TCP protocol efficiencies to support operational reliability.</p>
+            </div>
+        </section>
+
+        <section id="skills" class="content-section">
+            <h2 class="section-title">Skills</h2>
+            
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Software Engineering</h3>
+                    <div class="skill-tags">
+                        <span class="skill-badge">Python</span>
+                        <span class="skill-badge">Algorithm Design</span>
+                        <span class="skill-badge">Web Development</span>
+                        <span class="skill-badge">HTML/CSS</span>
+                        <span class="skill-badge">JavaScript</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>IT Infrastructure</h3>
+                    <div class="skill-tags">
+                        <span class="skill-badge">High-Performance Storage</span>
+                        <span class="skill-badge">SAN Directors</span>
+                        <span class="skill-badge">NVMe over TCP</span>
+                        <span class="skill-badge">RAID Configurations</span>
+                        <span class="skill-badge">Hardware Benchmarking</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Personal & Multi-disciplinary</h3>
+                    <div class="skill-tags">
+                        <span class="skill-badge">Classical Piano & Violin</span>
+                        <span class="skill-badge">Competitive Athletics</span>
+                        <span class="skill-badge">Analytical Problem Solving</span>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
@@ -309,12 +516,16 @@
                 <h3>Get in Touch</h3>
                 <form id="contact-form">
                     <div class="form-group">
+                        <label>Your name:</label>
+                        <input type="text" id="name" placeholder="Enter your full name" required>
+                    </div>
+                    <div class="form-group">
                         <label>Your email:</label>
-                        <input type="email" placeholder="Enter your email address" required>
+                        <input type="email" id="email" placeholder="Enter your email address" required>
                     </div>
                     <div class="form-group">
                         <label>Your message:</label>
-                        <textarea placeholder="Write your message here..." rows="4" required></textarea>
+                        <textarea id="message" placeholder="Write your message here..." rows="4" required></textarea>
                     </div>
                     <button type="submit" class="btn-submit">Send Message</button>
                 </form>
@@ -331,6 +542,7 @@
                 <h3>Portfolio Status</h3>
                 <p>Version 1.0 - Production Ready</p>
                 <p>Responsive Design: Enabled</p>
+                <p>Module: IY4103</p>
             </div>
         </div>
     </footer>
