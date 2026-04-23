@@ -100,6 +100,7 @@
 
         .sidebar { position: sticky; top: 80px; }
         .profile-pic { width: 100%; border-radius: 12px; border: 1px solid var(--border-color); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
+        
         .links-box { background: var(--bg-light); padding: 25px; border-radius: 12px; border: 1px solid var(--border-color); margin-top: 25px; }
         .links-box ul { list-style: none; }
         .links-box li { margin-bottom: 12px; font-size: 0.95rem; display: flex; align-items: center; gap: 10px; }
@@ -113,13 +114,10 @@
 
         .news-section { background: #fdf6e3; border: 1px solid #eee8d5; border-radius: 10px; margin-top: 60px; overflow: hidden; }
         .news-header { background: #eee8d5; padding: 12px 20px; display: flex; align-items: center; gap: 20px; font-family: 'Fira Code', monospace; font-size: 0.9rem; }
-        
-        /* Mac Style Dots */
         .dots span { height: 12px; width: 12px; border-radius: 50%; display: inline-block; margin-right: 6px; }
-        .dots span:nth-child(1) { background: #ff5f56; } /* Mac Red */
-        .dots span:nth-child(2) { background: #ffbd2e; } /* Mac Yellow */
-        .dots span:nth-child(3) { background: #27c93f; } /* Mac Green */
-
+        .dots span:nth-child(1) { background: #ff5f56; } 
+        .dots span:nth-child(2) { background: #ffbd2e; } 
+        .dots span:nth-child(3) { background: #27c93f; } 
         .years { margin-left: auto; display: flex; gap: 10px; }
         .years span { padding: 2px 8px; border-radius: 4px; cursor: pointer; }
         .years span.active { background: #00000010; font-weight: bold; }
@@ -131,7 +129,7 @@
         .resume-item { margin-bottom: 35px; position: relative; padding-left: 20px; border-left: 2px solid var(--border-color); }
         
         .resume-header { display: flex; align-items: center; gap: 15px; margin-bottom: 5px; }
-        .resume-logo { width: 45px; height: 45px; object-fit: contain; border-radius: 8px; border: 1px solid var(--border-color); padding: 4px; background: white; }
+        .resume-logo { width: 45px; height: 45px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border-color); padding: 4px; background: white; }
         
         .resume-title { font-size: 1.2rem; font-weight: 600; color: #0f172a; }
         .resume-meta { font-size: 0.9rem; color: var(--accent-blue); font-weight: 500; margin-bottom: 15px; font-family: 'Fira Code', monospace; }
@@ -176,21 +174,66 @@
         .link-list a:hover { color: var(--accent-blue); text-decoration: underline; }
 
         footer { background: var(--footer-bg); color: white; padding: 80px 0; margin-top: 80px; }
-        .footer-container { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1.5fr 1fr 0.8fr; gap: 50px; padding: 0 20px; }
+        
+        .footer-container { 
+            max-width: 1100px; 
+            margin: 0 auto; 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; /* Symmetrical two columns */
+            gap: 70px; /* Increased gap for better balance */
+            padding: 0 20px; 
+            align-items: start; /* Symmetrical top alignment */
+        }
+        
         footer h3 { font-size: 1.2rem; border-bottom: 2px solid #2d3b50; padding-bottom: 12px; margin-bottom: 25px; display: inline-block; }
-        .form-group { margin-bottom: 20px; }
-        label { display: block; margin-bottom: 8px; font-size: 0.9rem; color: #94a3b8; }
-        input, textarea { width: 100%; background: #2d3b50; border: 1px solid #3f516a; border-radius: 6px; padding: 12px; color: white; font-family: inherit; }
+        
+        input, textarea { width: 100%; background: #2d3b50; border: 1px solid #3f516a; border-radius: 6px; padding: 12px; color: white; font-family: inherit; margin: 0; }
         input:focus, textarea:focus { outline: none; border-color: var(--accent-blue); }
-        .btn-submit { background: var(--accent-blue); color: white; border: none; padding: 12px 25px; border-radius: 6px; cursor: pointer; font-weight: 600; transition: 0.3s; }
+        
+        .btn-submit { background: var(--accent-blue); color: white; border: none; padding: 12px 25px; border-radius: 6px; cursor: pointer; font-weight: 600; transition: 0.3s; width: 100%; }
         .btn-submit:hover { background: #3b82f6; transform: translateY(-2px); }
-        .info-col p { color: #cbd5e1; margin-bottom: 15px; font-size: 0.95rem; }
+        
+        /* Footer modern silhouette input fields */
+        .form-group-with-icon {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .form-field-icon-container {
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .form-icon {
+            position: absolute;
+            left: 15px; /* Silhouette icon positioned within the input */
+            font-size: 1rem;
+            color: #cbd5e1; /* Light silhouette icon color */
+            pointer-events: none;
+        }
+
+        .form-field-icon-container input {
+            padding-left: 45px; /* Padding for silhouette icon space on left */
+            width: 100%;
+        }
+
+        /* footer contact silhouette information */
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        .info-item a { color: #cbd5e1; text-decoration: none; font-weight: 500; }
 
         @media (max-width: 900px) {
-            .about-grid, .tech-skills-container, .domain-container { grid-template-columns: 1fr; }
+            .about-grid, .tech-skills-container, .domain-container, .footer-container { grid-template-columns: 1fr; }
             .sidebar { position: static; max-width: 400px; margin: 0 auto; }
-            .footer-container { grid-template-columns: 1fr; }
             h1 { font-size: 2.2rem; }
+            .form-icon { left: 10px; } /* adjustments for smaller screens */
+            .form-field-icon-container input { padding-left: 35px; }
         }
     </style>
 </head>
@@ -241,9 +284,7 @@
                     <img src="https://github.com/dataunfound.png" alt="Kaan Barlas" class="profile-pic">
                     <div class="links-box">
                         <ul>
-                            <li>📧 <a href="mailto:kaanbarlas@proton.me">kaanbarlas@proton.me</a></li>
-                            <li>💻 <a href="https://github.com/dataunfound" target="_blank">GitHub Profile</a></li>
-                        </ul>
+                            <li>&#128100; <a href="mailto:kaanbarlas@proton.me">kaanbarlas@proton.me</a></li> <li>💻 <a href="https://github.com/dataunfound" target="_blank">GitHub Profile</a></li> </ul>
                     </div>
                 </aside>
             </section>
@@ -291,8 +332,7 @@
             
             <div class="resume-item">
                 <div class="resume-header">
-                    <img src="https://upload.wikimedia.org/wikipedia/en/1/1a/University_of_York_logo.svg" alt="University of York Logo" class="resume-logo">
-                    <div class="resume-title">BSc (Hons) Computer Science</div>
+                    <img src="york%202.jpeg" alt="University of York Logo" class="resume-logo"> <div class="resume-title">BSc (Hons) Computer Science</div>
                 </div>
                 <div class="resume-meta">University of York, United Kingdom | 1st Year (Current)</div>
                 <p>Focusing on the theoretical foundations of computation and practical software engineering. Coursework includes advanced algorithm analysis, database systems, and full-stack development. Actively participating in research-led projects that bridge hardware constraints with software optimization.</p>
@@ -532,19 +572,21 @@
 
     <footer id="contact">
         <div class="footer-container">
+            
             <div class="footer-col form-col">
                 <h3>Get in Touch</h3>
                 <form id="contact-form">
-                    <div class="form-group">
-                        <label>Your name:</label>
-                        <input type="text" id="name" placeholder="Enter your full name" required>
+                    <div class="form-group form-group-with-icon">
+                        <div class="form-field-icon-container">
+                            <span class="form-icon">&#128100;</span> <input type="text" id="name" placeholder="Enter your full name" required>
+                        </div>
+                    </div>
+                    <div class="form-group form-group-with-icon">
+                        <div class="form-field-icon-container">
+                            <span class="form-icon">&#9993;</span> <input type="email" id="email" placeholder="Enter your email address" required>
+                        </div>
                     </div>
                     <div class="form-group">
-                        <label>Your email:</label>
-                        <input type="email" id="email" placeholder="Enter your email address" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Your message:</label>
                         <textarea id="message" placeholder="Write your message here..." rows="4" required></textarea>
                     </div>
                     <button type="submit" class="btn-submit">Send Message</button>
@@ -553,16 +595,14 @@
 
             <div class="footer-col info-col">
                 <h3>Contact</h3>
-                <p>📍 York, United Kingdom</p>
-                <p>📧 kaanbarlas@proton.me</p>
+                <div class="contact-info-block">
+                    <div class="info-item">
+                        📍 <a href="#" target="_blank">York, United Kingdom</a> </div>
+                    <div class="info-item">
+                        ✉ <a href="mailto:kaanbarlas@proton.me">kaanbarlas@proton.me</a> </div>
+                </div>
             </div>
-
-            <div class="footer-col views-col">
-                <h3>Portfolio Status</h3>
-                <p>Version 1.0 - Production Ready</p>
-                <p>Responsive Design: Enabled</p>
-                <p>Module: IY4103</p>
-            </div>
+            
         </div>
     </footer>
 
