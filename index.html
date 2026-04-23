@@ -3,384 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kaan Barlas | root@dataunfound</title>
-    
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-    <style>
-        /* yasio.dev Inspired IDE Theme */
-        :root {
-            --bg-dark: #0f111a; 
-            --timeline: #6a4c9c; 
-            
-            /* Syntax Highlighting */
-            --kw: #c678dd; /* Keywords */
-            --cl: #e5c07b; /* Classes/Functions */
-            --st: #98c379; /* Strings */
-            --pr: #e06c75; /* Properties/This */
-            --key: #56b6c2; /* Object Keys */
-            --cm: #5c6370; /* Comments */
-            --pn: #abb2bf; /* Punctuation/Normal Text */
-            --line-num: #3b404d; /* Line numbers */
-            
-            --font-stack: 'Fira Code', 'Consolas', 'Courier New', monospace;
-        }
-
-        body {
-            background-color: var(--bg-dark);
-            color: var(--pn);
-            font-family: var(--font-stack);
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 3rem 2rem;
-            line-height: 1.6;
-            font-size: 0.95rem;
-        }
-
-        /* --- HACKER HEADER & AVATAR --- */
-        header {
-            margin-bottom: 3rem;
-            display: flex;
-            align-items: center;
-            padding-bottom: 1rem;
-            margin-left: 2rem; 
-        }
-
-        .avatar {
-            width: 100px;
-            height: 100px;
-            border: 2px solid var(--key);
-            box-shadow: 0 0 15px rgba(86, 182, 194, 0.3);
-            margin-right: 2rem;
-            filter: grayscale(80%) contrast(150%) brightness(90%) hue-rotate(180deg);
-            transition: all 0.3s ease;
-        }
-        
-        .avatar:hover {
-            filter: grayscale(0%) contrast(110%) brightness(110%);
-            box-shadow: 0 0 20px var(--st);
-            border-color: var(--st);
-        }
-
-        .profile-info h1 {
-            color: var(--key);
-            margin: 0 0 0.5rem 0;
-            font-size: 2rem;
-            letter-spacing: -1px;
-            text-transform: uppercase;
-        }
-
-        .cmd-prompt { color: var(--st); font-weight: bold; margin-bottom: 0.5rem; }
-        .cmd-prompt::before { content: "root@dataunfound:~# "; color: var(--key); }
-        .tagline { color: var(--cm); font-style: italic; font-size: 0.9rem; }
-
-        /* --- TOP ACTION BUTTONS --- */
-        .actions {
-            margin-left: 2rem;
-            margin-bottom: 3rem;
-        }
-        .btn {
-            display: inline-block;
-            border: 1px solid var(--st);
-            padding: 0.4rem 0.8rem;
-            color: var(--st);
-            background: transparent;
-            text-transform: uppercase;
-            margin-right: 1rem;
-            font-weight: bold;
-            font-size: 0.85rem;
-            text-decoration: none;
-            transition: 0.2s;
-            cursor: pointer;
-            font-family: var(--font-stack);
-        }
-        .btn:hover { background: var(--st); color: var(--bg-dark); }
-        .btn.secondary { border-color: var(--key); color: var(--key); }
-        .btn.secondary:hover { background: var(--key); color: var(--bg-dark); }
-        .ping-link { color: var(--key); text-decoration: none; margin-left: 1rem; font-weight: bold; }
-        .ping-link:hover { text-decoration: underline; }
-
-        /* --- THE CONTINUOUS TIMELINE --- */
-        .ide-container {
-            border-left: 1px solid var(--timeline);
-            margin-left: 2.5rem;
-            padding-left: 1rem;
-            padding-bottom: 2rem;
-            counter-reset: global-line; 
-        }
-
-        /* --- SECTION HEADERS --- */
-        .section-header {
-            color: var(--pn);
-            font-weight: normal;
-            font-size: 1rem;
-            margin: 2.5rem 0 1rem -1.4rem; 
-            display: flex;
-            align-items: center;
-        }
-        .section-header::before {
-            content: '';
-            display: inline-block;
-            width: 8px;
-            height: 8px;
-            border: 2px solid var(--timeline);
-            border-radius: 50%;
-            background: var(--bg-dark);
-            margin-right: 15px;
-            position: relative;
-            z-index: 2;
-        }
-        .section-header span { color: var(--pn); }
-
-        /* --- IDE TEXT FORMATTING --- */
-        .line {
-            display: block;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-            line-height: 1.6;
-        }
-
-        .line::before {
-            counter-increment: global-line;
-            content: counter(global-line, decimal-leading-zero); 
-            display: inline-block;
-            width: 2rem;
-            margin-right: 1.5rem;
-            color: var(--line-num);
-            text-align: right;
-            user-select: none;
-        }
-
-        .kw { color: var(--kw); }
-        .cl { color: var(--cl); }
-        .st { color: var(--st); }
-        .pr { color: var(--pr); }
-        .key { color: var(--key); }
-        .cm { color: var(--cm); }
-        .pn { color: var(--pn); }
-
-        .indent-1 { padding-left: 2rem; }
-        .indent-2 { padding-left: 4rem; }
-        .indent-3 { padding-left: 6rem; }
-        .indent-4 { padding-left: 8rem; }
-
-        a.st { text-decoration: none; }
-        a.st:hover { text-decoration: underline; color: #b5e890; }
-
-        /* --- IDE TERMINAL FORM STYLING --- */
-        .terminal-form {
-            margin-left: 3.5rem; /* Aligns with indent-1 */
-            margin-top: 0.5rem;
-            max-width: 500px;
-        }
-        .input-group {
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-        }
-        .input-group label {
-            color: var(--key);
-            width: 80px;
-        }
-        .input-group label::after {
-            content: ' :';
-            color: var(--pn);
-        }
-        .terminal-input {
-            background: transparent;
-            border: none;
-            border-bottom: 1px dashed var(--cm);
-            color: var(--st);
-            font-family: var(--font-stack);
-            font-size: 0.95rem;
-            flex-grow: 1;
-            padding: 0.2rem 0.5rem;
-            outline: none;
-        }
-        .terminal-input:focus {
-            border-bottom: 1px solid var(--st);
-        }
-        .terminal-input::placeholder {
-            color: var(--cm);
-            font-style: italic;
-        }
-        textarea.terminal-input {
-            resize: vertical;
-            min-height: 60px;
-        }
-        #form-feedback {
-            margin-top: 1rem;
-            font-style: italic;
-            display: none;
-        }
-        .success-msg { color: var(--st); }
-        .error-msg { color: var(--pr); }
-
-        /* Mobile responsiveness */
-        @media (max-width: 768px) {
-            .input-group { flex-direction: column; align-items: flex-start; }
-            .input-group label { margin-bottom: 0.5rem; }
-            .terminal-input { width: 100%; }
-        }
-    </style>
+    <title>Kaan Barlas | Software Developer Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">KB<span>.</span></div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-<header>
-    <img src="https://github.com/dataunfound.png" alt="Kaan Barlas" class="avatar">
-    <div class="profile-info">
-        <h1>Kaan Barlas</h1>
-        <div class="cmd-prompt">whoami</div>
-        <div class="tagline">// Computer Science Undergraduate @ University of York</div>
-        <div class="tagline">// Architecting scalable backend systems & data pipelines.</div>
-    </div>
-</header>
-
-<div class="actions">
-    <a href="#projects" class="btn">Execute: view_projects.sh</a>
-    <a href="maths.html" class="btn secondary">Initialize: cs_tools.exe</a>
-    <a href="#contact" class="ping-link">> ping dataunfound</a>
-</div>
-
-<main class="ide-container">
-
-    <div class="section-header"><span>About /></span></div>
-    
-    <span class="line"><span class="kw">class</span> <span class="cl">KaanBarlas</span> <span class="pn">{</span></span>
-    <span class="line indent-1"><span class="cm">// I simply enjoy every creative work of human mind</span></span>
-    <span class="line indent-1"><span class="cm">// and savor keeping my mind occupied.</span></span>
-    <span class="line indent-1"><span class="kw">constructor</span><span class="pn">() {</span></span>
-    <span class="line indent-2"><span class="pr">this</span><span class="pn">.</span><span class="key">name</span> <span class="pn">=</span> <span class="st">'Kaan Barlas'</span><span class="pn">;</span></span>
-    <span class="line indent-2"><span class="pr">this</span><span class="pn">.</span><span class="key">status</span> <span class="pn">=</span> <span class="st">'Computer Science Undergraduate'</span><span class="pn">;</span></span>
-    <span class="line indent-1"><span class="pn">}</span></span>
-    <span class="line"></span>
-    <span class="line indent-1"><span class="cl">techInterests</span><span class="pn">() {</span></span>
-    <span class="line indent-2"><span class="kw">return</span> <span class="pn">[</span></span>
-    <span class="line indent-3"><span class="st">'Embedded Systems'</span><span class="pn">,</span> <span class="st">'Cybersecurity'</span><span class="pn">,</span> <span class="st">'Docker'</span><span class="pn">,</span> <span class="st">'Kubernetes'</span></span>
-    <span class="line indent-2"><span class="pn">];</span></span>
-    <span class="line indent-1"><span class="pn">}</span></span>
-    <span class="line"></span>
-    <span class="line indent-1"><span class="cl">artAndPhilosophy</span><span class="pn">() {</span></span>
-    <span class="line indent-2"><span class="kw">return</span> <span class="pn">[</span></span>
-    <span class="line indent-3"><span class="st">'Western Classical Music'</span><span class="pn">,</span> <span class="st">'Art'</span><span class="pn">,</span> <span class="st">'Philosophy'</span><span class="pn">,</span> <span class="st">'Physics'</span><span class="pn">,</span></span>
-    <span class="line indent-3"><span class="st">'Observing Heavens'</span><span class="pn">,</span> <span class="st">'Poetry'</span><span class="pn">,</span> <span class="st">'Piano'</span><span class="pn">,</span> <span class="st">'Violin'</span></span>
-    <span class="line indent-2"><span class="pn">];</span></span>
-    <span class="line indent-1"><span class="pn">}</span></span>
-    <span class="line"></span>
-    <span class="line indent-1"><span class="cl">currentObjective</span><span class="pn">() {</span></span>
-    <span class="line indent-2"><span class="kw">return</span> <span class="st">'Looking for a backend engineering or cloud infrastructure internship where I can apply my skills to real-world datasets.'</span><span class="pn">;</span></span>
-    <span class="line indent-1"><span class="pn">}</span></span>
-    <span class="line"><span class="pn">}</span></span>
-
-    <div class="section-header" id="projects"><span>Projects /></span></div>
-    
-    <span class="line"><span class="kw">const</span> <span class="key">featuredProjects</span> <span class="pn">= [</span></span>
-    <span class="line indent-1"><span class="pn">{</span></span>
-    <span class="line indent-2"><span class="st">'2026-now'</span> <span class="pn">:</span> <span class="st">'Real-Time Data Pipeline'</span><span class="pn">,</span></span>
-    <span class="line indent-2"><span class="key">techStack</span>  <span class="pn">: [</span><span class="st">'Python'</span><span class="pn">,</span> <span class="st">'FastAPI'</span><span class="pn">,</span> <span class="st">'PostgreSQL'</span><span class="pn">],</span></span>
-    <span class="line indent-2"><span class="key">summary</span>    <span class="pn">:</span> <span class="st">'An asynchronous web app to aggregate & process high-volume data streams.'</span><span class="pn">,</span></span>
-    <span class="line indent-2"><span class="key">repository</span> <span class="pn">:</span> <a href="https://github.com/dataunfound/data-pipeline" target="_blank" class="st">'github.com/dataunfound/data-pipeline'</a></span>
-    <span class="line indent-1"><span class="pn">},</span></span>
-    <span class="line indent-1"><span class="pn">{</span></span>
-    <span class="line indent-2"><span class="st">'2025-2026'</span><span class="pn">:</span> <span class="st">'Predictive Resource Engine'</span><span class="pn">,</span></span>
-    <span class="line indent-2"><span class="key">techStack</span>  <span class="pn">: [</span><span class="st">'Java'</span><span class="pn">,</span> <span class="st">'Spring Boot'</span><span class="pn">,</span> <span class="st">'Docker'</span><span class="pn">],</span></span>
-    <span class="line indent-2"><span class="key">summary</span>    <span class="pn">:</span> <span class="st">'Simulates network traffic loads to algorithmically predict & allocate resources.'</span><span class="pn">,</span></span>
-    <span class="line indent-2"><span class="key">repository</span> <span class="pn">:</span> <a href="https://github.com/dataunfound/resource-engine" target="_blank" class="st">'github.com/dataunfound/resource-engine'</a></span>
-    <span class="line indent-1"><span class="pn">}</span></span>
-    <span class="line"><span class="pn">];</span></span>
-
-    <div class="section-header"><span>Skills /></span></div>
-    
-    <span class="line"><span class="kw">const</span> <span class="key">developerStats</span> <span class="pn">= () => {</span></span>
-    <span class="line indent-1"><span class="kw">return</span> <span class="pn">[</span></span>
-    <span class="line indent-2"><span class="st">'Python'</span><span class="pn">,</span> <span class="st">'Java'</span><span class="pn">,</span> <span class="st">'Go'</span><span class="pn">,</span> <span class="st">'JavaScript'</span><span class="pn">,</span> <span class="st">'SQL'</span><span class="pn">,</span></span>
-    <span class="line indent-2"><span class="st">'FastAPI'</span><span class="pn">,</span> <span class="st">'Spring Boot'</span><span class="pn">,</span> <span class="st">'Docker'</span><span class="pn">,</span> <span class="st">'Git'</span><span class="pn">,</span> <span class="st">'Linux CLI'</span><span class="pn">,</span></span>
-    <span class="line indent-2"><span class="st">'Backend Architecture'</span><span class="pn">,</span> <span class="st">'Database Normalisation'</span><span class="pn">,</span> <span class="st">'REST APIs'</span></span>
-    <span class="line indent-1"><span class="pn">];</span></span>
-    <span class="line"><span class="pn">}</span></span>
-
-    <div class="section-header" id="contact"><span>Contact /></span></div>
-    
-    <span class="line"><span class="kw">export const</span> <span class="key">network</span> <span class="pn">= {</span></span>
-    <span class="line indent-1"><span class="key">location</span><span class="pn">:</span> <span class="st">'York, United Kingdom'</span><span class="pn">,</span></span>
-    <span class="line indent-1"><span class="key">github</span><span class="pn">:</span> <a href="https://github.com/dataunfound" target="_blank" class="st">'github.com/dataunfound'</a><span class="pn">,</span></span>
-    <span class="line indent-1"><span class="key">sendMessage</span><span class="pn">:</span> <span class="kw">async</span> <span class="pn">(</span><span class="pr">payload</span><span class="pn">) => {</span></span>
-    
-    <form id="contact-form" class="terminal-form">
-        <div class="input-group">
-            <label for="name">name</label>
-            <input type="text" id="name" class="terminal-input" placeholder="'Enter string'" required>
-        </div>
-        <div class="input-group">
-            <label for="email">email</label>
-            <input type="email" id="email" class="terminal-input" placeholder="'user@domain.com'" required>
-        </div>
-        <div class="input-group">
-            <label for="message">message</label>
-            <textarea id="message" class="terminal-input" placeholder="'Write payload here...'" required></textarea>
-        </div>
-        <button type="submit" class="btn secondary" style="margin-top: 0.5rem;">await supabase.insert(payload)</button>
-        <div id="form-feedback"></div>
-    </form>
-    
-    <span class="line indent-1"><span class="pn">}</span></span>
-    <span class="line"><span class="pn">};</span></span>
-
-</main>
-
-<script>
-    // ==========================================
-    // SUPABASE INTEGRATION
-    // ==========================================
-    
-    // 1. You MUST replace these variables with your actual Supabase project credentials.
-    const SUPABASE_URL = 'YOUR_SUPABASE_URL';
-    const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
-
-    // 2. Initialize the Supabase client
-    const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
-    // 3. Handle form submission
-    document.getElementById('contact-form').addEventListener('submit', async (e) => {
-        e.preventDefault(); // Prevent page reload
+    <main class="hero-container">
+        <section class="hero-content">
+            <span class="badge">Available for Internships</span>
+            <h1>Kaan Barlas</h1>
+            <p class="tagline">Python Developer & Algorithm Specialist</p>
+            <p class="description">
+                Building efficient, scalable solutions with a focus on clean code and performance. 
+                With a strong background in IT infrastructure at SOLUS and a passion for complex problem-solving, 
+                I bridge the gap between hardware architecture and software development.
+            </p>
+            <div class="cta-group">
+                <a href="projects.html" class="btn btn-primary">View My Work</a>
+                <a href="contact.html" class="btn btn-secondary">Get In Touch</a>
+            </div>
+        </section>
         
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const message = document.getElementById('message').value;
-        const feedbackDiv = document.getElementById('form-feedback');
-        const submitBtn = e.target.querySelector('button');
+        <section class="stats-grid">
+            <div class="stat-card">
+                <h3>1+ Year</h3>
+                <p>Industry Experience</p>
+            </div>
+            <div class="stat-card">
+                <h3>Python</h3>
+                <p>Core Expertise</p>
+            </div>
+            <div class="stat-card">
+                <h3>IT Tech</h3>
+                <p>Infrastructure Knowledge</p>
+            </div>
+        </section>
+    </main>
 
-        // Visual feedback during processing
-        submitBtn.textContent = 'Processing...';
-        feedbackDiv.style.display = 'none';
-
-        try {
-            // Assessment explicitly requires inserting into a table. 
-            // Ensure your Supabase table is named 'contacts' or change the name below.
-            const { data, error } = await supabase
-                .from('contacts')
-                .insert([
-                    { name: name, email: email, message: message }
-                ]);
-
-            if (error) throw error;
-
-            // Success feedback required by assessment
-            feedbackDiv.textContent = '// SUCCESS: Thank you, your message has been recorded in the database.';
-            feedbackDiv.className = 'success-msg';
-            feedbackDiv.style.display = 'block';
-            e.target.reset(); // Clear form
-            
-        } catch (error) {
-            console.error('Error inserting data:', error);
-            feedbackDiv.textContent = `// ERROR: ${error.message}`;
-            feedbackDiv.className = 'error-msg';
-            feedbackDiv.style.display = 'block';
-        } finally {
-            submitBtn.textContent = 'await supabase.insert(payload)';
-        }
-    });
-</script>
-
+    <footer>
+        <p>&copy; 2026 Kaan Barlas. Portfolio for IY4103 Summative Assessment.</p>
+    </footer>
 </body>
 </html>
